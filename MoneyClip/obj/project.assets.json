@@ -13265,11 +13265,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\MoneyClip\\MoneyClip\\MoneyClip\\MoneyClip.csproj",
+      "projectUniqueName": "C:\\dev\\MoneyClip\\MoneyClip\\MoneyClip.csproj",
       "projectName": "MoneyClip",
-      "projectPath": "C:\\dev\\MoneyClip\\MoneyClip\\MoneyClip\\MoneyClip.csproj",
+      "projectPath": "C:\\dev\\MoneyClip\\MoneyClip\\MoneyClip.csproj",
       "packagesPath": "C:\\Users\\bbakl\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\MoneyClip\\MoneyClip\\MoneyClip\\obj\\",
+      "outputPath": "C:\\dev\\MoneyClip\\MoneyClip\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
