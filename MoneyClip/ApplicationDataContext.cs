@@ -18,6 +18,10 @@ namespace MoneyClip.EntityFramework
         {
         }
 
+        public ApplicationDataContext()
+        {
+
+        }
     }
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDataContext>
     {
