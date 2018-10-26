@@ -1,0 +1,27 @@
+﻿@model MoneyClip.Models.Income
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Layouts/_Master.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Income</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IncomeID)
+
+    @Html.EditorFor(d => d.Description)
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Incomes", "Index", "Incomes")
+</div>
+
