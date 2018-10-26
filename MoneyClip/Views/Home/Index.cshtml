@@ -1,4 +1,4 @@
-﻿@model List<MoneyClip.Models.Income>
+﻿@model MoneyClip.Models.Income
 
 @{
     Layout = "~/Views/Layouts/_Master.cshtml";
@@ -6,9 +6,9 @@
 
 
 <ul>
+
     @foreach (var item in Model)
     {
         <li>@item.Description</li>
     }
 </ul>
-<h1>Hello World from a View!</h1>

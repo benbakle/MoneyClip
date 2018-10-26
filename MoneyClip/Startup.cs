@@ -18,19 +18,7 @@ namespace MoneyClip
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            env.EnvironmentName = EnvironmentName.Production;
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/error");
-            }
-
-            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-
+            app.UseDeveloperExceptionPage();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
