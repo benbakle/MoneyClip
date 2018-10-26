@@ -17,6 +17,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th>@Html.DisplayNameFor(model => model.Amount)</th>
             <th></th>
         </tr>
     </thead>
@@ -28,7 +29,10 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Incomes", new { id = item.IncomeID }, null) | 
+                    @String.Format("{0:C}", item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Incomes", new { id = item.IncomeID }, null) |
                     @Html.ActionLink("Delete", "Delete", "Incomes", new { id = item.IncomeID }, null)
                 </td>
             </tr>

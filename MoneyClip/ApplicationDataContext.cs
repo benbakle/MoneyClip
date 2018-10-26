@@ -16,6 +16,7 @@ namespace MoneyClip.EntityFramework
 
         public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
         {
+            
         }
 
         public ApplicationDataContext()

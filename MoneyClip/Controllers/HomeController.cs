@@ -12,9 +12,7 @@ namespace MoneyClip.Controllers
         private ApplicationDataContext _db = new DesignTimeDbContextFactory().CreateDbContext(null);
         public IActionResult Index()
         {
-            var incomes = _db.Incomes;
-
-            return View(incomes.ToList());
+            return View();
         }
     }
 }

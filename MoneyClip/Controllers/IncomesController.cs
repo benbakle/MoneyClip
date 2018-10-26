@@ -25,24 +25,6 @@ namespace MoneyClip.Controllers
             return View(await _context.Incomes.ToListAsync());
         }
 
-        // GET: Incomes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var income = await _context.Incomes
-                .SingleOrDefaultAsync(m => m.IncomeID == id);
-            if (income == null)
-            {
-                return NotFound();
-            }
-
-            return View(income);
-        }
-
         // GET: Incomes/Create
         public IActionResult Create()
         {
@@ -54,7 +36,7 @@ namespace MoneyClip.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IncomeID,Description")] Income income)
+        public async Task<IActionResult> Create([Bind("IncomeID,Description,Amount")] Income income)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +68,7 @@ namespace MoneyClip.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IncomeID,Description")] Income income)
+        public async Task<IActionResult> Edit(int id, [Bind("IncomeID,Description,Amount")] Income income)
         {
             if (id != income.IncomeID)
             {
