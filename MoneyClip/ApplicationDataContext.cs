@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using MoneyClip.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,8 @@ namespace MoneyClip.EntityFramework
 {
     public class ApplicationDataContext : DbContext
     {
+        public DbSet<Income> Incomes { get; set; }
+
         public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
         {
         }
