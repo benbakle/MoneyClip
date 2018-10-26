@@ -22,7 +22,10 @@ namespace MoneyClip.Controllers
         // GET: Incomes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Incomes.ToListAsync());
+
+            var incomes = await _context.Incomes.ToListAsync();
+            ViewBag.Total = incomes.Sum(a => a.Amount);
+            return View(incomes);
         }
 
         // GET: Incomes/Create

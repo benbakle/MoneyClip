@@ -24,6 +24,7 @@
     <tbody>
         @foreach (var item in Model)
         {
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -39,3 +40,5 @@
         }
     </tbody>
 </table>
+<h2>Total Income:</h2>
+@String.Format("{0:C}", ViewBag.Total)
