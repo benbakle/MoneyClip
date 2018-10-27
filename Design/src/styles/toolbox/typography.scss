@@ -25,6 +25,9 @@ body {
         text-decoration: none;
     }
 }
+a{
+    color: $color-link;
+}
 
 .flex {
     display: flex;

@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assets\css\bundle.min.css" />
-    <None Include="wwwroot\assets\css\bundle.min.css.map" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
