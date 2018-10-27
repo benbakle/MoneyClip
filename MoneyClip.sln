@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyClip", "MoneyClip\MoneyClip.csproj", "{5D7E8512-D6DB-42BF-B802-1FFD921CDA0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyClip", "MoneyClip\MoneyClip.csproj", "{5D7E8512-D6DB-42BF-B802-1FFD921CDA0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{386C586C-4990-4D10-909F-D6A914C98F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5D7E8512-D6DB-42BF-B802-1FFD921CDA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D7E8512-D6DB-42BF-B802-1FFD921CDA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D7E8512-D6DB-42BF-B802-1FFD921CDA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386C586C-4990-4D10-909F-D6A914C98F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386C586C-4990-4D10-909F-D6A914C98F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386C586C-4990-4D10-909F-D6A914C98F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386C586C-4990-4D10-909F-D6A914C98F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
