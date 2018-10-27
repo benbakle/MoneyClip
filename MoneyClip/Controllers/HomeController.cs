@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MoneyClip.EntityFramework;
+using MoneyClip.Web;
 using System.IO;
 using System.Linq;
 
-namespace MoneyClip.Controllers
+namespace MoneyClip.Web.Controllers
 {
     public class HomeController : Controller
     {

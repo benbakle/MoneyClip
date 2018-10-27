@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MoneyClip.EntityFramework;
+using MoneyClip.Web;
 using MoneyClip.Models;
 
-namespace MoneyClip.Controllers
+namespace MoneyClip.Web.Controllers
 {
     public class IncomesController : Controller
     {

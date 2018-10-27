@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MoneyClip.Models;
 using System.IO;
 
-namespace MoneyClip.EntityFramework
+namespace MoneyClip.Web
 {
     public class ApplicationDataContext : DbContext
     {
