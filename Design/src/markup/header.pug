@@ -1,0 +1,14 @@
+mixin list-item(name, address)
+    li
+        a.link(href= address)= name
+header
+    .mc-container
+        h1
+            span.logo
+                | MC
+            span.name
+                | Money Clip
+    .main-navigation
+        ul
+            +list-item("Dashboard", "/style-guide.html")
+            +list-item("Income", "/part-details.html")

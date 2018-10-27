@@ -1,11 +1,7 @@
 extends base.pug
 
-mixin list-item(name, address)
-    li
-        a.link(href= address)= name
-        
 block main
-    ul
-        +list-item("Style Guide & Components", "/style-guide.html")
-        +list-item("Part Details", "/part-details.html")
+    .mc-container
+        h1 Home Page, Biatch!
+     
     

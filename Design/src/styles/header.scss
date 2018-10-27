@@ -1,0 +1,53 @@
+header {
+    width: 32.5rem;
+    min-height: 100vh;
+    background-color: darken($color-background, 30);
+    h1 {
+        text-align: center;
+        .logo {
+            font-weight: 900;
+            display: inline-block;
+            @include gutter;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-left: .4rem solid;
+            border-right: .4rem solid;
+        }
+        .name {
+            display: inline-block;
+            @include gutter;
+            font-weight: 200;
+            font-size: 2.4rem;
+            color: lighten($color-background, 10);
+            text-transform: uppercase;
+        }
+    }
+    .main-navigation {
+        margin-top: 3rem;
+        li {
+            border-top: .1rem solid darken($color-background, 20);
+            &:last-child {
+                border-bottom: .1rem solid darken($color-background, 20);
+            }
+        }
+        .link {
+            display: block;
+            @include gutter;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            color: lighten($color-body, 10);
+            @include states {
+                color: $color-link;
+                text-decoration: none;
+                background-color: darken($color-background, 10);
+            }
+            i {
+                display: inline-block;
+                padding-right: 1rem;
+            }
+        }
+    }
+}

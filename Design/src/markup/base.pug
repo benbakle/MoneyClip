@@ -7,7 +7,9 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css?family=Muli:200,300,400,400i,700,900" rel="stylesheet")
         link(href="/css/bundle.min.css" rel="stylesheet")
     body
-        main
-            block main
-        //- script(src="/js/app.min.js")
-
+        .flex
+            header
+                include ./header.pug
+            main
+                block main
+        footer

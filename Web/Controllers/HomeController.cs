@@ -12,6 +12,7 @@ namespace MoneyClip.Web.Controllers
         private ApplicationDataContext _db = new DesignTimeDbContextFactory().CreateDbContext(null);
         public IActionResult Index()
         {
+            ViewBag.totalIncome = _db.Incomes.Sum(m => m.Amount);
             return View();
         }
     }
