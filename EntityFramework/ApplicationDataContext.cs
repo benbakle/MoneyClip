@@ -14,11 +14,6 @@ namespace MoneyClip.Web
         {
             
         }
-
-        public ApplicationDataContext()
-        {
-
-        }
     }
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDataContext>
     {
