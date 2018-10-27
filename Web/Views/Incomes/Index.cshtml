@@ -5,40 +5,45 @@
     Layout = "~/Views/Layouts/_Master.cshtml";
 }
 
-<h2>Index</h2>
+<div class="mc-container">
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Incomes")
+    <h2>Index</h2>
 
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>@Html.DisplayNameFor(model => model.Amount)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <p>
+        @Html.ActionLink("Create New", "Create", "Incomes")
 
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @String.Format("{0:C}", item.Amount)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Incomes", new { id = item.IncomeID }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Incomes", new { id = item.IncomeID }, null)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.Amount)</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
-<h2>Total Income:</h2>
-@String.Format("{0:C}", ViewBag.Total)
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @String.Format("{0:C}", item.Amount)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Incomes", new { id = item.IncomeID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Incomes", new { id = item.IncomeID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h2>Total Income:</h2>
+    @String.Format("{0:C}", ViewBag.Total)
+
+</div>
+
