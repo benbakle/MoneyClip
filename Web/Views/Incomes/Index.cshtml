@@ -10,7 +10,7 @@
    <h1>Income</h1>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Incomes")
+        @Html.ActionLink("New", "Create", "Incomes")
 
     </p>
     <table class="table">
@@ -42,8 +42,7 @@
             }
         </tbody>
     </table>
-    <h2>Total Income:</h2>
-    @String.Format("{0:C}", ViewBag.Total)
+    Total Income: @String.Format("{0:C}", ViewBag.Total)
 
 </div>
 

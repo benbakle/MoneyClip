@@ -12,7 +12,9 @@ body {
     font-family: $font-family-body;
     background-color: $color-background;
 }
-
+main{
+    width: calc(100% - 32.5rem);
+}
 .mc-container {
     width: 100%;
     max-width: 120rem;
