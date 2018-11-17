@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="src\img\" />
     <Folder Include="src\markup\components\" />
+    <Folder Include="src\styles\components\" />
   </ItemGroup>
 
 </Project>

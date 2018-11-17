@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MoneyClip
@@ -11,20 +11,32 @@ namespace MoneyClip
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            //services.AddMvc();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "wwwroot/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-
             app.UseDeveloperExceptionPage();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            //});
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
             {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                spa.Options.SourcePath = "wwwroot";
+
+                if (env.IsDevelopment())
+                    spa.UseReactDevelopmentServer(npmScript: "start");
             });
+
         }
     }
 }
