@@ -57,7 +57,7 @@ let jsonServer = require("json-server");
 let server = null;
 
 const templateDistributionLocation = "./dist";
-const webDistributionLocation = "../Web/wwwroot/assets/";
+const webDistributionLocation = "../Web/wwwroot/src/assets/";
 
 
 // const createModels = (cb) => {

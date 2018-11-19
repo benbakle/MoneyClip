@@ -13,7 +13,7 @@ export default class App extends Component {
                     <Header />
                 </header>
                 <main>
-                    <Route exact path='/' component={Dashboard} />
+                    <Route exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/header' component={Header} />
                 </main>
                 <footer>

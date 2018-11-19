@@ -41,6 +41,11 @@ header {
             @include states {
                 color: $color-link;
                 text-decoration: none;
+                background-color: darken($color-background, 20);
+            }
+            &.active{
+                color: $color-link;
+                text-decoration: none;
                 background-color: darken($color-background, 10);
             }
             i {

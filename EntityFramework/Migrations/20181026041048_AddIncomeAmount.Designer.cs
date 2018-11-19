@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using MoneyClip.Web;
-using System;
+using MoneyClip.EntityFramework;
 
 namespace MoneyClip.Migrations
 {
