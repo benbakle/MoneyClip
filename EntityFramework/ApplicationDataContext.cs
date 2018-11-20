@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MoneyClip.Models;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyClip.EntityFramework
 {
@@ -13,11 +14,21 @@ namespace MoneyClip.EntityFramework
 
         public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
         {
-            
+
         }
         IQueryable<T> IDataContext.Query<T>()
         {
             return Set<T>();
+        }
+        T IDataContext.Add<T>(T item)
+        {
+            return base.Add(item).Entity;
+        }
+        public async Task<int> Save()
+        {
+            ChangeTracker.DetectChanges();
+            var result = await base.SaveChangesAsync();
+            return result;
         }
     }
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDataContext>

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import ApiFetch from './ApiFetch';
 
-export default class Dashboard extends React.Component {
+export default class Incomes extends React.Component {
     handle({ failed, data, fetching, response }) {
         if (!fetching && data)
             return renderIncome(data);
@@ -14,9 +14,9 @@ export default class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="dashboard">
+            <div className="incomes">
                 <div className="mc-container">
-                    <h1>Dashboard</h1>
+                    <h1>Incomes</h1>
                     <ApiFetch url='/api/incomes'>
                         {response => this.handle(response)}
                     </ApiFetch>
@@ -31,7 +31,7 @@ function renderIncome(data) {
             {data.map((income, index) =>
                 <div key={index} className="income">
                     <label>{income.description}</label>
-                    <span className="content">&nbsp;{income.amount}</span>
+                    <span className="content">&nbsp;${income.amount}</span>
                 </div>
             )}
         </div>
