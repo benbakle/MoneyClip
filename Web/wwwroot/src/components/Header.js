@@ -1,6 +1,4 @@
 ﻿import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Navigation from './Navigation';
 
 export default class Header extends React.Component {

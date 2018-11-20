@@ -8,13 +8,13 @@ export default class Navigation extends React.Component {
                 <ul>
                     <li>
                         <NavLink to="/dashboard" className="link" activeClassName="active">
-                            <i class="fas fa-tachometer-alt"></i>
+                            <i className="fas fa-tachometer-alt"></i>
                             &nbsp;Dashboard
                            </NavLink>
                     </li>
                     <li>
                         <NavLink to="/incomes" className="link" activeClassName="active">
-                            <i class="far fa-money-bill-alt"></i>
+                            <i className="far fa-money-bill-alt"></i>
                             &nbsp;Income
                            </NavLink>
                     </li>

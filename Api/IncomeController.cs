@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using MoneyClip.EntityFramework;
 using MoneyClip.Models;
 using System.Linq;
 
