@@ -19,8 +19,6 @@ namespace MoneyClip.Web
         {
             app.UseDeveloperExceptionPage();
             Mvc(app);
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
             Spa(app, env);
         }
     }

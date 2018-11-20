@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace MoneyClip
+namespace MoneyClip.Web
 {
     public class Program
     {
