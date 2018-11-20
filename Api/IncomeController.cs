@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MoneyClip.Api
 {
-    [Route("api/income")]
+    [Route("api/incomes")]
     public class IncomeController : Controller
     {
         readonly IDataContext _context;

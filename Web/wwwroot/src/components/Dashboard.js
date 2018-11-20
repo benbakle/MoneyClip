@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component {
                 <div className="mc-container">
                     <h1>Dashboard</h1>
                 </div>
-                <ApiFetch url='/api/income'>
+                <ApiFetch url='/api/incomes'>
                     {response => this.handle(response)}
                 </ApiFetch>
             </div >
