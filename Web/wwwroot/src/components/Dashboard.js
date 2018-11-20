@@ -30,7 +30,7 @@ function renderIncome(data) {
         <div className="income-list">
             {data.map((income, index) =>
                 <div key={index} className="income">
-                    <label>{income.description}</label>
+                    <label>{income.description}: </label>
                     <span className="content">&nbsp;{income.amount}</span>
                 </div>
             )}
