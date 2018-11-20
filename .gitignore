@@ -233,3 +233,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 /Web/wwwroot/node_modules
+/Design/package-lock.json
