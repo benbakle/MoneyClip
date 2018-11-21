@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import Dashboard from './components/Dashboard';
-import Header from './components/Header';
-import Incomes from './components/Incomes';
+import Header from './components/Header/Header';
+import Dashboard from './components/Dashboard/Dashboard';
+import Incomes from './components/Incomes/Incomes';
 
 export default class App extends Component {
     displayName = App.name
@@ -14,9 +14,7 @@ export default class App extends Component {
                     <Header />
                 </header>
                 <main>
-                    <Route exact path='/dashboard' component={Dashboard} />
-                    <Route exact path='/incomes' component={Incomes} />
-                    <Route exact path='/header' component={Header} />
+                    <Route exact path='/' component={Dashboard} />
                 </main>
                 <footer>
                 </footer>

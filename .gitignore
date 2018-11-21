@@ -234,3 +234,6 @@ _Pvt_Extensions
 .fake/
 /Web/wwwroot/node_modules
 /Design/package-lock.json
+/Design/dist
+/Web/wwwroot/src/assets/css/bundle.min.css.map
+/Web/wwwroot/src/assets/css/bundle.min.css

@@ -1,0 +1,22 @@
+.incomes {
+    .income-content {}
+    .income {
+        @include gutter;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        display: flex;
+        justify-content: space-between;
+        .name {
+            font-weight: 300;
+        }
+    }
+    .income-total {
+        text-align: right;
+        width: 100%;
+        font-size: 2.2rem;
+        font-weight: 300;
+        span {
+            font-size: .5em;
+        }
+    }
+}
