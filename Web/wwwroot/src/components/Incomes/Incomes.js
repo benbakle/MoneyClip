@@ -2,6 +2,14 @@
 import ApiFetch from '../ApiFetch/ApiFetch';
 
 export default class Incomes extends React.Component {
+    constructor() {
+        super();
+        this.openSettings = this.openSettings.bind(this);
+    }
+    openSettings() {
+        console.log("Wee");
+    }
+
     handle({ failed, data, fetching, response }) {
         if (!fetching && data)
             return renderIncome(data);
@@ -37,11 +45,11 @@ function renderIncome(data) {
         <div className="mc-container">
             <div className="section-header">
                 <div className="title">
-                    <span>Income&nbsp;</span>
+                    <span>Income&nbsp;&nbsp;</span>
                     <span className="income-total">${sumProperty(data, 'amount')} <span>/ month</span></span>
                 </div>
                 <div className="settings">
-                    <a role="button" tabIndex="0">
+                    <a role="button" tabIndex="0" /*onClick={this.openSettings()}*/>
                         <i className="fas fa-cog"></i>
                     </a>
                 </div>
