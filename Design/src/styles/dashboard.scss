@@ -1,22 +1,21 @@
 .dashboard {
-    margin:10rem auto;
+    margin: 10rem auto;
     @include gutter;
     .board {
-        background-color:lighten($color-background,10);
+        background-color: lighten($color-background, 10);
         border-radius: .3rem;
-        box-shadow:0 0 1.5rem rgba(0,0,0,.15);
+        box-shadow: 0 0 1.5rem rgba(0, 0, 0, .15);
         width: 100%;
         max-width: 50rem;
-        @include gutter;
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding: 3rem;
+        box-sizing: border-box;
     }
     .section-header {
         display: flex;
         justify-content: space-between;
-        padding-bottom:1.5rem;
-        margin-bottom:1.5rem;
-        border-bottom:.1rem solid $color-border;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: .1rem solid $color-border;
     }
     .title {
         font-weight: 900;

@@ -14,7 +14,7 @@ export default class Incomes extends React.Component {
 
     render() {
         return (
-            <div class="incomes board">
+            <div className="incomes board">
                 <ApiFetch url='/api/incomes'>
                     {response => this.handle(response)}
                 </ApiFetch>
@@ -22,6 +22,7 @@ export default class Incomes extends React.Component {
         );
     }
 }
+
 function sumProperty(arr, type) {
     return arr.reduce((total, obj) => {
         if (typeof obj[type] === 'string') {
@@ -33,15 +34,19 @@ function sumProperty(arr, type) {
 
 function renderIncome(data) {
     return (
-        <div class="mc-container">
-            <div class="section-header">
-                <div class="title">
+        <div className="mc-container">
+            <div className="section-header">
+                <div className="title">
                     <span>Income&nbsp;</span>
-                    <span class="income-total">${sumProperty(data, 'amount')} <span>/ month</span></span>
+                    <span className="income-total">${sumProperty(data, 'amount')} <span>/ month</span></span>
                 </div>
-                <div class="settings"><a href role="button" tabIndex="0"><i class="fas fa-cog"></i></a></div>
+                <div className="settings">
+                    <a role="button" tabIndex="0">
+                        <i className="fas fa-cog"></i>
+                    </a>
+                </div>
             </div>
-            <div class="income-content">
+            <div className="income-content">
                 <div className="income-list">
                     {data.map((income, index) =>
                         <div key={index} className="income">
