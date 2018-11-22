@@ -1,11 +1,11 @@
 pushd web
-dotnet build
+call dotnet build
 popd
 
 pushd design
-npm install
+call npm install
 popd
 
 pushd design
-gulp default
+call gulp
 popd
