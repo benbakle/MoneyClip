@@ -238,3 +238,4 @@ _Pvt_Extensions
 /Web/wwwroot/src/assets/css/bundle.min.css.map
 /Web/wwwroot/src/assets/css/bundle.min.css
 *.css
+/Design/node_modules

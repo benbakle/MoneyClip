@@ -5,15 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="%2a%2a\**" />
     <Compile Remove="dist\**" />
+    <Compile Remove="node_modules\**" />
+    <EmbeddedResource Remove="%2a%2a\**" />
     <EmbeddedResource Remove="dist\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+    <None Remove="%2a%2a\**" />
     <None Remove="dist\**" />
+    <None Remove="node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\img\" />
-    <Folder Include="src\markup\components\" />
-    <Folder Include="src\styles\components\" />
+    <Compile Remove="%2a%2a/%2a.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="%2a%2a/%2a" />
   </ItemGroup>
 
 </Project>
