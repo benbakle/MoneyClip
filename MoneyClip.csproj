@@ -20,8 +20,23 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Api\bin\**" />
+    <Compile Remove="Api\obj\**" />
+    <Compile Remove="Design\dist\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Api\bin\**" />
+    <Content Remove="Api\obj\**" />
+    <Content Remove="Design\dist\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Api\bin\**" />
+    <EmbeddedResource Remove="Api\obj\**" />
+    <EmbeddedResource Remove="Design\dist\**" />
+    <None Remove="Api\bin\**" />
+    <None Remove="Api\obj\**" />
+    <None Remove="Design\dist\**" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
