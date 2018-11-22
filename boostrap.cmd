@@ -1,4 +1,3 @@
-﻿@echo off
 pushd web
 dotnet build
 popd
@@ -8,5 +7,5 @@ npm install
 popd
 
 pushd design
-gulp
+gulp default
 popd
