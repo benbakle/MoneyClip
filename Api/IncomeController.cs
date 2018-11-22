@@ -32,5 +32,18 @@ namespace MoneyClip.Api
             await _context.Save();
         }
 
+        // api/incomes/delete?id={id}
+        [HttpDelete("{id}")]
+        public async Task Delete([FromQuery]int id)
+        {
+            var income = _context.Query<Income>().FirstOrDefault(i => i.IncomeID == id);
+
+            if (income != null)
+            {
+                _context.Remove(income);
+                await _context.Save();
+            }
+        }
+
     }
 }

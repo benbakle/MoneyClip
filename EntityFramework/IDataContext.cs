@@ -7,6 +7,7 @@ namespace MoneyClip.EntityFramework
     public interface IDataContext
     {
         T Add<T>(T item) where T : class;
+        T Remove<T>(T item) where T : class;
         IQueryable<T> Query<T>() where T : class;
         Task<int> Save();
     }

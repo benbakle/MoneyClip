@@ -24,6 +24,11 @@ namespace MoneyClip.EntityFramework
         {
             return base.Add(item).Entity;
         }
+
+        T IDataContext.Remove<T>(T item)
+        {
+            return base.Remove(item).Entity;
+        }
         public async Task<int> Save()
         {
             ChangeTracker.DetectChanges();
