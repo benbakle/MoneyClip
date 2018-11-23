@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import Header from './components/Header/Header';
-import Dashboard from './components/Dashboard/Dashboard';
-import Incomes from './components/Incomes/Incomes';
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
 
 export default class App extends Component {
     displayName = App.name
