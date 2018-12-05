@@ -6,7 +6,7 @@ export default class Create extends React.Component {
 
         this.state = {
             description: "",
-            amount: ""
+            amount: "",
         }
 
         this.handleChange = this.handleChange.bind(this);

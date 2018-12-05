@@ -9,7 +9,7 @@ export default class Dashboard extends React.Component {
             <div className="dashboard">
                 <div className="mc-container">
                     <Card card={<Incomes />} />
-                    <Card card={<Create />}/>
+                    <Card card={<Create />} />
                 </div>
             </div>
         );
