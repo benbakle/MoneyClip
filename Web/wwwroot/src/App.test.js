@@ -4,7 +4,11 @@ import App from './App';
 
 
 describe("The Money Clip App", () => {
+    let _component;
+    beforeEach(() => {
+        _component = shallow(<App />);
+    });
     it("exists", () => {
-        expect(shallow(<App />)).toBeDefined();
+        expect(_component).toBeDefined();
     })
 })

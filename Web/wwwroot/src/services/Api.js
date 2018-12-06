@@ -12,11 +12,11 @@
             ...options,
             headers: this.headers()
         })
-        //.then(res => {
-        //            if (!res.ok)
-        //                throw Error(res.statusText);
-        //            return res.json();
-        //        }).catch(e => this.notify(JSON.stringify(e)));
+            .then(res => {
+                if (!res.ok)
+                    throw Error(res.statusText);
+                return res.json();
+            }).catch(e => this.notify(JSON.stringify(e)));
     }
 
     deleteIncome(id) {
