@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import History from '../../services/History';
 
 export default class Create extends React.Component {
     constructor() {
@@ -29,7 +30,7 @@ export default class Create extends React.Component {
                 Amount: this.state.amount
             })
         })
-        window.location.reload();
+        History.push(window.location.pathname + window.location.search);
     }
 
     render() {

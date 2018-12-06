@@ -9,7 +9,7 @@ export default class Incomes extends React.Component {
 
         this.state = {
             incomes: [],
-            apiFetching: true
+            apiFetching: true,
         }
 
         this.loadIncome = this.loadIncome.bind(this);
@@ -20,7 +20,7 @@ export default class Incomes extends React.Component {
     loadIncome(data) {
         this.setState({
             incomes: data,
-            apiFetching: false
+            apiFetching: false,
         })
     }
 
@@ -37,6 +37,7 @@ export default class Incomes extends React.Component {
                 {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
                     <div>
+
                         <div className="title">
                             <span>Income&nbsp;&nbsp;</span>
                             <span className="income-total">${sumProperty(this.state.incomes, 'amount')} <span>/ month</span></span>
@@ -58,7 +59,7 @@ function displayIncomes(data) {
                 <div className="description">{income.description}</div>
                 <span className="amount">${income.amount.toFixed(2)}</span>
                 {
-                    //  <DeleteButton id={income.incomeID} />
+                      <DeleteButton id={income.incomeID} />
                 }
             </div>
         )
