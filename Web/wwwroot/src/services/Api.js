@@ -25,11 +25,20 @@
     }
 
     delete(route, id) {
-        return fetch(`/api/${route}/delete?id= ${id}`, {
+        return fetch(`/api/${route}/delete/${id}`, {
             method: 'DELETE'
         })
     }
 
+    update(route, id, item) {
+        return fetch(`/api/${route}/update/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(item)
+        })
+    }
 }
 
 export default new Api();

@@ -27,14 +27,14 @@ export default class Incomes extends React.Component {
         })
     }
 
-    fetch() {
-        Api.fetch("incomes").then(this.load);
-    }
-
     reload() {
         this.setState({
             apiFetching: true
-        }, () => { this.fetch() });
+        }, this.fetch);
+    }
+
+    fetch() {
+        Api.fetch("incomes").then(this.load);
     }
 
     render() {
@@ -50,11 +50,11 @@ export default class Incomes extends React.Component {
                 {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
                     <div>
-                        <div className="title">
-                            <span>Income&nbsp;&nbsp;</span>
-                            <span className="income-total">${sumProperty(this.state.incomes, 'amount')} <span>/ month</span></span>
-                        </div>
+                        <div className="title">Income</div>
                         {displayIncomes(this.state.incomes, this.reload)}
+                        <div className="income-total">
+                            <Money value={sumProperty(this.state.incomes, 'amount')} />
+                        </div>
                         <Create callback={this.reload} />
                     </div>
                 }

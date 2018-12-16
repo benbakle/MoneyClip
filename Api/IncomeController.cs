@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MoneyClip.EntityFramework;
 using MoneyClip.Models;
 using System.Linq;
@@ -32,9 +33,8 @@ namespace MoneyClip.Api
             await _context.Save();
         }
 
-        // api/incomes/delete?id={id}
-        [HttpDelete("{id}")]
-        public async Task Delete([FromQuery]int id)
+        [HttpDelete("delete/{id}")]
+        public async Task Delete(int id)
         {
             var income = _context.Query<Income>().FirstOrDefault(i => i.IncomeID == id);
 
@@ -43,6 +43,20 @@ namespace MoneyClip.Api
                 _context.Remove(income);
                 await _context.Save();
             }
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody]Income income)
+        {
+            if (id != income.IncomeID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(income).State = EntityState.Modified;
+            await _context.Save();
+
+            return NoContent();
         }
 
     }

@@ -1,10 +1,9 @@
 ﻿import React from 'react';
-import History from '../../services/History';
 import Api from '../../services/Api';
 
 export default class Create extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             description: "",
@@ -26,17 +25,14 @@ export default class Create extends React.Component {
         }
         Api.create('incomes', income).then(this.props.callback);
     }
+
     render() {
         return (
             <div className="create-income">
                 <div className="section-header">
-                    <div className="title">
-                        <span>Add</span>
-                    </div>
+                    <div className="title">Add</div>
                     <div className="settings">
-                        <button>
-                            <i className="fas fa-times"></i>
-                        </button>
+                        <button><i className="fas fa-times"></i></button>
                     </div>
                 </div>
                 <div className="income-content">
