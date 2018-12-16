@@ -4,25 +4,36 @@ import Delete from './Delete';
 import Api from '../../services/Api';
 import { promise, resolved } from '../../setupTests';
 
-describe("The Incomes component", () => {
+describe("The delete incomes component", () => {
     let _component;
-    let value = "this";
+    let _value = "this";
 
-    beforeEach(() => {
-        let callback = () => { value = "that" };
-        spyOn(Api, "delete").and.returnValue(resolved());
-        _component = shallow(<Delete id={1} callback={callback} />);
+    describe("given a call to delete income", () => {
 
-        _component.instance().delete();
-    });
+        beforeEach(() => {
+            spyOn(Api, "delete").and.returnValue(resolved());
+            _component = shallow(<Delete id={1} />);
+            _component.find("button").simulate('click');
+        });
 
-    describe("given a call to delete incomes", () => {
         it("calls the delete incomes api", () => {
             expect(Api.delete).toHaveBeenCalledWith("incomes", 1);
         });
 
-        it("calls the callback", () => {
-            expect(value).toEqual("that");
+        describe("given no callback", () => {
+            it("does nothing", () => {
+                expect(_value).toEqual("this");
+            });
+        });
+
+        describe("given a callback", () => {
+            it("calls the callback", () => {
+                let callback = () => { _value = "that" };
+                _component = shallow(<Delete id={1} callback={callback} />);
+                _component.instance().callback();
+
+                expect(_value).toEqual("that");
+            });
         });
     });
 });

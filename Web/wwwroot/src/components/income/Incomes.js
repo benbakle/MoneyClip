@@ -3,7 +3,7 @@ import Api from '../../services/Api';
 import Delete from './Delete';
 import Create from './Create';
 import Loading from '../Loading';
-import History from '../../services/History';
+import Money from '../Money';
 
 export default class Incomes extends React.Component {
     constructor(props) {
@@ -34,8 +34,7 @@ export default class Incomes extends React.Component {
     reload() {
         this.setState({
             apiFetching: true
-        }, this.fetch)
-
+        }, () => { this.fetch() });
     }
 
     render() {
@@ -69,10 +68,8 @@ function displayIncomes(data, callback) {
         data.map((income, index) =>
             <div key={index} className="income">
                 <div className="description">{income.description}</div>
-                <span className="amount">${income.amount.toFixed(2)}</span>
-                {
-                    <Delete id={income.incomeID} callback={callback} />
-                }
+                <Money className="amount" value={income.amount} />
+                <Delete id={income.incomeID} callback={callback} />
             </div>
         )
     )
