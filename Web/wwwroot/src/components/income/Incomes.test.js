@@ -57,6 +57,14 @@ describe("The Incomes component", () => {
                 expect(total.html()).toContain("109.35");
             });
         });
+        describe("given the reload callback is triggered", () => {
+            beforeEach(() => {
+                _component.instance().reload();
+            })
+            it("re-calls the api for most recent incomes", () => {
+                expect(Api.fetch).toHaveBeenCalledTimes(2);
+            })
+           })
     });
 
     function load(data) {
