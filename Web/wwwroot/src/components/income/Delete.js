@@ -1,18 +1,14 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-import History from '../../services/History';
-
 
 export default class Delete extends React.Component {
-
     constructor(props) {
         super(props)
         this.delete = this.delete.bind(this);
     }
 
     delete() {
-        Api.deleteIncome(this.props.id)
-        History.push(window.location.pathname + window.location.search);
+        Api.delete("incomes", this.props.id).then(this.props.callback);
     }
 
     render() {

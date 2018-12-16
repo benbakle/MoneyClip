@@ -1,29 +1,35 @@
 ﻿class Api {
-
-    headers() {
-        return {
-            //'Authorization': 'Bearer ' + Auth.getToken(),
-            'Content-Type': 'application/json'
-        };
-    }
-
-    fetch(url, options) {
-        return fetch(url, {
-            ...options,
-            headers: this.headers()
+    fetch(route) {
+        return fetch(`api/${route}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'pragma': 'no-cache',
+                'cache-control': 'no-cache'
+            }
         })
             .then(res => {
                 if (!res.ok)
                     throw Error(res.statusText);
                 return res.json();
-            }).catch(e => this.notify(JSON.stringify(e)));
+            }).catch(e => console.log(e));
     }
 
-    deleteIncome(id) {
-        return fetch('/api/incomes/delete?id=' + id, {
+    create(route, item) {
+        return fetch(`/api/${route}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(item)
+        })
+    }
+
+    delete(route, id) {
+        return fetch(`/api/${route}/delete?id= ${id}`, {
             method: 'DELETE'
         })
     }
+
 }
 
 export default new Api();

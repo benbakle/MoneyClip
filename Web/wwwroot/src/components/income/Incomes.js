@@ -1,27 +1,41 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-import DeleteButton from './Delete';
+import Delete from './Delete';
+import Create from './Create';
 import Loading from '../Loading';
+import History from '../../services/History';
 
 export default class Incomes extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             incomes: [],
             apiFetching: true,
         }
 
-        this.loadIncome = this.loadIncome.bind(this);
+        this.reload = this.reload.bind(this);
+        this.load = this.load.bind(this);
+        this.fetch = this.fetch.bind(this);
 
-        Api.fetch("/api/incomes").then(this.loadIncome);
+        this.fetch();
     }
 
-    loadIncome(data) {
+    load(data) {
         this.setState({
             incomes: data,
             apiFetching: false,
         })
+    }
+
+    fetch() {
+        Api.fetch("incomes").then(this.load);
+    }
+
+    reload() {
+        this.setState({
+            apiFetching: true
+        }, this.fetch)
+
     }
 
     render() {
@@ -37,29 +51,27 @@ export default class Incomes extends React.Component {
                 {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
                     <div>
-
                         <div className="title">
                             <span>Income&nbsp;&nbsp;</span>
                             <span className="income-total">${sumProperty(this.state.incomes, 'amount')} <span>/ month</span></span>
                         </div>
-                        {displayIncomes(this.state.incomes)}
+                        {displayIncomes(this.state.incomes, this.reload)}
+                        <Create callback={this.reload} />
                     </div>
                 }
             </div>
         );
     }
-
-
 }
 
-function displayIncomes(data) {
+function displayIncomes(data, callback) {
     return (
         data.map((income, index) =>
             <div key={index} className="income">
                 <div className="description">{income.description}</div>
                 <span className="amount">${income.amount.toFixed(2)}</span>
                 {
-                      <DeleteButton id={income.incomeID} />
+                    <Delete id={income.incomeID} callback={callback} />
                 }
             </div>
         )
@@ -72,40 +84,9 @@ function empty(data) {
 
 function sumProperty(arr, type) {
     return arr.reduce((total, obj) => {
-        if (typeof obj[type] === 'string') {
+        if (typeof obj[type] === 'string')
             return total + Number(obj[type]);
-        }
         return total + obj[type];
     }, 0);
 }
-
-//function renderIncome(data) {
-//    return (
-//        <div>
-//            <div className="section-header">
-//                <div className="title">
-//                    <span>Income&nbsp;&nbsp;</span>
-//                    <span className="income-total">${sumProperty(data, 'amount')} <span>/ month</span></span>
-//                </div>
-//                <div className="settings">
-//                    <button /*onClick={this.openSettings()}*/>
-//                        <i className="fas fa-cog"></i>
-//                    </button>
-//                </div>
-//            </div>
-//            <div className="income-content">
-//                <div className="income-list">
-//                    {data.map((income, index) =>
-//                        <div key={index} className="income">
-//                            <div className="description">{income.description}</div>
-//                            <span className="amount">${income.amount}</span>
-//                            <DeleteButton id={income.incomeID} />
-//                        </div>
-//                    )}
-//                </div>
-//            </div>
-//        </div>
-//    )
-//}
-
 

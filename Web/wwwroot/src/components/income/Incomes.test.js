@@ -13,7 +13,7 @@ describe("The Incomes component", () => {
     });
 
     it("calls the incomes API", () => {
-        expect(Api.fetch).toHaveBeenCalledWith("/api/incomes");
+        expect(Api.fetch).toHaveBeenCalledWith("incomes");
     });
 
     describe("given the api is fetching data", () => {
@@ -25,7 +25,7 @@ describe("The Incomes component", () => {
     describe("given the incomes call successfully returns", () => {
         describe("without data", () => {
             it("shows a no results message", () => {
-                loadIncome([]);
+                load([]);
                 expect(_component.find(".incomes").html()).toContain("No income found");
             })
         });
@@ -39,11 +39,10 @@ describe("The Incomes component", () => {
                     { description: "Sup!", amount: 9.35 },
                 ]
 
-                loadIncome(incomes);
+                load(incomes);
             });
 
             it("shows a list of incomes", () => {
-
                 let desc = _component.find(".incomes .description");
                 let amount = _component.find(".incomes .amount");
 
@@ -56,12 +55,12 @@ describe("The Incomes component", () => {
             it("shows the amount total", () => {
                 let total = _component.find(".incomes .income-total");
                 expect(total.html()).toContain("109.35");
-            })
+            });
         });
     });
 
-    function loadIncome(data) {
-        _component.instance().loadIncome(data);
+    function load(data) {
+        _component.instance().load(data);
         return _component;
     }
 })

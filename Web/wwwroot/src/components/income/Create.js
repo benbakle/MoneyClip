@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import History from '../../services/History';
+import Api from '../../services/Api';
 
 export default class Create extends React.Component {
     constructor() {
@@ -19,20 +20,12 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        fetch('/api/incomes', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                Description: this.state.description,
-                Amount: this.state.amount
-            })
-        })
-        History.push(window.location.pathname + window.location.search);
+        let income = {
+            Description: this.state.description,
+            Amount: this.state.amount
+        }
+        Api.create('incomes', income).then(this.props.callback);
     }
-
     render() {
         return (
             <div className="create-income">
@@ -41,7 +34,7 @@ export default class Create extends React.Component {
                         <span>Add</span>
                     </div>
                     <div className="settings">
-                        <button /*onClick={this.openSettings()}*/>
+                        <button>
                             <i className="fas fa-times"></i>
                         </button>
                     </div>
@@ -49,14 +42,10 @@ export default class Create extends React.Component {
                 <div className="income-content">
                     <label>Description:</label>
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
-                    <div>
-                        {this.state.description}
-                    </div>
+
                     <label>Amount:</label>
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
-                    <div>
-                        {this.state.amount}
-                    </div>
+
                     <button onClick={this.submit}>Submit</button>
                 </div>
             </div>
