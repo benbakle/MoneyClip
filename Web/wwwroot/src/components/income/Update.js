@@ -40,23 +40,14 @@ export default class Update extends React.Component {
     render() {
         return (
             this.props.income &&
-            <div className="update-income">
-                <div className="section-header">
-                    <div className="title">Update</div>
-                    <div className="settings">
-                        <button><i className="fas fa-times"></i></button>
-                    </div>
+            <React.Fragment>
+                <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
+                <div>
+                    <button className="submit link" onClick={this.submit}><i class="far fa-check-circle"></i></button>
                 </div>
-                <div className="income-content">
-                    <label>Description:</label>
-                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+            </React.Fragment>
 
-                    <label>Amount:</label>
-                    <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
-
-                    <button className="submit" onClick={this.submit}>Update</button>
-                </div>
-            </div>
         )
     }
 }

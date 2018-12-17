@@ -1,8 +1,10 @@
-:root {
+:root
+{
     font-size: 62.5%;
 }
 
-body {
+body
+{
     height: 100%;
     margin: 0;
     font-size: 1.8rem;
@@ -12,37 +14,53 @@ body {
     font-family: $font-family-body;
     background-color: $color-background;
 }
-main{
+
+main
+{
     width: calc(100% - 32.5rem);
 }
-.mc-container {
+
+.mc-container
+{
     width: 100%;
     // max-width: 120rem;
     margin: 0 auto;
     @include gutter;
 }
 
-.link {
+.link
+{
     display: inline-block;
-    color: $color-link;
+    color: $color-body;
+    background-color: transparent;
+    border: none;
     font-weight: 200;
     text-decoration: none;
     transition-duration: .3s;
-    @include states {
+
+    @include states
+    {
         text-decoration: underline;
+        cursor: pointer;
+    }
+    i{
+        font-size:1.6rem;
     }
 }
 
-a {
+a
+{
     text-decoration: none;
 }
 
-ul {
+ul
+{
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.flex {
+.flex
+{
     display: flex;
 }

@@ -11,6 +11,7 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "history": "^4.7.2",
     "react": "^16.6.3",
+    "react-animate-height": "^2.0.7",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.6.3",
     "react-request": "^3.1.2",

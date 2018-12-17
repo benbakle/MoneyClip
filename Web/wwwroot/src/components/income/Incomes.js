@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-import Delete from './Delete';
 import Create from './Create';
-import Update from './Update';
+import Income from './Income';
 import Loading from '../Loading';
 import Money from '../Money';
 
@@ -51,13 +50,12 @@ export default class Incomes extends React.Component {
                 {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
                     <div>
+                        <div className="income-total">
+                            Total: <Money value={sumProperty(this.state.incomes, 'amount')} />
+                        </div>
                         <div className="title">Income</div>
                         {displayIncomes(this.state.incomes, this.reload)}
-                        <div className="income-total">
-                            <Money value={sumProperty(this.state.incomes, 'amount')} />
-                        </div>
                         <Create callback={this.reload} />
-
                     </div>
                 }
             </div>
@@ -68,12 +66,7 @@ export default class Incomes extends React.Component {
 function displayIncomes(data, callback) {
     return (
         data.map((income, index) =>
-            <div key={index} className="income">
-                <div className="description">{income.description}</div>
-                <Money className="amount" value={income.amount} />
-                <Delete id={income.incomeID} callback={callback} />
-                <Update income={income} callback={callback} />
-            </div>
+            <Income key={index} income={income} callback={callback} />
         )
     )
 }

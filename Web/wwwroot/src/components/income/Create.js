@@ -29,21 +29,14 @@ export default class Create extends React.Component {
     render() {
         return (
             <div className="create-income">
-                <div className="section-header">
-                    <div className="title">Add</div>
-                    <div className="settings">
-                        <button><i className="fas fa-times"></i></button>
-                    </div>
-                </div>
-                <div className="income-content">
-                    <label>Description:</label>
-                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                <hr />
+                <label>Description:</label>
+                <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
 
-                    <label>Amount:</label>
-                    <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
+                <label>Amount:</label>
+                <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
 
-                    <button onClick={this.submit}>Submit</button>
-                </div>
+                <button onClick={this.submit}>Submit</button>
             </div>
         );
     }
