@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyClip.EntityFramework;
 using MoneyClip.Models;
+using Microsoft.AspNet.OData;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace MoneyClip.Api
             _context = context;
         }
         [HttpGet]
+        [EnableQuery]
         public IQueryable<Income> GetIncomes()
         {
             return _context.Query<Income>();

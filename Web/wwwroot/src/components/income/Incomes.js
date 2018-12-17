@@ -34,7 +34,7 @@ export default class Incomes extends React.Component {
     }
 
     fetch() {
-        Api.fetch("incomes").then(this.load);
+        Api.fetch("incomes","description").then(this.load);
     }
 
     render() {

@@ -12,8 +12,8 @@ describe("The Incomes component", () => {
         _component = shallow(<Incomes />);
     });
 
-    it("calls the incomes API", () => {
-        expect(Api.fetch).toHaveBeenCalledWith("incomes");
+    it("calls the incomes API ordered by description", () => {
+        expect(Api.fetch).toHaveBeenCalledWith("incomes","description");
     });
 
     describe("given the api is fetching data", () => {
