@@ -1,5 +1,5 @@
 $color-background: lighten(#99ccee,10);
 $color-body: #022c3e;
 $color-border:rgba($color-body,.5);
-$color-link: #fff;
+$color-link: lighten($color-body,10);
 $color-light: #fff;

@@ -31,12 +31,13 @@ main
 .link
 {
     display: inline-block;
-    color: $color-body;
+    color: $color-link;
     background-color: transparent;
     border: none;
     font-weight: 200;
     text-decoration: none;
     transition-duration: .3s;
+    padding:1rem;
 
     @include states
     {

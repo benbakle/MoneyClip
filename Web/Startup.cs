@@ -11,10 +11,11 @@ namespace MoneyClip.Web
         {
             EnitityFramework(services);
             services.AddOData();
-            services.AddMvc();
+            Mvc(services);
             Spa(services);
             Register(services);
         }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();

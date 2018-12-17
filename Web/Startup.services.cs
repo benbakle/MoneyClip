@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoneyClip.EntityFramework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,17 @@ namespace MoneyClip.Web
         string ConnectionString()
         {
             return _configuration.GetConnectionString("DefaultConnection");
+        }
+
+        private static void Mvc(IServiceCollection services)
+        {
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.PreserveReferencesHandling =
+                    PreserveReferencesHandling.Objects;
+                options.SerializerSettings.Converters.Add(
+                    new Newtonsoft.Json.Converters.StringEnumConverter());
+            });
         }
     }
 }

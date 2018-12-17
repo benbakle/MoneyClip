@@ -35,7 +35,7 @@ export default class Income extends React.Component {
                     </React.Fragment>
                 }
                 <div>
-                    <button className="link" onClick={this.toggleEdit}>{this.state.inEditMode ? <i class='far fa-times-circle'></i> : <i class="far fa-edit"></i>}</button>
+                    <button className="link" onClick={this.toggleEdit}>{this.state.inEditMode ? <i class='far fa-times-circle'></i> : <i class="fas fa-edit"></i>}</button>
                 </div>
             </div>
         );
