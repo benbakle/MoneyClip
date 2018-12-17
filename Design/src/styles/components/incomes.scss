@@ -5,6 +5,7 @@
         padding-top: .5rem;
         padding-bottom: .5rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         .name {
             font-weight: 300;
@@ -18,5 +19,9 @@
         span {
             font-size: .5em;
         }
+    }
+    .update-income{
+        position: relative;
+        left: 125%;
     }
 }

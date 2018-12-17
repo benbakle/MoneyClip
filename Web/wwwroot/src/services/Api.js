@@ -35,8 +35,9 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(item)
+
         })
     }
 }

@@ -2,6 +2,7 @@
 import Api from '../../services/Api';
 import Delete from './Delete';
 import Create from './Create';
+import Update from './Update';
 import Loading from '../Loading';
 import Money from '../Money';
 
@@ -56,6 +57,7 @@ export default class Incomes extends React.Component {
                             <Money value={sumProperty(this.state.incomes, 'amount')} />
                         </div>
                         <Create callback={this.reload} />
+
                     </div>
                 }
             </div>
@@ -70,6 +72,7 @@ function displayIncomes(data, callback) {
                 <div className="description">{income.description}</div>
                 <Money className="amount" value={income.amount} />
                 <Delete id={income.incomeID} callback={callback} />
+                <Update income={income} callback={callback} />
             </div>
         )
     )
