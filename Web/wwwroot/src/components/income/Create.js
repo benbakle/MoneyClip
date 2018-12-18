@@ -8,7 +8,9 @@ export default class Create extends React.Component {
         this.state = {
             description: "",
             amount: "",
-            amountIsValid: true
+            amountIsValid: true,
+            amountHasBeenUpdated: false,
+            descriptionHasBeenUpdated: false
         }
 
         this.validateDescription = this.validateDescription.bind(this);
@@ -18,13 +20,14 @@ export default class Create extends React.Component {
 
     validateDescription(e) {
         this.setState({
-            description: e.target.value
+            description: e.target.value,
+            descriptionHasBeenUpdated:true
         })
     }
 
     validateAmount(e) {
         (/^\d*\.?\d*$/.test(e.target.value))
-            ? this.setState({ amount: e.target.value, amountIsValid: true })
+            ? this.setState({ amount: e.target.value, amountIsValid: true, amountHasBeenUpdated: true })
             : this.setState({ amountIsValid: false });
     }
 
@@ -43,22 +46,20 @@ export default class Create extends React.Component {
             <div className="create-income">
                 <div className="description">
                     <label>Description:</label>
-                    {
-                        this.state.description == "" &&
-                        <span className="required">*</span>
-                    }
+                    <span className="required">
+                        {this.state.description == "" && this.state.descriptionHasBeenUpdated && "*"}
+                    </span>
                     <input type="text" name="description" onChange={this.validateDescription} value={this.state.description} />
                 </div>
                 <div className="amount">
                     <label>Amount:</label>
-                    {
-                        this.state.amount == "" &&
-                        <span className="required">*</span>
-                    }
+                    <span className="required">
+                        {this.state.amount == "" && this.state.amountHasBeenUpdated && "*"}
+                    </span>
                     <input autoComplete="off" type="text" name="amount" onChange={this.validateAmount} value={this.state.amount} />
                     {
                         !this.state.amountIsValid &&
-                        <div className="help">'amount' can only be a number</div>
+                        <div className="help">'Amount' must be a number</div>
                     }
                     <div className="flex flex-end">
                         <button className="button" onClick={this.submit}>Add</button>

@@ -33,7 +33,7 @@ describe("The create incomes component", () => {
 
             it("shows a help message", () => {
                 expect(component.state().amountIsValid).toEqual(false);
-                expect(component.find(".amount .help").text()).toEqual("'amount' can only be a number");
+                expect(component.find(".amount .help").text()).toEqual("'Amount' must be a number");
             })
 
         });
@@ -58,19 +58,45 @@ describe("The create incomes component", () => {
                 expect(Api.create).not.toHaveBeenCalled();
             });
 
-            it("marks amount as required", () => {
-                expect(component.find(".amount .required").text()).toEqual("*");
+            describe("given the amount has not been previously updated", () => {
+                it("does not mark amount as required", () => {
+                    expect(component.find(".amount .required").text()).toEqual("");
+                });
+            });
+
+            describe("given the amount has been previously updated", () => {
+                it("marks amount as required", () => {
+                    component.setState({ amountHasBeenUpdated: true });
+                    expect(component.find(".amount .required").text()).toEqual("*");
+                });
             });
         });
 
         describe("and description has no value", () => {
-            it("does not call the api", () => {
+            beforeEach(() => {
                 component.setState({ description: "", amount: 6 });
                 component.find("button").simulate("click");
+            });
+
+            it("does not call the api", () => {
                 expect(Api.create).not.toHaveBeenCalled();
-            })
+            });
+
+            describe("given the description has not been previously updated", () => {
+                it("does not mark description as required", () => {
+                    expect(component.find(".amount .required").text()).toEqual("");
+                });
+            });
+
+            describe("given the description has been previously updated", () => {
+                it("marks description as required", () => {
+                    component.setState({ descriptionHasBeenUpdated: true });
+                    expect(component.find(".description .required").text()).toEqual("*");
+                });
+            });
         })
-        describe("and there are values", () => {
+
+        describe("and amount and discription have values", () => {
             it("calls the api", () => {
                 component.setState({ description: "this shiz", amount: 69.69 });
                 component.find("button").simulate("click");
