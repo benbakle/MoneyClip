@@ -34,8 +34,9 @@ export default class Create extends React.Component {
 
                 <label>Amount:</label>
                 <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
-
-                <button onClick={this.submit}>Submit</button>
+                <div className="flex flex-end">
+                    <button className="button" onClick={this.submit}>Add</button>
+                </div>
             </div>
         );
     }
