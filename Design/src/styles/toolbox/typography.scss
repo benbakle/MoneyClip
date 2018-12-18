@@ -37,7 +37,10 @@ main
     font-weight: 200;
     text-decoration: none;
     transition-duration: .3s;
-    padding:1rem;
+    padding:.5rem;
+    font-size:1.8rem;
+    line-height: 1.75em;
+
 
     @include states
     {
@@ -45,7 +48,7 @@ main
         cursor: pointer;
     }
     i{
-        font-size:1.6rem;
+        font-size:2.2rem;
     }
 }
 
@@ -64,4 +67,10 @@ ul
 .flex
 {
     display: flex;
+    &.space-between{
+        justify-content: space-between;
+    }
+    &.flex-end{
+        justify-content: flex-end;
+    }
 }

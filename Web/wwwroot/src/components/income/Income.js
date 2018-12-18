@@ -8,22 +8,29 @@ export default class Income extends React.Component {
         super(props);
 
         this.state = {
-            inEditMode: false,
+            inEditMode: false
         }
-        this.toggleEdit = this.toggleEdit.bind(this);
+
+        this.enterEditMode = this.enterEditMode.bind(this);
+        this.exitEditMode = this.exitEditMode.bind(this);
     }
 
-    toggleEdit() {
-        this.setState({ inEditMode: !this.state.inEditMode });
+    exitEditMode() {
+        this.setState({ inEditMode: false});
+    }
+
+    enterEditMode() {
+        this.setState({ inEditMode: true });
     }
 
     render() {
         return (
-            <div className="income">
+            this.props.income &&
+            <div className="income" >
                 {
                     !this.state.inEditMode &&
                     <React.Fragment>
-                        <div className="description">{this.props.income.description}</div>
+                        <button className="description link" onClick={this.enterEditMode}>{this.props.income.description}</button>
                         <Money className="amount" value={this.props.income.amount} />
                     </React.Fragment>
                 }
@@ -32,11 +39,11 @@ export default class Income extends React.Component {
                     <React.Fragment>
                         <Update income={this.props.income} callback={this.props.callback} />
                         <Delete id={this.props.income.incomeID} callback={this.props.callback} />
+                        <div>
+                            <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
+                        </div>
                     </React.Fragment>
                 }
-                <div>
-                    <button className="link" onClick={this.toggleEdit}>{this.state.inEditMode ? <i class='far fa-times-circle'></i> : <i class="fas fa-edit"></i>}</button>
-                </div>
             </div>
         );
     }

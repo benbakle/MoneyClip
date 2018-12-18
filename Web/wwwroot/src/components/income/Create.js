@@ -29,7 +29,6 @@ export default class Create extends React.Component {
     render() {
         return (
             <div className="create-income">
-                <hr />
                 <label>Description:</label>
                 <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
 

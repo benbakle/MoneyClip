@@ -4,6 +4,7 @@ import Create from './Create';
 import Income from './Income';
 import Loading from '../Loading';
 import Money from '../Money';
+import AnimateHeight from 'react-animate-height';
 
 export default class Incomes extends React.Component {
     constructor(props) {
@@ -11,11 +12,13 @@ export default class Incomes extends React.Component {
         this.state = {
             incomes: [],
             apiFetching: true,
+            inAddMode: false,
         }
 
         this.reload = this.reload.bind(this);
         this.load = this.load.bind(this);
         this.fetch = this.fetch.bind(this);
+        this.toggleAddMode = this.toggleAddMode.bind(this);
 
         this.fetch();
     }
@@ -29,12 +32,19 @@ export default class Incomes extends React.Component {
 
     reload() {
         this.setState({
-            apiFetching: true
+            apiFetching: true,
+            inAddMode: false
         }, this.fetch);
+
     }
 
     fetch() {
-        Api.fetch("incomes","description").then(this.load);
+        Api.fetch("incomes", "description").then(this.load);
+    }
+
+    toggleAddMode() {
+        this.setState({ inAddMode: !this.state.inAddMode });
+
     }
 
     render() {
@@ -49,14 +59,27 @@ export default class Incomes extends React.Component {
                 }
                 {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
-                    <div>
-                        <div className="income-total">
-                            Total: <Money value={sumProperty(this.state.incomes, 'amount')} />
+                    <React.Fragment>
+                        <div className="flex space-between">
+                            <div className="title">Income</div>
+                            <button className="add link" onClick={this.toggleAddMode}>
+                                {this.state.inAddMode ? <i className='far fa-times-circle'></i> : <i className="fas fa-plus-circle"></i>}
+                            </button>
                         </div>
-                        <div className="title">Income</div>
+                        <AnimateHeight duration={500} height={!this.state.inAddMode ? 0 : 'auto'}>
+                            {
+                                <Create callback={this.reload} />
+                            }
+                        </AnimateHeight>
                         {displayIncomes(this.state.incomes, this.reload)}
-                        <Create callback={this.reload} />
-                    </div>
+                        <div className="income-total">
+                            <div className="flex flex-end">
+                                <div>
+                                    Total: <Money value={sumProperty(this.state.incomes, 'amount')} />
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
                 }
             </div>
         );
