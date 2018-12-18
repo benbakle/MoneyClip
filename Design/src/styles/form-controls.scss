@@ -11,7 +11,11 @@ input[type='text']{
 .required, .error{
     color:brown;
 }
+
 .help{
-    font-size:1.2rem;
+    font-size:.9rem;
     line-height: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color:brown;
 }
