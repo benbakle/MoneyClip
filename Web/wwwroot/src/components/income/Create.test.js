@@ -15,7 +15,6 @@ describe("The create incomes component", () => {
         it("updates the description state", () => {
             let e = { target: { value: "Here is a description" } };
             component.instance().validateDescription(e);
-
             expect(component.state().description).toEqual("Here is a description");
         });
     });
@@ -34,8 +33,7 @@ describe("The create incomes component", () => {
             it("shows a help message", () => {
                 expect(component.state().amountIsValid).toEqual(false);
                 expect(component.find(".amount .help").text()).toEqual("'Amount' must be a number");
-            })
-
+            });
         });
 
         describe("given the amount is valid", () => {
@@ -43,6 +41,32 @@ describe("The create incomes component", () => {
                 let e = { target: { value: 23.99 } };
                 component.instance().validateAmount(e);
                 expect(component.state().amount).toEqual(23.99);
+            });
+        });
+
+        describe("given the description has not been previously updated", () => {
+            it("does not mark description as required", () => {
+                expect(component.find(".amount .required").text()).toEqual("");
+            });
+        });
+
+        describe("given the description has been previously updated", () => {
+            it("marks description as required", () => {
+                component.setState({ descriptionHasBeenUpdated: true });
+                expect(component.find(".description .required").text()).toEqual("*");
+            });
+        });
+
+        describe("given the amount has not been previously updated", () => {
+            it("does not mark amount as required", () => {
+                expect(component.find(".amount .required").text()).toEqual("");
+            });
+        });
+
+        describe("given the amount has been previously updated", () => {
+            it("marks amount as required", () => {
+                component.setState({ amountHasBeenUpdated: true });
+                expect(component.find(".amount .required").text()).toEqual("*");
             });
         });
     });
@@ -58,17 +82,8 @@ describe("The create incomes component", () => {
                 expect(Api.create).not.toHaveBeenCalled();
             });
 
-            describe("given the amount has not been previously updated", () => {
-                it("does not mark amount as required", () => {
-                    expect(component.find(".amount .required").text()).toEqual("");
-                });
-            });
-
-            describe("given the amount has been previously updated", () => {
-                it("marks amount as required", () => {
-                    component.setState({ amountHasBeenUpdated: true });
-                    expect(component.find(".amount .required").text()).toEqual("*");
-                });
+            it("marks amount as required", () => {
+                expect(component.find(".amount .required").text()).toEqual("*");
             });
         });
 
@@ -82,19 +97,12 @@ describe("The create incomes component", () => {
                 expect(Api.create).not.toHaveBeenCalled();
             });
 
-            describe("given the description has not been previously updated", () => {
-                it("does not mark description as required", () => {
-                    expect(component.find(".amount .required").text()).toEqual("");
-                });
+            it("marks description as required", () => {
+                expect(component.find(".description .required").text()).toEqual("*");
             });
 
-            describe("given the description has been previously updated", () => {
-                it("marks description as required", () => {
-                    component.setState({ descriptionHasBeenUpdated: true });
-                    expect(component.find(".description .required").text()).toEqual("*");
-                });
-            });
-        })
+
+        });
 
         describe("and amount and discription have values", () => {
             it("calls the api", () => {
@@ -104,4 +112,8 @@ describe("The create incomes component", () => {
             });
         });
     });
+
+
+
+
 });

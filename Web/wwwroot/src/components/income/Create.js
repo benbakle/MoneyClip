@@ -21,7 +21,7 @@ export default class Create extends React.Component {
     validateDescription(e) {
         this.setState({
             description: e.target.value,
-            descriptionHasBeenUpdated:true
+            descriptionHasBeenUpdated: true
         })
     }
 
@@ -32,6 +32,12 @@ export default class Create extends React.Component {
     }
 
     submit() {
+        if (this.state.description == "")
+            this.setState({ descriptionHasBeenUpdated: true });
+
+        if (this.state.amount == "")
+            this.setState({ amountHasBeenUpdated: true });
+
         if (this.state.description != "" && this.state.amount != "") {
             let income = {
                 Description: this.state.description,
