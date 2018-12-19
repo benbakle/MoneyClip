@@ -38,18 +38,16 @@ describe("The Incomes component", () => {
                     { description: "My income, Yo!", amount: 100 },
                     { description: "Sup!", amount: 9.35 },
                 ]
-
                 load(incomes);
             });
 
-            xit("shows a list of incomes", () => {
-                let desc = _component.find(".incomes .description");
-                let amount = _component.find(".incomes .amount");
+            it("shows a list of incomes", () => {
+                let list = _component.find("Income");
 
                 for (let i = 0; i < incomes.length; i++) {
-                    expect(desc.at(i).html()).toContain(incomes[i].description);
-                    expect(amount.at(i).html()).toContain("$" + incomes[i].amount.toFixed(2));
+                    expect(list[i].html()).toContain(incomes[i].description)
                 }
+
             });
 
             it("shows the amount total", () => {
@@ -69,8 +67,8 @@ describe("The Incomes component", () => {
                 })
 
             });
-
         });
+
         describe("given the reload callback is triggered", () => {
             beforeEach(() => {
                 _component.instance().reload();
@@ -81,7 +79,7 @@ describe("The Incomes component", () => {
             });
         });
 
-       
+
     });
 
     function load(data) {
