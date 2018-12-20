@@ -2,7 +2,7 @@
 import { shallow } from 'enzyme';
 import Incomes from './Incomes';
 import Api from '../../services/Api';
-import { promise, resolved } from '../../setupTests';
+import { promise} from '../../setupTests';
 
 describe("The Incomes component", () => {
     let _component;

@@ -1,7 +1,11 @@
 ﻿class Api {
     fetch(route, orderby) {
-        orderby = orderby || "id"
-        return fetch(`api/${route}?$orderby=${orderby}`, {
+        let filter = "";
+
+        if (orderby)
+            filter = filter + `?$orderby=${orderby}`
+
+        return fetch(`api/${route + filter}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'pragma': 'no-cache',

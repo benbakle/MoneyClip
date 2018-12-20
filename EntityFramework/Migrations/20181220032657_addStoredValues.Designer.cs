@@ -11,9 +11,10 @@ using System;
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    partial class ApplicationDataContextModelSnapshot : ModelSnapshot
+    [Migration("20181220032657_addStoredValues")]
+    partial class addStoredValues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +40,7 @@ namespace EntityFramework.Migrations
                     b.Property<int>("StoredValuesId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("BankBalance");
+                    b.Property<string>("BankBalance");
 
                     b.HasKey("StoredValuesId");
 
