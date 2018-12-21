@@ -2,7 +2,7 @@
 {
     public class StoredValues
     {
-        public int StoredValuesId { get; set; }
+        public int Id { get; set; }
         public decimal BankBalance { get; set; }
     }
 }

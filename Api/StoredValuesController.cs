@@ -51,7 +51,7 @@ namespace MoneyClip.Api
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]StoredValues storedValues)
         {
-            if (id != storedValues.StoredValuesId)
+            if (id != storedValues.Id)
             {
                 return BadRequest();
             }

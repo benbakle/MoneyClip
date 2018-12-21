@@ -38,7 +38,7 @@ export default class Income extends React.Component {
                     this.state.inEditMode &&
                     <React.Fragment>
                         <Update income={this.props.income} callback={this.props.callback} />
-                        <Delete id={this.props.income.incomeID} callback={this.props.callback} />
+                        <Delete id={this.props.income.id} callback={this.props.callback} />
                         <div>
                             <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                         </div>

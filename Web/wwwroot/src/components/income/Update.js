@@ -6,7 +6,7 @@ export default class Update extends React.Component {
         super(props);
 
         this.state = {
-            incomeID: null,
+            id: null,
             description: "",
             amount: ""
         }
@@ -19,7 +19,7 @@ export default class Update extends React.Component {
     componentDidMount() {
         this.props.income &&
             this.setState({
-                incomeID: this.props.income.incomeID,
+                id: this.props.income.id,
                 description: this.props.income.description,
                 amount: this.props.income.amount
             });
@@ -30,7 +30,7 @@ export default class Update extends React.Component {
     }
 
     submit() {
-        Api.update("incomes", this.state.incomeID, this.state).then(this.callback);
+        Api.update("incomes", this.state.id, this.state).then(this.callback);
     }
 
     callback() {

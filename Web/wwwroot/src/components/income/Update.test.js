@@ -18,7 +18,7 @@ describe("The update incomes component", () => {
     describe("given an item", () => {
         beforeEach(() => {
             _item = {
-                incomeID: 65,
+                id: 65,
                 description: "pooooop",
                 amount: 99.99
             }
@@ -30,7 +30,7 @@ describe("The update incomes component", () => {
 
         it("sets the state", () => {
 
-            expect(_component.state().incomeID).toEqual(65);
+            expect(_component.state().id).toEqual(65);
             expect(_component.state().description).toEqual("pooooop");
             expect(_component.state().amount).toEqual(99.99);
         });

@@ -28,7 +28,7 @@ namespace MoneyClip.Api
         [HttpPost]
         public async Task Create([FromBody]Income income)
         {
-            var existingIncome = _context.Query<Income>().FirstOrDefault(i => i.IncomeID == income.IncomeID);
+            var existingIncome = _context.Query<Income>().FirstOrDefault(i => i.Id == income.Id);
             if (existingIncome is null)
                 existingIncome = _context.Add(income);
 
@@ -38,7 +38,7 @@ namespace MoneyClip.Api
         [HttpDelete("delete/{id}")]
         public async Task Delete(int id)
         {
-            var income = _context.Query<Income>().FirstOrDefault(i => i.IncomeID == id);
+            var income = _context.Query<Income>().FirstOrDefault(i => i.Id == id);
 
             if (income != null)
             {
@@ -50,7 +50,7 @@ namespace MoneyClip.Api
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]Income income)
         {
-            if (id != income.IncomeID)
+            if (id != income.Id)
             {
                 return BadRequest();
             }
