@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import Api from '../services/Api';
 import Money from './Money';
+import Loading from './Loading';
 
 export default class StoredValues extends React.Component {
     constructor(props) {
@@ -8,7 +9,8 @@ export default class StoredValues extends React.Component {
         this.state = {
             values: null,
             value: null,
-            inEditMode: false
+            inEditMode: false,
+            fetching:true
         }
 
         this.load = this.load.bind(this);
@@ -20,7 +22,7 @@ export default class StoredValues extends React.Component {
     }
 
     load(data) {
-        this.setState({ values: data, value: data[this.props.field] });
+        this.setState({ values: data, value: data[this.props.field], fetching:false });
     }
 
     enterEditMode() {
@@ -43,6 +45,10 @@ export default class StoredValues extends React.Component {
         return (
             <div className="stored-value">
                 {
+                    this.state.fetching &&
+                    <Loading />
+                }
+                {
                     this.state.values && !this.state.inEditMode &&
                     <button className="link" onClick={this.enterEditMode}>
                         <Money value={this.state.value} />
@@ -51,8 +57,12 @@ export default class StoredValues extends React.Component {
                 {
                     this.state.values && this.state.inEditMode &&
                     <React.Fragment>
-                        <input type="text" value={this.state.value} onChange={this.onChange} />
-                        <button onClick={this.update}>Save</button>
+                        <div className="flex space-between align-center">
+                            <div>
+                                <input type="number" value={this.state.value} onChange={this.onChange} />
+                            </div>
+                            <button className="button" onClick={this.update}>Save</button>
+                        </div>
                     </React.Fragment>
 
                 }

@@ -1,12 +1,15 @@
-input[type='text']{
+input[type='text'], input[type='number']{
     display: block;
     width:100%;
     padding:.5rem 1rem;
     box-sizing: border-box;
-    font-size:1.6rem;
+    font-size:1.8rem;
     margin-bottom:1rem;
     border:none;
     color:lighten($color-body,20);
+    &:last-child{
+        margin-bottom:0;
+    }
 }
 .required, .error{
     color:brown;
@@ -20,3 +23,18 @@ input[type='text']{
     color:brown;
     letter-spacing: .1rem;
 }
+
+.button{
+    background-color:  $color-link;
+    color:#fff;
+    border:none;
+    font-size:1.4rem;
+    padding:.5rem 2.5rem;
+    cursor: pointer;
+    margin:1.5rem 0;
+    border-radius: .2rem;
+    transition-duration: .3s;
+    @include states{
+        background-color:$color-link-hover;
+    }
+ }

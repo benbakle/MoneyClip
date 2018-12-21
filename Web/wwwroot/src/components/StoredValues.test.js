@@ -15,9 +15,9 @@ describe("The Stored Value Component", () => {
     });
 
     describe("given no data", () => {
-        it("does not show anything", () => {
+        it("shows a loading message", () => {
             _component = shallow(<StoredValues />);
-            expect(_component.text()).toEqual("");
+            expect(_component.find("Loading").length).toEqual(1);
         });
     });
 
@@ -27,6 +27,11 @@ describe("The Stored Value Component", () => {
             _component = shallow(<StoredValues field="bankBalance" />);
             _component.instance().load({ storedValuesId: 1, bankBalance: 45.25 });
         })
+
+       it("hides the loading message", () => {
+           expect(_component.find("Loading").length).toEqual(0);
+
+        });
 
         it("shows the bank balance", () => {
             expect(_component.html()).toContain("45.25");

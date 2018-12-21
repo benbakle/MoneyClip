@@ -52,21 +52,6 @@ main
     }
 }
 
-.button{
-   background-color:  $color-link;
-   color:#fff;
-   border:none;
-   font-size:1.4rem;
-   padding:.5rem 2.5rem;
-   cursor: pointer;
-   margin:1.5rem 0;
-   border-radius: .2rem;
-   transition-duration: .3s;
-   @include states{
-       background-color:$color-link-hover;
-   }
-}
-
 a
 {
     text-decoration: none;
