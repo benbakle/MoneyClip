@@ -11,9 +11,10 @@ using System;
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    partial class ApplicationDataContextModelSnapshot : ModelSnapshot
+    [Migration("20181221042930_AddTransaction")]
+    partial class AddTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,26 +23,26 @@ namespace EntityFramework.Migrations
 
             modelBuilder.Entity("MoneyClip.Models.Income", b =>
                 {
-                    b.Property<int>("IncomeID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("Amount");
 
                     b.Property<string>("Description");
 
-                    b.HasKey("IncomeID");
+                    b.HasKey("Id");
 
                     b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("MoneyClip.Models.StoredValues", b =>
                 {
-                    b.Property<int>("StoredValuesId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("BankBalance");
 
-                    b.HasKey("StoredValuesId");
+                    b.HasKey("Id");
 
                     b.ToTable("Options");
                 });

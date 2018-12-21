@@ -12,6 +12,7 @@ namespace MoneyClip.EntityFramework
     {
         public DbSet<Income> Incomes { get; set; }
         public DbSet<StoredValues> Options { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
         {

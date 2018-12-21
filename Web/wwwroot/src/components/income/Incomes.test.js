@@ -42,12 +42,9 @@ describe("The Incomes component", () => {
             });
 
             it("shows a list of incomes", () => {
-                let list = _component.find("Income");
-
                 for (let i = 0; i < incomes.length; i++) {
-                    expect(list[i].html()).toContain(incomes[i].description)
+                    expect(_component.html()).toContain(incomes[i].description)
                 }
-
             });
 
             it("shows the amount total", () => {

@@ -11,9 +11,10 @@ using System;
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    partial class ApplicationDataContextModelSnapshot : ModelSnapshot
+    [Migration("20181221045249_ShortenIDFieldNameRevert")]
+    partial class ShortenIDFieldNameRevert
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
