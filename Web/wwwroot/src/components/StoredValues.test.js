@@ -48,7 +48,7 @@ describe("The Stored Value Component", () => {
         describe("given the save button is clicked", () => {
             beforeEach(() => {
                 _component.setState({ inEditMode: true });
-                _component.find("button").simulate("click");
+                _component.find(".update").simulate("click");
             });
 
             it("exits edit mode", () => {
@@ -56,7 +56,7 @@ describe("The Stored Value Component", () => {
             });
 
             it("calls the update api", () => {
-                expect(Api.update).toHaveBeenCalledWith("values", 1, { storedValuesId: 1, bankBalance: 45.25 });
+                expect(Api.update).toHaveBeenCalledWith("values", 1, { id: 1, bankBalance: 45.25 });
             });
         })
     })
