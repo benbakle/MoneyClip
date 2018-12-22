@@ -33,7 +33,7 @@ describe("The Transactions component", () => {
 
         describe("without data", () => {
             it("shows nothing", () => {
-                expect(_component.text()).toEqual("");
+                expect(_component.text()).toEqual("Transactions");
             });
         });
 

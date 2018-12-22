@@ -27,14 +27,15 @@ export default class Transactions extends React.Component {
     render() {
         return (
             <div>
+                <div className="title">Transactions</div>
                 {
                     this.state.fetching &&
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.data && 
+                    !this.state.fetching && this.state.data &&
                     this.state.data.map((item, key) =>
-                        <Transaction data={item} key={key} />
+                        <Transaction transaction={item} key={key} />
                     )
                 }
             </div>

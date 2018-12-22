@@ -1,52 +1,50 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
+import Transation from './Transaction';
 
-describe("The Income component", () => {
-    it("works", () => {
-        expect(true).toEqual(true);
-    })  
-})
+describe("The Transaction component", () => {
+    let _component;
 
-//xdescribe("with data", () => {
-//    let transactions;
-//    beforeEach(() => {
-//        transactions = [
-//            { date: "2018-01-05", description: "The Porn Place", amount: 23.77 },
-//            { date: "2018-05-14", description: "Butt Plug Store", amount: 98.36 }
-//        ]
-//        _component.instance().load(transactions);
-//    });
+    describe("given no data", () => {
+        it("shows nothing", () => {
+            _component = shallow(<Transation />);
+            expect(_component.html()).toEqual(null);
+        });
+    });
 
-//    it("shows a list of transactions", () => {
-//        let dates = _component.find(".date");
-//        let descriptions = _component.find(".description");
-//        let amounts = _component.find(".amount");
+    describe("given data", () => {
+        let transaction;
+        beforeEach(() => {
+            transaction = { date: "2018-01-05", description: "The Porn Place", amount: 23.77 };
+            _component = shallow(<Transation transaction={transaction} />);
+        });
 
-//        for (let i = 0; i < transactions.length; i++) {
-//            expect(dates.at(i).html()).toContain(shallow(<Moment date={transactions[i].date} format="MM/DD/YYYY" />).html());
-//            expect(descriptions.at(i).text()).toEqual(transactions[i].description);
-//            expect(amounts.at(i).html()).toContain(transactions[i].amount);
-//        }
-//    });
+        it("shows the transaction data", () => {
+            expect(_component.find(".date").html()).toContain("01/05/2018")
+            expect(_component.find(".description").text()).toEqual("The Porn Place");
+            expect(_component.find(".amount").html()).toContain("23.77");
 
-//    describe("given the date is clicked", () => {
-//        it("enters edit mode", () => {
-//            _component.find(".date").at(0).simulate("click");
-//            expect(_component.state().inEditMode).toEqual(true);
-//        });
-//    });
+        });
 
-//    describe("given the description is clicked", () => {
-//        it("enters edit mode", () => {
-//            _component.find(".description").at(0).simulate("click");
-//            expect(_component.state().inEditMode).toEqual(true);
-//        });
-//    });
+        describe("given the date is clicked", () => {
+            it("enters edit mode", () => {
+                _component.find(".date").at(0).simulate("click");
+                expect(_component.state().inEditMode).toEqual(true);
+            });
+        });
 
-//    describe("given the amount is clicked", () => {
-//        it("enters edit mode", () => {
-//            _component.find(".amount").at(0).simulate("click");
-//            expect(_component.state().inEditMode).toEqual(true);
-//        });
-//    });
-//});
+        describe("given the description is clicked", () => {
+            it("enters edit mode", () => {
+                _component.find(".description").at(0).simulate("click");
+                expect(_component.state().inEditMode).toEqual(true);
+            });
+        });
+
+        describe("given the amount is clicked", () => {
+            it("enters edit mode", () => {
+                _component.find(".amount").at(0).simulate("click");
+                expect(_component.state().inEditMode).toEqual(true);
+            });
+        });
+    });
+});
