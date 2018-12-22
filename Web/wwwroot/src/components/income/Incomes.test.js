@@ -42,8 +42,10 @@ describe("The Incomes component", () => {
             });
 
             it("shows a list of incomes", () => {
-                for (let i = 0; i < incomes.length; i++) {
-                    expect(_component.html()).toContain(incomes[i].description)
+                let income= _component.find("Income");
+
+                for (let i = 0; i < income.length; i++) {
+                    expect(income.at(i).props().income).toEqual(incomes[i]);
                 }
             });
 

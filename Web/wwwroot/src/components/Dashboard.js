@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import Incomes from './income/Incomes';
 import Card from './layouts/BoardCard';
-import Transaction from './transaction/Transaction';
+import Transactions from './transaction/Transactions';
 
 export default class Dashboard extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class Dashboard extends React.Component {
             <div className="dashboard">
                 <div className="mc-container">
                     <Card card={<Incomes />} />
-                    <Card card={<Transaction />} />
+                    <Card card={<Transactions />} />
                 </div>
             </div>
         );

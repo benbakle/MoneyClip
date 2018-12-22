@@ -32,13 +32,13 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        if (this.state.description == "")
+        if (this.state.description === "")
             this.setState({ descriptionHasBeenUpdated: true });
 
-        if (this.state.amount == "")
+        if (this.state.amount === "")
             this.setState({ amountHasBeenUpdated: true });
 
-        if (this.state.description != "" && this.state.amount != "") {
+        if (this.state.description !== "" && this.state.amount !== "") {
             let income = {
                 Description: this.state.description,
                 Amount: this.state.amount
@@ -53,14 +53,14 @@ export default class Create extends React.Component {
                 <div className="description">
                     <label>Description:</label>
                     <span className="required">
-                        {this.state.description == "" && this.state.descriptionHasBeenUpdated && "*"}
+                        {this.state.description === "" && this.state.descriptionHasBeenUpdated && "*"}
                     </span>
                     <input type="text" name="description" onChange={this.validateDescription} value={this.state.description} />
                 </div>
                 <div className="amount">
                     <label>Amount:</label>
                     <span className="required">
-                        {this.state.amount == "" && this.state.amountHasBeenUpdated && "*"}
+                        {this.state.amount === "" && this.state.amountHasBeenUpdated && "*"}
                     </span>
                     <input autoComplete="off" type="text" name="amount" onChange={this.validateAmount} value={this.state.amount} />
                     {

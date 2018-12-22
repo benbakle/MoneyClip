@@ -1,15 +1,14 @@
 ﻿import React from 'react';
-//import Delete from './Delete';
-//import Update from './Update';
+import Moment from 'react-moment';
 import Money from '../Money';
 
-export default class Transaction extends React.Component {
+
+export default class Transation extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            inEditMode: false,
-            transaction :{ description: "tlkj", amount: 53.88, date: "2018-01-01" }
+            inEditMode: false
         }
 
         this.enterEditMode = this.enterEditMode.bind(this);
@@ -17,7 +16,7 @@ export default class Transaction extends React.Component {
     }
 
     exitEditMode() {
-        this.setState({ inEditMode: false});
+        this.setState({ inEditMode: false });
     }
 
     enterEditMode() {
@@ -26,23 +25,21 @@ export default class Transaction extends React.Component {
 
     render() {
         return (
-           // this.props.transaction &&
+            // this.props.income &&
             <div className="transaction" >
-                <div className="title">Transactions</div>
                 {
                     !this.state.inEditMode &&
                     <React.Fragment>
-                        <div className="date">{this.state.transaction.date}</div>
-                        <button className="description link" onClick={this.enterEditMode}>{this.state.transaction.description}</button>
-                        <Money className="amount" value={this.state.transaction.amount} />
+                        <button className="link date" onClick={this.enterEditMode}><Moment date={this.props.data.date} format="MM/DD/YYYY" /></button>
+                        <button className="link description" onClick={this.enterEditMode}>{this.props.data.description}</button>
+                        <button className="link amount" onClick={this.enterEditMode}><Money value={this.props.data.amount} /></button>
                     </React.Fragment>
                 }
                 {
                     this.state.inEditMode &&
-                        //<Update transaction={this.props.transaction} callback={this.props.callback} />
-                        //<Delete id={this.props.transaction.id} callback={this.props.callback} />
                     <React.Fragment>
                         <div>
+                            <input className="description" type="text" value={this.props.data.description} />
                             <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                         </div>
                     </React.Fragment>
@@ -51,3 +48,5 @@ export default class Transaction extends React.Component {
         );
     }
 }
+
+

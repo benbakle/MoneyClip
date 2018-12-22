@@ -1,56 +1,52 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
-import Transaction from './Transaction';
 
-xdescribe("The Transaction component", () => {
-    let _component;
-    let _transaction = { description: "desc", amount: 22.5 }
-
-    describe("given no transaction", () => {
-        it("shows nothing", () => {
-            _component = shallow(<Transaction />);
-            expect(_component.html()).toEqual(null);
-        })
-    });
-
-    describe("given an transaction", () => {
-        beforeEach(() => {
-            _component = shallow(<Transaction transaction={_transaction} />);
-        });
-
-        it("shows the transaction", () => {
-            expect(_component.find(".description").html()).toContain("desc");
-            expect(_component.find(".amount").html()).toContain(22.5);
-        });
-
-        describe("given a user clicks the transaction description", () => {
-            beforeEach(() => {
-                _component.setState({ inEditMode: false });
-                _component.find(".description").simulate("click");
-            });
-
-            it("enters edit mode", () => {
-                expect(_component.state().inEditMode).toEqual(true);
-            });
-
-            it("shows editable data", () => {
-                expect(_component.html()).toContain("<input");
-            });
-        });
-
-        describe("given a user clicks close", () => {
-            beforeEach(() => {
-                _component.setState({ inEditMode: true });
-                _component.find(".close").simulate("click");
-            });
-
-            it("exits edit mode", () => {
-                expect(_component.state().inEditMode).toEqual(false);
-            });
-
-            it("hides editable data", () => {
-                expect(_component.html()).not.toContain("<input")
-            });
-        });
-    });
+describe("The Income component", () => {
+    it("works", () => {
+        expect(true).toEqual(true);
+    })  
 })
+
+//xdescribe("with data", () => {
+//    let transactions;
+//    beforeEach(() => {
+//        transactions = [
+//            { date: "2018-01-05", description: "The Porn Place", amount: 23.77 },
+//            { date: "2018-05-14", description: "Butt Plug Store", amount: 98.36 }
+//        ]
+//        _component.instance().load(transactions);
+//    });
+
+//    it("shows a list of transactions", () => {
+//        let dates = _component.find(".date");
+//        let descriptions = _component.find(".description");
+//        let amounts = _component.find(".amount");
+
+//        for (let i = 0; i < transactions.length; i++) {
+//            expect(dates.at(i).html()).toContain(shallow(<Moment date={transactions[i].date} format="MM/DD/YYYY" />).html());
+//            expect(descriptions.at(i).text()).toEqual(transactions[i].description);
+//            expect(amounts.at(i).html()).toContain(transactions[i].amount);
+//        }
+//    });
+
+//    describe("given the date is clicked", () => {
+//        it("enters edit mode", () => {
+//            _component.find(".date").at(0).simulate("click");
+//            expect(_component.state().inEditMode).toEqual(true);
+//        });
+//    });
+
+//    describe("given the description is clicked", () => {
+//        it("enters edit mode", () => {
+//            _component.find(".description").at(0).simulate("click");
+//            expect(_component.state().inEditMode).toEqual(true);
+//        });
+//    });
+
+//    describe("given the amount is clicked", () => {
+//        it("enters edit mode", () => {
+//            _component.find(".amount").at(0).simulate("click");
+//            expect(_component.state().inEditMode).toEqual(true);
+//        });
+//    });
+//});
