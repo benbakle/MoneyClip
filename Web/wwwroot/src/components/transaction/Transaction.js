@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import Moment from 'react-moment';
 import Money from '../Money';
-import Calendar from 'react-calendar';
-import Create from './Create';
+import Update from './Update';
 
 
 export default class Transation extends React.Component {
@@ -45,27 +44,24 @@ export default class Transation extends React.Component {
     render() {
         return (
             this.props.transaction &&
-            <div className="transaction flex space-between align-center" >
+            <div className="transaction" >
                 {
                     !this.state.inEditMode &&
-                    <div>
-                        <button className="link date" onClick={this.enterEditMode}><Moment date={this.state.date} format="MM/DD/YYYY" /></button>
-                        <button className="link description" onClick={this.enterEditMode}>{this.props.transaction.description}</button>
-                        <button className="link amount" onClick={this.enterEditMode}><Money value={this.props.transaction.amount} /></button>
-                    </div>
+                    <button className="edit link flex space-between align-center" onClick={this.enterEditMode}>
+                        <div className="date"><Moment date={this.state.date} format="dddd, MMMM Do YYYY" /></div>
+                        <div className="description">{this.props.transaction.description}</div>
+                        <div className="amount"><Money value={this.props.transaction.amount} /></div>
+                    </button>
                 }
                 {
                     this.state.inEditMode &&
-                    <React.Fragment>
-                        <Create transaction={this.props.transaction} />
-                        <div>
-                            <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
-                        </div>
-                    </React.Fragment>
+                    <div className="flex space-between align-center">
+                        <Update transaction={this.props.transaction} />
+                        <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
+                    </div>
                 }
             </div>
         );
     }
 }
 
-                           

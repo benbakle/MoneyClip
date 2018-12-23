@@ -35,7 +35,6 @@ export default class Incomes extends React.Component {
             apiFetching: true,
             inAddMode: false
         }, this.fetch);
-
     }
 
     fetch() {
@@ -44,7 +43,6 @@ export default class Incomes extends React.Component {
 
     toggleAddMode() {
         this.setState({ inAddMode: !this.state.inAddMode });
-
     }
 
     render() {
@@ -61,7 +59,7 @@ export default class Incomes extends React.Component {
                     !this.state.apiFetching && !empty(this.state.incomes) &&
                     <React.Fragment>
                         <div className="flex space-between">
-                            <div className="title">Income</div>
+                            <div className="title">Incomes</div>
                             <button className="add link" onClick={this.toggleAddMode}>
                                 {this.state.inAddMode ? <i className='far fa-times-circle'></i> : <i className="fas fa-plus-circle"></i>}
                             </button>

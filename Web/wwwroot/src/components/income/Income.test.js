@@ -25,10 +25,10 @@ describe("The Income component", () => {
             expect(_component.find(".amount").html()).toContain(22.5);
         });
 
-        describe("given a user clicks the income description", () => {
+        describe("given a user clicks an income ", () => {
             beforeEach(() => {
                 _component.setState({ inEditMode: false });
-                _component.find(".description").simulate("click");
+                _component.find(".edit").simulate("click");
             });
 
             it("enters edit mode", () => {

@@ -20,31 +20,31 @@ describe("The Transaction component", () => {
         });
 
         it("shows the transaction data", () => {
-            expect(_component.find(".date").html()).toContain("01/05/2018")
+            expect(_component.find(".date").html()).toContain("Friday, January 5th 2018")
             expect(_component.find(".description").text()).toEqual("The Porn Place");
             expect(_component.find(".amount").html()).toContain("23.77");
 
         });
 
-        describe("given the date is clicked", () => {
+        describe("and the transaction is clicked", () => {
             it("enters edit mode", () => {
-                _component.find(".date").at(0).simulate("click");
+                _component.find(".edit").at(0).simulate("click");
                 expect(_component.state().inEditMode).toEqual(true);
             });
         });
 
-        describe("given the description is clicked", () => {
-            it("enters edit mode", () => {
-                _component.find(".description").at(0).simulate("click");
-                expect(_component.state().inEditMode).toEqual(true);
+        describe("given in edit mode", () => {
+            beforeEach(() => {
+                _component.setState({ inEditMode: true });
+            });
+
+            describe("and the close button is clicked", () => {
+                it("exits edit mode", () => {
+                    _component.find(".close").at(0).simulate("click");
+                    expect(_component.state().inEditMode).toEqual(false);
+                });
             });
         });
 
-        describe("given the amount is clicked", () => {
-            it("enters edit mode", () => {
-                _component.find(".amount").at(0).simulate("click");
-                expect(_component.state().inEditMode).toEqual(true);
-            });
-        });
     });
 });

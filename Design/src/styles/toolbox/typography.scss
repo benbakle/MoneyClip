@@ -1,10 +1,8 @@
-:root
-{
+:root {
     font-size: 62.5%;
 }
 
-body
-{
+body {
     height: 100%;
     margin: 0;
     font-size: 1.8rem;
@@ -15,62 +13,63 @@ body
     background-color: $color-background;
 }
 
-main
-{
+main {
     width: calc(100% - 32.5rem);
 }
 
-.mc-container
-{
-    width: 100%;
-    // max-width: 120rem;
+.mc-container {
+    width: 100%; // max-width: 120rem;
     margin: 0 auto;
     @include gutter;
 }
 
-.link
-{
+.link {
     display: inline-block;
     color: $color-link;
     background-color: transparent;
     border: none;
-    font-weight: 200;
+    font-weight: 400;
     text-decoration: none;
     transition-duration: .3s;
-    padding:.5rem;
-    font-size:1.8rem;
+    padding: .5rem;
+    font-size: 1.6rem;
     line-height: 1.75em;
-
-
-    @include states
-    {
+    @include states {
         text-decoration: underline;
         cursor: pointer;
     }
-    i{
-        font-size:2.2rem;
+    &.edit {
+        width: 100%;
+        margin: 0 -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        @include states{
+            text-decoration: none;
+            background-color:rgba($color-background,.5);
+        }  
+    }
+    i {
+        font-size: 2.2rem;
     }
 }
 
-a
-{
+a {
     text-decoration: none;
 }
 
-ul
-{
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.flex
-{
+.flex {
     display: flex;
-    &.space-between{
+    flex-wrap: wrap;
+    &.space-between {
         justify-content: space-between;
     }
-    &.flex-end{
+    &.flex-end {
         justify-content: flex-end;
     }
 }

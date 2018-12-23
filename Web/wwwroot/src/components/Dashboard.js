@@ -7,9 +7,10 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard">
-                <div className="mc-container">
+                <div className="mc-container flex">
                     <Card card={<Incomes />} />
                     <Card card={<Transactions />} />
+                    <Card card={<div className="title">Accounts</div>} />
                 </div>
             </div>
         );

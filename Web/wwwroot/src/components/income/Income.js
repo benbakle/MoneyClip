@@ -16,7 +16,7 @@ export default class Income extends React.Component {
     }
 
     exitEditMode() {
-        this.setState({ inEditMode: false});
+        this.setState({ inEditMode: false });
     }
 
     enterEditMode() {
@@ -30,8 +30,10 @@ export default class Income extends React.Component {
                 {
                     !this.state.inEditMode &&
                     <React.Fragment>
-                        <button className="description link" onClick={this.enterEditMode}>{this.props.income.description}</button>
-                        <Money className="amount" value={this.props.income.amount} />
+                        <button className="edit link flex space-between align-center" onClick={this.enterEditMode}>
+                            <div className="description">{this.props.income.description}</div>
+                            <Money className="amount" value={this.props.income.amount} />
+                        </button>
                     </React.Fragment>
                 }
                 {
