@@ -2,60 +2,47 @@
 import { shallow } from 'enzyme';
 import Update from './Update';
 import Api from '../../services/Api';
-import { resolved } from '../../setupTests';
+import { promise, resolved } from '../../setupTests';
 
 describe("The update incomes component", () => {
     let _component, _item;
-    let _value = "this";
 
     describe("given no item", () => {
-        _component = shallow(<Update />);
         it("shows nothing", () => {
+            _component = shallow(<Update />);
             expect(_component.html()).toEqual(null);
         });
     });
+    describe("given an item", () => {
+        let transaction = { id: 1, date: "2018-01-01", description: "this shiz", amount: 75.26 };
+        beforeEach(() => {
+            spyOn(Api, "update").and.returnValue(resolved());
+            _component = shallow(<Update transaction={transaction} />);
+        });
 
-    //describe("given an item", () => {
-    //    beforeEach(() => {
-    //        _item = {
-    //            id: 65,
-    //            description: "pooooop",
-    //            amount: 99.99
-    //        }
+        it("shows the item in form controls", () => {
+            expect(_component.find("input[name='description']").props().value).toEqual("this shiz");
+            expect(_component.find("input[name='amount']").props().value).toEqual(75.26);
+        });
 
-    //        spyOn(Api, "update").and.returnValue(resolved());
-    //        _component = shallow(<Update income={_item} />);
+        it("shows the submit button", () => {
+            expect(_component.find(".submit").length).toEqual(1);
+        })
 
-    //    });
+        describe("and the submit is clicked", () => {
+            let value = 0;
+            beforeEach(() => {
+                _component = shallow(<Update transaction={transaction} callback={() => { value = 69 }} />);
+                _component.find(".submit").simulate("click");
+            });
 
-    //    it("sets the state", () => {
+            it("calls the api", () => {
+                expect(Api.update).toHaveBeenCalledWith("transactions", _component.state().id, _component.state());
+            });
 
-    //        expect(_component.state().id).toEqual(65);
-    //        expect(_component.state().description).toEqual("pooooop");
-    //        expect(_component.state().amount).toEqual(99.99);
-    //    });
-
-    //    describe("given the update button is clicked", () => {
-    //        it("calls the update api", () => {
-    //            _component.find("button.submit").simulate("click");
-    //            expect(Api.update).toHaveBeenCalledWith("incomes", 65, _item);
-    //        });
-
-    //        describe("given no callback", () => {
-    //            it("does nothing", () => {
-    //                expect(_value).toEqual("this");
-    //            });
-    //        });
-
-    //        describe("given a callback", () => {
-    //            it("calls the callback", () => {
-    //                let callback = () => { _value = "that" };
-    //                _component = shallow(<Update id={_item} callback={callback} />);
-    //                _component.instance().callback();
-
-    //                expect(_value).toEqual("that");
-    //            });
-    //        });
-    //    });
-    //});
+            it("calls the callback", () => {
+                expect(value).toEqual(69);
+            });
+        });
+    });
 });

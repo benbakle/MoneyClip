@@ -59,19 +59,19 @@ namespace MoneyClip.Api
         //    }
         //}
 
-        //[HttpPut("update/{id}")]
-        //public async Task<IActionResult> Update(int id, [FromBody]Transaction transaction)
-        //{
-        //    if (id != transaction.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody]Transaction transaction)
+        {
+            if (id != transaction.Id)
+            {
+                return BadRequest();
+            }
 
-        //    _context.Entry(transaction).State = EntityState.Modified;
-        //    await _context.Save();
+            _context.Entry(transaction).State = EntityState.Modified;
+            await _context.Save();
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
     }
 }

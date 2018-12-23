@@ -15,7 +15,7 @@ export default class Incomes extends React.Component {
             inAddMode: false,
         }
 
-        this.reload = this.reload.bind(this);
+        this.callback = this.callback.bind(this);
         this.load = this.load.bind(this);
         this.fetch = this.fetch.bind(this);
         this.toggleAddMode = this.toggleAddMode.bind(this);
@@ -30,7 +30,7 @@ export default class Incomes extends React.Component {
         })
     }
 
-    reload() {
+    callback() {
         this.setState({
             apiFetching: true,
             inAddMode: false
@@ -66,10 +66,10 @@ export default class Incomes extends React.Component {
                         </div>
                         <AnimateHeight duration={500} height={!this.state.inAddMode ? 0 : 'auto'}>
                             {
-                                <Create callback={this.reload} />
+                                <Create callback={this.callback} />
                             }
                         </AnimateHeight>
-                        {displayIncomes(this.state.incomes, this.reload)}
+                        {displayIncomes(this.state.incomes, this.callback)}
                         <div className="income-total">
                             <div className="flex flex-end">
                                 <div>

@@ -68,9 +68,9 @@ describe("The Incomes component", () => {
             });
         });
 
-        describe("given the reload callback is triggered", () => {
+        describe("given the callback callback is triggered", () => {
             beforeEach(() => {
-                _component.instance().reload();
+                _component.instance().callback();
             });
 
             it("re-calls the api for most recent incomes", () => {

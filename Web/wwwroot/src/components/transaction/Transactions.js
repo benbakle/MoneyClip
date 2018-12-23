@@ -13,8 +13,10 @@ export default class Transactions extends React.Component {
         }
 
         this.load = this.load.bind(this);
+        this.fetch = this.fetch.bind(this);
+        this.callback = this.callback.bind(this);
 
-        Api.fetch("transactions").then(this.load);
+        this.fetch();
     }
 
     load(data) {
@@ -22,7 +24,19 @@ export default class Transactions extends React.Component {
             data: data,
             fetching: false
         })
+    };
+
+    fetch() {
+        Api.fetch("transactions").then(this.load);
     }
+
+    callback() {
+        this.setState({
+            fetching: true,
+            //inAddMode: false
+        }, this.fetch);
+    }
+
 
     render() {
         return (
@@ -35,7 +49,7 @@ export default class Transactions extends React.Component {
                 {
                     !this.state.fetching && this.state.data &&
                     this.state.data.map((item, key) =>
-                        <Transaction transaction={item} key={key} />
+                        <Transaction transaction={item} key={key} callback={this.callback} />
                     )
                 }
             </div>

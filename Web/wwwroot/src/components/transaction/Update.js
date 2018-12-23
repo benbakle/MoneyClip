@@ -16,7 +16,7 @@ export default class Update extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
-        //this.callback = this.callback.bind(this);
+        this.callback = this.callback.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +34,7 @@ export default class Update extends React.Component {
     }
 
     submit() {
-        //   Api.update("transactions", this.state.id, this.state).then(this.callback);
+           Api.update("transactions", this.state.id, this.state).then(this.callback);
     }
 
     callback() {

@@ -27,6 +27,7 @@ export default class Transation extends React.Component {
         this.setState({
             date: this.props.transaction.date
         })
+        console.log(this.props.callback);
     }
 
     exitEditMode() {
@@ -56,7 +57,7 @@ export default class Transation extends React.Component {
                 {
                     this.state.inEditMode &&
                     <div className="flex space-between align-center">
-                        <Update transaction={this.props.transaction} />
+                        <Update transaction={this.props.transaction} callback={this.props.callback}/>
                         <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                     </div>
                 }

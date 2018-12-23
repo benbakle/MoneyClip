@@ -42,7 +42,6 @@
             },
             method: 'PUT',
             body: JSON.stringify(item)
-
         })
     }
 }
