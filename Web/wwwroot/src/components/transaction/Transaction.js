@@ -2,6 +2,7 @@
 import Moment from 'react-moment';
 import Money from '../Money';
 import Update from './Update';
+import Delete from './Delete';
 
 
 export default class Transation extends React.Component {
@@ -56,7 +57,8 @@ export default class Transation extends React.Component {
                 {
                     this.state.inEditMode &&
                     <div className="flex space-between align-center">
-                        <Update transaction={this.props.transaction} callback={this.props.callback}/>
+                        <Update transaction={this.props.transaction} callback={this.props.callback} />
+                        <Delete id={this.props.transaction.id} callback={this.props.callback} />
                         <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                     </div>
                 }

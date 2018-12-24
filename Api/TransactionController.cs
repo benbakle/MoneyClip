@@ -34,17 +34,17 @@ namespace MoneyClip.Api
             await _context.Save();
         }
 
-        //[HttpDelete("delete/{id}")]
-        //public async Task Delete(int id)
-        //{
-        //    var transaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == id);
+        [HttpDelete("delete/{id}")]
+        public async Task Delete(int id)
+        {
+            var transaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == id);
 
-        //    if (transaction != null)
-        //    {
-        //        _context.Remove(transaction);
-        //        await _context.Save();
-        //    }
-        //}
+            if (transaction != null)
+            {
+                _context.Remove(transaction);
+                await _context.Save();
+            }
+        }
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]Transaction transaction)
