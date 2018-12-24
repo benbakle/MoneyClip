@@ -32,7 +32,7 @@ export default class Transactions extends React.Component {
     };
 
     fetch() {
-        Api.fetch("transactions").then(this.load);
+        Api.fetch("transactions", "date").then(this.load);
     }
 
     toggleCreateMode() {
@@ -48,10 +48,9 @@ export default class Transactions extends React.Component {
         }, this.fetch);
     }
 
-
     render() {
         return (
-            <div>
+            <div className="transactions">
                 <div className="flex space-between">
                     <div className="title">Transactions</div>
                     <button className="create link" onClick={this.toggleCreateMode}>
@@ -68,15 +67,32 @@ export default class Transactions extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.data &&
-                    this.state.data.map((item, key) =>
-                        <Transaction transaction={item} key={key} callback={this.callback} />
-                    )
-                }
-                {
-                    !this.state.fetching && this.state.data &&
-                    <div className="total">Total: <Money value={Helpers.sumProperty(this.state.data, "amount")} /></div>
+                    <React.Fragment>
+                        {displayTransactions(this.state.data, this.callback)}
+                        {displayTransactionsTotal(this.state.data)}
+                    </React.Fragment>
                 }
             </div>
         )
     }
+}
+
+function displayTransactions(transactions, callback) {
+    return (
+        transactions.map((item, key) =>
+            <Transaction transaction={item} key={key} callback={callback} />
+        )
+    )
+}
+
+function displayTransactionsTotal(transactions) {
+    return (
+        <div className="transaction-total">
+            <div className="flex flex-end">
+                <div>
+                    Total: <Money value={Helpers.sumProperty(transactions, 'amount')} />
+                </div>
+            </div>
+        </div>
+        )
 }

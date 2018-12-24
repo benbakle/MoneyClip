@@ -55,7 +55,7 @@ describe("The Transactions component", () => {
             });
 
             it("shows the sum of the list of transactions", () => {
-                expect(_component.find(".total").html()).toContain("122.13");
+                expect(_component.find(".transaction-total").html()).toContain("122.13");
             })
 
             it("shows the create button", () => {

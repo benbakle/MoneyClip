@@ -1,9 +1,13 @@
-input[type='text'], input[type='number']{
+
+
+
+@include inputs{
+    font-family: "Muli",sans-serif;
     display: block;
     width:100%;
-    padding:.5rem 1rem;
+    padding: 1rem;
     box-sizing: border-box;
-    font-size:1.8rem;
+    font-size:1.4rem;
     margin-bottom:1rem;
     border:none;
     color:lighten($color-body,20);
@@ -11,6 +15,11 @@ input[type='text'], input[type='number']{
         margin-bottom:0;
     }
 }
+
+input, textarea, select, button {
+    font-family: "Muli", sans-serif;
+}
+
 .required, .error{
     color:brown;
 }
@@ -25,6 +34,7 @@ input[type='text'], input[type='number']{
 }
 
 .button{
+    font-family: "Muli", sans-serif;
     background-color:  $color-link;
     color:#fff;
     border:none;

@@ -2,7 +2,6 @@
 import Moment from 'react-moment';
 import Money from '../Money';
 import Update from './Update';
-import Delete from './Delete';
 
 
 export default class Transation extends React.Component {
@@ -48,8 +47,8 @@ export default class Transation extends React.Component {
             <div className="transaction" >
                 {
                     !this.state.inEditMode &&
-                    <button className="edit link flex space-between align-center" onClick={this.enterEditMode}>
-                        <div className="date"><Moment date={this.state.date} format="dddd, MMMM Do YYYY" /></div>
+                    <button className="edit link flex align-center" onClick={this.enterEditMode}>
+                        <div className="date"><Moment date={this.state.date} format="MM-DD-YYYY" /></div>
                         <div className="description">{this.props.transaction.description}</div>
                         <div className="amount"><Money value={this.props.transaction.amount} /></div>
                     </button>
@@ -58,8 +57,7 @@ export default class Transation extends React.Component {
                     this.state.inEditMode &&
                     <div className="flex space-between align-center">
                         <Update transaction={this.props.transaction} callback={this.props.callback} />
-                        <Delete id={this.props.transaction.id} callback={this.props.callback} />
-                        <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
+                       <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                     </div>
                 }
             </div>

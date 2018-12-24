@@ -2,11 +2,11 @@
 @import "toolbox/colors";
 @import "toolbox/fonts";
 @import "toolbox/mixins";
-@import "toolbox/typography";
 
+@import "typography";
 @import "form-controls";
 @import "header";
 @import "dashboard";
 
-
-@import "components/incomes"
+@import "components/incomes";
+@import "components/transactions";

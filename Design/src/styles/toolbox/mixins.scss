@@ -32,3 +32,11 @@
     padding:0;
     list-style:none;
 }
+
+@mixin inputs{
+    input[type='text'],
+    input[type='number'],
+    input[type='date']{
+        @content;
+    }
+}

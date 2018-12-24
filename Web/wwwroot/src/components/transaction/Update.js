@@ -2,6 +2,8 @@
 import Api from '../../services/Api';
 //import Calendar from 'react-calendar';
 import Moment from 'react-moment';
+import Delete from './Delete';
+
 
 export default class Update extends React.Component {
     constructor(props) {
@@ -45,17 +47,23 @@ export default class Update extends React.Component {
         return (
             this.props.transaction &&
             <React.Fragment>
-                <Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
-                <br />
-                <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                {
+                    //<Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
+                }
+                <div>
+                    <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                </div>
                 {
                     //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
-                <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
-                <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 <div>
-                    <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
+                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
                 </div>
+                <div>
+                    <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
+                </div>
+                <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
+                <Delete id={this.props.transaction.id} callback={this.props.callback} />
             </React.Fragment>
 
         )

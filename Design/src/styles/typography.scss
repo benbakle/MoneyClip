@@ -32,21 +32,21 @@ main {
     text-decoration: none;
     transition-duration: .3s;
     padding: .5rem;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.75em;
     @include states {
         text-decoration: underline;
         cursor: pointer;
     }
     &.edit {
-        width: 100%;
+        width: calc(100% + 3rem);
         margin: 0 -1.5rem;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
         @include states{
             text-decoration: none;
             background-color:rgba($color-background,.5);
-        }  
+        } 
     }
     i {
         font-size: 2.2rem;

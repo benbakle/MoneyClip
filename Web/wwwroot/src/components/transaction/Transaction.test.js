@@ -20,7 +20,7 @@ describe("The Transaction component", () => {
         });
 
         it("shows the transaction data", () => {
-            expect(_component.find(".date").html()).toContain("Friday, January 5th 2018")
+            expect(_component.find(".date").html()).toContain("01-05-2018")
             expect(_component.find(".description").text()).toEqual("The Porn Place");
             expect(_component.find(".amount").html()).toContain("23.77");
 
