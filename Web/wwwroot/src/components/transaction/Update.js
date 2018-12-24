@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-import Calendar from 'react-calendar';
+//import Calendar from 'react-calendar';
 import Moment from 'react-moment';
 
 export default class Update extends React.Component {
@@ -34,7 +34,7 @@ export default class Update extends React.Component {
     }
 
     submit() {
-           Api.update("transactions", this.state.id, this.state).then(this.callback);
+        Api.update("transactions", this.state.id, this.state).then(this.callback);
     }
 
     callback() {
@@ -45,12 +45,14 @@ export default class Update extends React.Component {
         return (
             this.props.transaction &&
             <React.Fragment>
-                    {
-                    <Moment date={this.state.date} format="dddd, MMMM Do YYYY"/>
+                <Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
+                <br />
+                <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                {
                     //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
-                    }
-                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
-                    <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
+                }
+                <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 <div>
                     <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
                 </div>

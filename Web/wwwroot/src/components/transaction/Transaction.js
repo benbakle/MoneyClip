@@ -27,7 +27,6 @@ export default class Transation extends React.Component {
         this.setState({
             date: this.props.transaction.date
         })
-        console.log(this.props.callback);
     }
 
     exitEditMode() {

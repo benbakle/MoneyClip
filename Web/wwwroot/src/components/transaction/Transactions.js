@@ -64,7 +64,7 @@ export default class Transactions extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.data && this.state.inCreateMode &&
-                    <Create />
+                    <Create callback={this.callback} />
                 }
                 {
                     !this.state.fetching && this.state.data &&
@@ -74,7 +74,7 @@ export default class Transactions extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.data &&
-                    <div className="total"><Money value={Helpers.sumProperty(this.state.data, "amount")} /></div>
+                    <div className="total">Total: <Money value={Helpers.sumProperty(this.state.data, "amount")} /></div>
                 }
             </div>
         )

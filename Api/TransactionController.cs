@@ -1,6 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyClip.EntityFramework;
 using MoneyClip.Models;
@@ -35,17 +33,6 @@ namespace MoneyClip.Api
 
             await _context.Save();
         }
-
-
-        //[HttpPost]
-        //public async Task Create([FromBody]Transaction transaction)
-        //{
-        //    var existingTransaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == transaction.Id);
-        //    if (existingTransaction is null)
-        //        existingTransaction = _context.Add(transaction);
-
-        //    await _context.Save();
-        //}
 
         //[HttpDelete("delete/{id}")]
         //public async Task Delete(int id)
