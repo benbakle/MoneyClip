@@ -5,6 +5,7 @@ import Income from './Income';
 import Loading from '../Loading';
 import Money from '../Money';
 import AnimateHeight from 'react-animate-height';
+import Helpers from '../../Helpers';
 
 export default class Incomes extends React.Component {
     constructor(props) {
@@ -73,7 +74,7 @@ export default class Incomes extends React.Component {
                         <div className="income-total">
                             <div className="flex flex-end">
                                 <div>
-                                    Total: <Money value={sumProperty(this.state.incomes, 'amount')} />
+                                    Total: <Money value={Helpers.sumProperty(this.state.incomes, 'amount')} />
                                 </div>
                             </div>
                         </div>
@@ -95,12 +96,3 @@ function displayIncomes(data, callback) {
 function empty(data) {
     return data && data.length === 0;
 }
-
-function sumProperty(arr, type) {
-    return arr.reduce((total, obj) => {
-        if (typeof obj[type] === 'string')
-            return total + Number(obj[type]);
-        return total + obj[type];
-    }, 0);
-}
-
