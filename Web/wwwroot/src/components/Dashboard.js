@@ -3,6 +3,7 @@ import Incomes from './income/Incomes';
 import Card from './layouts/BoardCard';
 import Transactions from './transaction/Transactions';
 import Accounts from './account/Accounts';
+import Listings from './layouts/Listings';
 
 export default class Dashboard extends React.Component {
     render() {
@@ -12,6 +13,7 @@ export default class Dashboard extends React.Component {
                     <Card card={<Incomes />} />
                     <Card card={<Transactions />} />
                     <Card card={<Accounts />} />
+                    <Card card={<Listings type="accounts" orderBy="name" />} />
                 </div>
             </div>
         );

@@ -41,8 +41,8 @@ describe("The Accounts component", () => {
             let accounts;
             beforeEach(() => {
                 accounts = [
-                    { date: "2018-01-05", description: "The Porn Place", amount: 23.77 },
-                    { date: "2018-05-14", description: "Butt Plug Store", amount: 98.36 }
+                    { date: "2018-01-05", description: "The Porn Place", balance: 23.77 },
+                    { date: "2018-05-14", description: "Butt Plug Store", balance: 98.36 }
                 ]
                 _component.instance().load(accounts);
             });
@@ -50,7 +50,7 @@ describe("The Accounts component", () => {
             it("shows a list of accounts", () => {
                 let account = _component.find("Account");
                 for (let i = 0; i < account.length; i++) {
-                    expect(account.at(i).props().data).toEqual(accounts[i]);
+                    expect(account.at(i).props().account).toEqual(accounts[i]);
                 }
             });
 

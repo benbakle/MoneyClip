@@ -1,32 +1,31 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
-import Transation from './Transaction';
+import Account from './Account';
 
-describe("The Transaction component", () => {
+describe("The Account component", () => {
     let _component;
 
     describe("given no data", () => {
         it("shows nothing", () => {
-            _component = shallow(<Transation />);
+            _component = shallow(<Account />);
             expect(_component.html()).toEqual(null);
         });
     });
 
     describe("given data", () => {
-        let transaction;
+        let account;
         beforeEach(() => {
-            transaction = { date: "2018-01-05", description: "The Porn Place", amount: 23.77 };
-            _component = shallow(<Transation transaction={transaction} />);
+            account = { name: "The Porn Place", balance: 23.77 };
+            _component = shallow(<Account account={account} />);
         });
 
-        it("shows the transaction data", () => {
-            expect(_component.find(".date").html()).toContain("01-05-2018")
-            expect(_component.find(".description").text()).toEqual("The Porn Place");
-            expect(_component.find(".amount").html()).toContain("23.77");
+        it("shows the account data", () => {
+            expect(_component.find(".name").text()).toEqual("The Porn Place");
+            expect(_component.find(".balance").html()).toContain("23.77");
 
         });
 
-        describe("and the transaction is clicked", () => {
+        describe("and the account is clicked", () => {
             it("enters edit mode", () => {
                 _component.find(".edit").at(0).simulate("click");
                 expect(_component.state().inEditMode).toEqual(true);

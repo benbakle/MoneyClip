@@ -1,17 +1,16 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
 import Loading from '../Loading';
-import Account from './Account';
-import Create from './Create';
+//import Create from './Create';
 import Helpers from '../../Helpers';
 import Money from '../Money';
 
-export default class Accounts extends React.Component {
+export default class Listings extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            accounts: [],
+            data: [],
             fetching: true,
             inCreateMode: false
         }
@@ -26,13 +25,13 @@ export default class Accounts extends React.Component {
 
     load(data) {
         this.setState({
-            accounts: data,
+            data: data,
             fetching: false
         })
     };
 
     fetch() {
-        Api.fetch("accounts", "name").then(this.load);
+        Api.fetch(this.props.type, this.props.orderBy).then(this.load);
     }
 
     toggleCreateMode() {
@@ -50,9 +49,9 @@ export default class Accounts extends React.Component {
 
     render() {
         return (
-            <div className="accounts">
+            <div className={this.props.type}>
                 <div className="flex space-between">
-                    <div className="title">Accounts</div>
+                    <div className="title">{this.props.type}</div>
                     <button className="create link" onClick={this.toggleCreateMode}>
                         {this.state.inCreateMode ? <i className='far fa-times-circle'></i> : <i className="fas fa-plus-circle"></i>}
                     </button>
@@ -62,16 +61,14 @@ export default class Accounts extends React.Component {
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.accounts && this.state.inCreateMode &&
-                    <Create callback={this.callback} />
+                    //!this.state.fetching && this.state.data && this.state.inCreateMode &&
+                    //<Create callback={this.callback} />
                 }
                 {
-                    !this.state.fetching && this.state.accounts &&
+                    !this.state.fetching && this.state.data &&
                     <React.Fragment>
-                        {displayAccounts(this.state.accounts, this.callback)}
-                        <div className="account-total">
-                            {displayAccountsTotal(this.state.accounts)}
-                        </div>
+                        {displayListings(this.state.data, this.callback)}
+                        {displayListingsTotal(this.state.data)}
                     </React.Fragment>
                 }
             </div>
@@ -79,19 +76,40 @@ export default class Accounts extends React.Component {
     }
 }
 
-function displayAccounts(accounts, callback) {
+function displayListings(listings, callback) {
     return (
-        accounts.map((item, key) =>
-            <Account account={item} key={key} callback={callback} />
+        listings.map((item, key) =>
+            <div key={key} className="flex space-between align-center">
+                {displayItem(item)}
+            </div>
         )
     )
 }
 
-function displayAccountsTotal(accounts) {
+function displayItem(item) {
+    let properties = Object.keys(item);
+    let display = [];
+
+    for (let i = 1; i < properties.length; i++) {
+        display.push(item[properties[i]]);
+    }
+
     return (
-        <div className="flex flex-end">
-            <div>
-                Total: <Money value={Helpers.sumProperty(accounts, 'balance')} />
+        display.map((item, key) => (
+            <div key={key} className={properties[key+1]}>
+                {item}
+            </div>
+        ))
+    )
+}
+
+function displayListingsTotal(listings) {
+    return (
+        <div className="listing-total">
+            <div className="flex flex-end">
+                <div>
+                    Total: <Money value={Helpers.sumProperty(listings, 'balance')} />
+                </div>
             </div>
         </div>
     )
