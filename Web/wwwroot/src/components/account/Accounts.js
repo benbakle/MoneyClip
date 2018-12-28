@@ -69,9 +69,7 @@ export default class Accounts extends React.Component {
                     !this.state.fetching && this.state.accounts &&
                     <React.Fragment>
                         {displayAccounts(this.state.accounts, this.callback)}
-                        <div className="account-total">
-                            {displayAccountsTotal(this.state.accounts)}
-                        </div>
+                        {displayAccountsTotal(this.state.accounts)}
                     </React.Fragment>
                 }
             </div>
@@ -89,9 +87,12 @@ function displayAccounts(accounts, callback) {
 
 function displayAccountsTotal(accounts) {
     return (
-        <div className="flex flex-end">
-            <div>
-                Total: <Money value={Helpers.sumProperty(accounts, 'balance')} />
+        <div className="account-total">
+
+            <div className="flex flex-end">
+                <div>
+                    Total: <Money value={Helpers.sumProperty(accounts, 'balance')} />
+                </div>
             </div>
         </div>
     )

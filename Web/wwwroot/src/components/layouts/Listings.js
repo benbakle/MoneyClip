@@ -4,6 +4,7 @@ import Loading from '../Loading';
 //import Create from './Create';
 import Helpers from '../../Helpers';
 import Money from '../Money';
+import Moment from 'react-moment';
 
 export default class Listings extends React.Component {
     constructor(props) {
@@ -61,8 +62,9 @@ export default class Listings extends React.Component {
                     <Loading />
                 }
                 {
-                    //!this.state.fetching && this.state.data && this.state.inCreateMode &&
+                    !this.state.fetching && this.state.data && this.state.inCreateMode &&
                     //<Create callback={this.callback} />
+                    this.props.create
                 }
                 {
                     !this.state.fetching && this.state.data &&
@@ -79,8 +81,10 @@ export default class Listings extends React.Component {
 function displayListings(listings, callback) {
     return (
         listings.map((item, key) =>
-            <div key={key} className="flex space-between align-center">
-                {displayItem(item)}
+            <div className="account" key={key}>
+                <button className="edit link flex space-between align-center">
+                    {displayItem(item)}
+                </button>
             </div>
         )
     )
@@ -90,14 +94,15 @@ function displayItem(item) {
     let properties = Object.keys(item);
     let display = [];
 
-    for (let i = 1; i < properties.length; i++) {
-        display.push(item[properties[i]]);
+    for (let i = 0; i < properties.length; i++) {
+        display.push({ field: properties[i], value: item[properties[i]] });
     }
 
     return (
         display.map((item, key) => (
-            <div key={key} className={properties[key+1]}>
-                {item}
+            item.field !== "id" && item.field !== "url" &&
+            <div className={properties[key]} key={key}>
+                {formatValue(item)}
             </div>
         ))
     )
@@ -113,4 +118,16 @@ function displayListingsTotal(listings) {
             </div>
         </div>
     )
+}
+
+function formatValue(item) {
+    let value = item.value;
+    let field = item.field;
+
+    if (typeof value == 'number')
+        return (<Money value={value} />);
+    if (field == 'date')
+        return (<Moment date={value} format="MM-DD-YYYY" />);
+
+    return value;
 }
