@@ -83,7 +83,9 @@ export default class Listings extends React.Component {
                 {
                     !this.state.fetching && this.state.data &&
                     <React.Fragment>
-                        {displayListings(this.state.data, this.callback, this.props.update, this.state.itemInEditMode, this.enterEditMode, this.exitEditMode)}
+                        <div className={this.props.type.slice(0,-1)} >
+                            {displayListings(this.state.data, this.callback, this.props.update, this.state.itemInEditMode, this.enterEditMode, this.exitEditMode)}
+                        </div>
                         {displayListingsTotal(this.state.data)}
                     </React.Fragment>
                 }
@@ -95,7 +97,7 @@ export default class Listings extends React.Component {
 function displayListings(listings, callback, update, itemInEditMode, enterEditMode, exitEditMode) {
     return (
         listings.map((item, key) =>
-            <div className="account" key={key}>
+            <React.Fragment key={key}>
                 {
                     key !== itemInEditMode &&
                     <button className="edit link flex space-between align-center" onClick={() => { enterEditMode(key) }}>
@@ -109,7 +111,7 @@ function displayListings(listings, callback, update, itemInEditMode, enterEditMo
                         <button className="link close" onClick={exitEditMode}><i className='far fa-times-circle'></i></button>
                     </React.Fragment>
                 }
-            </div >
+            </React.Fragment>
         )
     )
 }

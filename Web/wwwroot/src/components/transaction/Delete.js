@@ -18,9 +18,9 @@ export default class Delete extends React.Component {
 
     render() {
         return (
-            <div className="delete">
-                <button className="link" onClick={this.delete}><i className="fas fa-minus-circle"></i></button>
-            </div>
+            <React.Fragment>
+                <button className="link delete" onClick={this.delete}><i className="fas fa-minus-circle"></i></button>
+            </React.Fragment>
         );
     }
 }
