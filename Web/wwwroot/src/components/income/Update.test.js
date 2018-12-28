@@ -24,7 +24,7 @@ describe("The update incomes component", () => {
             }
 
             spyOn(Api, "update").and.returnValue(resolved());
-            _component = shallow(<Update income={_item} />);
+            _component = shallow(<Update item={_item} />);
 
         });
 

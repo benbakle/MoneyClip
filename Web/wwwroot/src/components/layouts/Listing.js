@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
 import Loading from '../Loading';
-//import Create from './Create';
 import Helpers from '../../Helpers';
 import Money from '../Money';
 import Moment from 'react-moment';
@@ -13,12 +12,15 @@ export default class Listings extends React.Component {
         this.state = {
             data: [],
             fetching: true,
-            inCreateMode: false
+            inCreateMode: false,
+            itemInEditMode: null
         }
 
         this.load = this.load.bind(this);
         this.fetch = this.fetch.bind(this);
         this.toggleCreateMode = this.toggleCreateMode.bind(this);
+        this.enterEditMode = this.enterEditMode.bind(this);
+        this.exitEditMode = this.exitEditMode.bind(this);
         this.callback = this.callback.bind(this);
 
         this.fetch();
@@ -44,8 +46,21 @@ export default class Listings extends React.Component {
     callback() {
         this.setState({
             fetching: true,
-            inCreateMode: false
+            inCreateMode: false,
+            itemInEditMode: false
         }, this.fetch);
+    }
+
+    enterEditMode(index) {
+        this.setState({
+            itemInEditMode: index,
+        })
+    }
+
+    exitEditMode() {
+        this.setState({
+            itemInEditMode: null
+        })
     }
 
     render() {
@@ -62,14 +77,13 @@ export default class Listings extends React.Component {
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.data && this.state.inCreateMode &&
-                    //<Create callback={this.callback} />
-                    this.props.create
+                    !this.state.fetching && this.state.data && this.state.inCreateMode && this.props.create &&
+                    React.cloneElement(this.props.create, { callback: this.callback })
                 }
                 {
                     !this.state.fetching && this.state.data &&
                     <React.Fragment>
-                        {displayListings(this.state.data, this.callback)}
+                        {displayListings(this.state.data, this.callback, this.props.update, this.state.itemInEditMode, this.enterEditMode, this.exitEditMode)}
                         {displayListingsTotal(this.state.data)}
                     </React.Fragment>
                 }
@@ -78,14 +92,24 @@ export default class Listings extends React.Component {
     }
 }
 
-function displayListings(listings, callback) {
+function displayListings(listings, callback, update, itemInEditMode, enterEditMode, exitEditMode) {
     return (
         listings.map((item, key) =>
             <div className="account" key={key}>
-                <button className="edit link flex space-between align-center">
-                    {displayItem(item)}
-                </button>
-            </div>
+                {
+                    key !== itemInEditMode &&
+                    <button className="edit link flex space-between align-center" onClick={() => { enterEditMode(key) }}>
+                        {displayItem(item)}
+                    </button>
+                }
+                {
+                    key === itemInEditMode &&
+                    <React.Fragment>
+                        {React.cloneElement(update, { callback: callback, item: item })}
+                        <button className="link close" onClick={exitEditMode}><i className='far fa-times-circle'></i></button>
+                    </React.Fragment>
+                }
+            </div >
         )
     )
 }
@@ -113,7 +137,7 @@ function displayListingsTotal(listings) {
         <div className="listing-total">
             <div className="flex flex-end">
                 <div>
-                    Total: <Money value={Helpers.sumProperty(listings, 'balance')} />
+                    Total: <Money value={Helpers.sumProperty(listings, 'amount')} />
                 </div>
             </div>
         </div>
@@ -127,7 +151,7 @@ function formatValue(item) {
     if (typeof value == 'number')
         return (<Money value={value} />);
     if (field == 'date')
-        return (<Moment date={value} format="MM-DD-YYYY" />);
+        return (<Moment date={value} format="MMMM DD, YYYY" />);
 
     return value;
 }

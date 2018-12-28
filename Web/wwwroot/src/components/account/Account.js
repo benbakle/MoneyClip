@@ -56,7 +56,7 @@ export default class Account extends React.Component {
                     this.state.inEditMode &&
                     <div className="flex space-between align-center">
                         {
-                        <Update account={this.props.account} callback={this.props.callback} />
+                        <Update item={this.props.account} callback={this.props.callback} />
                         }
                        <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                     </div>

@@ -25,22 +25,22 @@ export default class Income extends React.Component {
 
     render() {
         return (
-            this.props.income &&
+            this.props.item &&
             <div className="income" >
                 {
                     !this.state.inEditMode &&
                     <React.Fragment>
                         <button className="edit link flex space-between align-center" onClick={this.enterEditMode}>
-                            <div className="description">{this.props.income.description}</div>
-                            <Money className="amount" value={this.props.income.amount} />
+                            <div className="description">{this.props.item.description}</div>
+                            <Money className="amount" value={this.props.item.amount} />
                         </button>
                     </React.Fragment>
                 }
                 {
                     this.state.inEditMode &&
                     <React.Fragment>
-                        <Update income={this.props.income} callback={this.props.callback} />
-                        <Delete id={this.props.income.id} callback={this.props.callback} />
+                        <Update item={this.props.item} callback={this.props.callback} />
+                        <Delete id={this.props.item.id} callback={this.props.callback} />
                         <div>
                             <button className="link close" onClick={this.exitEditMode}><i className='far fa-times-circle'></i></button>
                         </div>

@@ -45,7 +45,7 @@ describe("The Incomes component", () => {
                 let income= _component.find("Income");
 
                 for (let i = 0; i < income.length; i++) {
-                    expect(income.at(i).props().income).toEqual(incomes[i]);
+                    expect(income.at(i).props().item).toEqual(incomes[i]);
                 }
             });
 

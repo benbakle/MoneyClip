@@ -14,10 +14,10 @@ describe("The update incomes component", () => {
         });
     });
     describe("given an item", () => {
-        let account = { id: 1, name: "this shiz", balance: 75.26 };
+        let item = { id: 1, name: "this shiz", balance: 75.26 };
         beforeEach(() => {
             spyOn(Api, "update").and.returnValue(resolved());
-            _component = shallow(<Update account={account} />);
+            _component = shallow(<Update item={item} />);
         });
 
         it("shows the item in form controls", () => {
@@ -32,7 +32,7 @@ describe("The update incomes component", () => {
         describe("and the submit is clicked", () => {
             let value = 0;
             beforeEach(() => {
-                _component = shallow(<Update account={account} callback={() => { value = 69 }} />);
+                _component = shallow(<Update item={item} callback={() => { value = 69 }} />);
                 _component.find(".submit").simulate("click");
             });
 

@@ -17,11 +17,11 @@ export default class Update extends React.Component {
     }
 
     componentDidMount() {
-        this.props.income &&
+        this.props.item &&
             this.setState({
-                id: this.props.income.id,
-                description: this.props.income.description,
-                amount: this.props.income.amount
+                id: this.props.item.id,
+                description: this.props.item.description,
+                amount: this.props.item.amount
             });
     }
 
@@ -39,7 +39,7 @@ export default class Update extends React.Component {
 
     render() {
         return (
-            this.props.income &&
+            this.props.item &&
             <React.Fragment>
                 <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
                 <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />

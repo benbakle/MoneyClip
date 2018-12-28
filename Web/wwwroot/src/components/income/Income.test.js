@@ -17,7 +17,7 @@ describe("The Income component", () => {
 
     describe("given an income", () => {
         beforeEach(() => {
-            _component = shallow(<Income income={_income} />);
+            _component = shallow(<Income item={_income} />);
         });
 
         it("shows the income", () => {

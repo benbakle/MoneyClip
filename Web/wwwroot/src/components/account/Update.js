@@ -21,11 +21,11 @@ export default class Update extends React.Component {
     }
 
     componentDidMount() {
-        this.props.account &&
+        this.props.item &&
             this.setState({
-                id: this.props.account.id,
-                name: this.props.account.name,
-                balance: this.props.account.balance
+                id: this.props.item.id,
+                name: this.props.item.name,
+                balance: this.props.item.balance
             });
     }
 
@@ -43,7 +43,7 @@ export default class Update extends React.Component {
 
     render() {
         return (
-            this.props.account &&
+            this.props.item &&
             <React.Fragment>
                 <div>
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
@@ -52,7 +52,7 @@ export default class Update extends React.Component {
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
                 </div>
                 <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                <Delete id={this.props.account.id} callback={this.props.callback} />
+                <Delete id={this.props.item.id} callback={this.props.callback} />
             </React.Fragment>
 
         )

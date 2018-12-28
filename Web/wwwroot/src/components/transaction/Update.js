@@ -22,12 +22,12 @@ export default class Update extends React.Component {
     }
 
     componentDidMount() {
-        this.props.transaction &&
+        this.props.item &&
             this.setState({
-                id: this.props.transaction.id,
-                date: this.props.transaction.date,
-                description: this.props.transaction.description,
-                amount: this.props.transaction.amount
+                id: this.props.item.id,
+                date: this.props.item.date,
+                description: this.props.item.description,
+                amount: this.props.item.amount
             });
     }
 
@@ -45,7 +45,7 @@ export default class Update extends React.Component {
 
     render() {
         return (
-            this.props.transaction &&
+            this.props.item &&
             <React.Fragment>
                 {
                     //<Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
@@ -63,7 +63,7 @@ export default class Update extends React.Component {
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
                 <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                <Delete id={this.props.transaction.id} callback={this.props.callback} />
+                <Delete id={this.props.item.id} callback={this.props.callback} />
             </React.Fragment>
 
         )

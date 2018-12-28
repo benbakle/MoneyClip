@@ -88,7 +88,7 @@ export default class Incomes extends React.Component {
 function displayIncomes(data, callback) {
     return (
         data.map((income, index) =>
-            <Income key={index} income={income} callback={callback} />
+            <Income key={index} item={income} callback={callback} />
         )
     )
 }
