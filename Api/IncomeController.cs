@@ -23,6 +23,14 @@ namespace MoneyClip.Api
             return _context.Query<Income>();
 
         }
+
+        [HttpGet("total")]
+        [EnableQuery]
+        public decimal IncomeTotal()
+        {
+            return _context.Query<Income>().Sum(item => item.Amount);
+        }
+
         [HttpPost]
         public async Task Create([FromBody]Income income)
         {

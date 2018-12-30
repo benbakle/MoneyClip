@@ -24,6 +24,13 @@ namespace MoneyClip.Api
             return _context.Query<Account>();
         }
 
+        [HttpGet("total")]
+        [EnableQuery]
+        public decimal AccountTotal()
+        {
+            return _context.Query<Account>().Sum(item => item.Balance);
+        }
+
         [HttpPost]
         public async Task Create([FromBody]Account account)
         {
