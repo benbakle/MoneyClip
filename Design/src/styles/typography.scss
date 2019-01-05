@@ -73,3 +73,25 @@ ul {
         justify-content: flex-end;
     }
 }
+
+.flex-row{
+    display:flex;
+    margin-left:-1.5rem;  
+    margin-right:-1.5rem;
+  }
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: .1rem solid $color-border;
+}
+
+.title {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    margin-bottom:1.5rem;
+}
