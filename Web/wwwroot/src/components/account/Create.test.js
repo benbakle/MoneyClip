@@ -27,18 +27,15 @@ describe("The create account component", () => {
     });
 
     describe("given the submit button is clicked", () => {
-        let account = { Date: "2018-2-04", Description: "some o dat", Amount: 32 }
+        let account = { Name: "some o dat", Balance: 32 };
         beforeEach(() => {
-            _component.setState(account);
+            _component.instance().handleChange({target: { value: "some o dat", name:"name" }});
+            _component.instance().handleChange({ target: { value: 32, name: "balance" }});
             _component.find(".submit").simulate("click");
         });
 
-        xit("calls the api", () => {
+        it("calls the api", () => {
             expect(Api.create).toHaveBeenCalledWith("accounts", account);
-        });
-
-        it("calls the callback", () => {
-            expect(value).toEqual(false);
         });
     });
 });

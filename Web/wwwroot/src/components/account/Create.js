@@ -20,7 +20,7 @@ export default class Create extends React.Component {
 
     submit() {
         let account = { Name: this.state.name, Balance: this.state.balance};
-        Api.create("accounts",account).then(this.props.callback);
+        Api.create("accounts",account,).then(this.props.callback);
     }
 
     render() {

@@ -33,11 +33,13 @@ describe("The create transaction component", () => {
     describe("given the submit button is clicked", () => {
         let transaction = { Date: "2018-2-04", Description: "some o dat", Amount: 32 }
         beforeEach(() => {
-            _component.setState(transaction);
+            _component.instance().handleChange({ target: { value: "2018-2-04", name: "date" } });
+            _component.instance().handleChange({ target: { value: "some o dat", name: "description" } });
+            _component.instance().handleChange({ target: { value: 32, name: "amount" } });
             _component.find(".submit").simulate("click");
         });
 
-        xit("calls the api", () => {
+        it("calls the api", () => {
             expect(Api.create).toHaveBeenCalledWith("transactions", transaction);
         });
 
