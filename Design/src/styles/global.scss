@@ -6,8 +6,10 @@
 @import "typography";
 @import "form-controls";
 @import "header";
-@import "dashboard";
+
+@import "layouts/card";
 
 @import "components/loader";
 @import "components/incomes";
 @import "components/transactions";
+@import "components/accounts";

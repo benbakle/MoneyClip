@@ -6,10 +6,10 @@ export default class View extends React.Component {
     render() {
         return (
             this.props.item &&
-            <React.Fragment>
+            <div className="account">
                 <div className="name">{this.props.item.name}</div>
                 <div className="balance"><Money value={this.props.item.balance} /></div>
-            </React.Fragment>
+            </div>
         )
     }
 }

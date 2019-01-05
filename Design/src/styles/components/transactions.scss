@@ -1,20 +1,31 @@
 .transactions {
-    .date,[name='date'] {
-        width: 15rem;
-        text-align: left;
-        font-weight: 200;
+    .transaction {
+        display: flex;
+        .date,
+        [name='date'] {
+            width: 17.5rem;
+            text-align: left;
+            font-weight: 200;
+            font-size: 1.6rem;
+            &.mc-label {
+                @include mcLabel;
+            }
+        }
+        .description {
+            width: calc(100% - 30rem);
+            text-align: left;
+            font-weight: 400;
+            font-size: 1.6rem;
+            &.mc-label {
+                @include mcLabel;
+            }
+        }
+        .amount {
+            width: 12.5rem;
+            text-align: right;
+            &.mc-label {
+                @include mcLabel;
+            }
+        }
     }
-    .description {
-        width: 40rem;
-        max-width: 58%;
-        text-align: left;
-        font-weight: 400;
-        font-size: 1.6rem;
-    }
-    .amount {
-        width: 15rem;
-        max-width: 18%;
-        text-align: right;
-    }
-   
 }
