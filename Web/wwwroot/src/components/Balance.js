@@ -47,7 +47,22 @@ export default class Balance extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.accountTotal && this.state.transactionTotal &&
-                    <Money value={this.state.currentBalance} />
+                    <React.Fragment>
+                        <div className="title">Balance: </div>
+                        <div className="flex align-center space-between">
+                            <div className="">Accounts Total: </div>
+                            <Money value={this.state.accountTotal} />
+                        </div>
+                        <div className="flex align-center space-between">
+                            <div className="">Pending Transactions: </div>
+                            <Money value={this.state.transactionTotal} />
+                        </div>
+                        <hr />  
+                        <div className="flex align-center space-between balance">
+                            <div className="">Current Balance: </div>
+                            <Money value={this.state.currentBalance} />
+                        </div>
+                    </React.Fragment>
                 }
             </div>
         );

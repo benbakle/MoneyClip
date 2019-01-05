@@ -62,7 +62,7 @@ describe("The balance component", () => {
                     });
 
                     it("displays the current balance", () => {
-                        expect(_component.find(".current-balance Money").props().value).toEqual(115.92);
+                        expect(_component.find(".current-balance .balance Money").props().value).toEqual(115.92);
                     });
                 });
             });

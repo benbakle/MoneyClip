@@ -1,0 +1,40 @@
+.grid {
+    .flex-row {
+        flex-wrap: wrap;
+    }
+
+    .col-40,
+    .col-60,
+    .col-50,
+    .col-100 {
+        @include gutter;
+        width: 100%;
+        order:2;
+        margin-top:3rem;
+    }
+
+    .col-40 {
+        @include desktop {
+            width: 40%;
+        }
+    }
+
+    .col-50 {
+        @include desktop {
+            width: 50%;
+        }
+    }
+
+    .col-60 {
+        @include desktop {
+            width: 60%;
+        }
+    }
+    
+    .first-on-mobile{
+        order:1;
+        @include desktop{
+            order:2;
+        }
+    }
+}

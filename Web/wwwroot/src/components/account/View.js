@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import Api from '../../services/Api';
 import Money from '../Money';
 
 export default class View extends React.Component {
