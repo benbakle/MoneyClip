@@ -44,16 +44,18 @@ export default class Update extends React.Component {
     render() {
         return (
             this.props.item &&
-            <React.Fragment>
+            <div className="update-account flex space-between align-center">
                 <div>
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
                 <div>
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
                 </div>
-                <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                <Delete id={this.props.item.id} callback={this.props.callback} />
-            </React.Fragment>
+                <div>
+                    <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
+                    <Delete id={this.props.item.id} callback={this.props.callback} />
+                </div>
+            </div>
 
         )
     }

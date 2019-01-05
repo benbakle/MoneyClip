@@ -44,14 +44,14 @@ namespace MoneyClip.Web
 
         private static void Mvc(IServiceCollection services)
         {
-            services.AddMvc();
-                //.AddJsonOptions(options =>
-            //{
-                //options.SerializerSettings.PreserveReferencesHandling =
-                    //PreserveReferencesHandling.Objects;
-                //options.SerializerSettings.Converters.Add(
-                    //new Newtonsoft.Json.Converters.StringEnumConverter());
-            //});
+            services.AddMvc()
+                .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.PreserveReferencesHandling =
+                    PreserveReferencesHandling.Objects;
+                options.SerializerSettings.Converters.Add(
+                    new Newtonsoft.Json.Converters.StringEnumConverter());
+            });
         }
     }
 }

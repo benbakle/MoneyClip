@@ -12,12 +12,14 @@ export default class Navigation extends React.Component {
                             &nbsp;Dashboard
                            </NavLink>
                     </li>
-                    {/*<li>
-                        <NavLink to="/incomes" className="link" activeClassName="active">
-                            <i className="far fa-money-bill-alt"></i>
-                            &nbsp;Income
-                           </NavLink>
-                    </li> */}
+                    {
+                        //<li>
+                        //<NavLink to="/accounts" className="link" activeClassName="active">
+                        //    <i className="far fa-money-bill-alt"></i>
+                        //    &nbsp;Accounts
+                        //   </NavLink>
+                        //</li>
+                    }
                 </ul>
             </div>
         );

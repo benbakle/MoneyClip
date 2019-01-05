@@ -1,27 +1,25 @@
 ﻿import React from 'react';
-import Card from './layouts/BoardCard';
+import Balance from './Balance';
 import Listing from './layouts/Listing';
-import CreateIncome from './income/Create';
-import UpdateIncome from './income/Update';
-import CreateTransaction from './transaction/Create';
-import UpdateTransaction from './transaction/Update';
-import CreateAccount from './account/Create';
-import UpdateAccount from './account/Update';
+import AccountView from './account/View.js';
+
 
 export default class Dashboard extends React.Component {
+
     render() {
         return (
             <div className="dashboard">
-                <div className="mc-container flex space-between">
-                    <Card card={<Listing type="incomes" update={<UpdateIncome />} create={<CreateIncome />} orderBy="description" />} />
-                    <Card card={<Listing type="accounts" update={<UpdateAccount />} create={<CreateAccount />} orderBy="name" />} />
-                    <Card card={<Listing type="transactions" update={<UpdateTransaction />} create={<CreateTransaction />} orderBy="date" />} />
-
-                    <Listing type="incomes" update={<UpdateIncome />} create={<CreateIncome />} orderBy="description" />
-                    <Listing type="accounts" update={<UpdateAccount />} create={<CreateAccount />} orderBy="name" />
-                    <Listing type="transactions" update={<UpdateTransaction />} create={<CreateTransaction />} orderBy="date" />
+                <div className="board">
+                    <div className="mc-container">
+                        <div className="flex">
+                            <span className="title">Current Balance: </span>
+                            <Balance />
+                        </div>
+                        <Listing view={<AccountView />} type="accounts" orderby="name" />
+                    </div>
                 </div>
             </div>
         );
     }
 }
+
