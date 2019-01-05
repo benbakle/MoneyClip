@@ -46,26 +46,28 @@ export default class Update extends React.Component {
     render() {
         return (
             this.props.item &&
-            <React.Fragment>
+            <div className="transaction">
                 {
                     //<Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
-                <div>
+                <div className="date">
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                 </div>
                 {
                     //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
-                <div>
+                <div className="description">
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
                 </div>
-                <div>
+                <div className="amount">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-                <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                <Delete id={this.props.item.id} callback={this.props.callback} />
-            </React.Fragment>
 
+                <div>
+                    <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
+                    <Delete id={this.props.item.id} callback={this.props.callback} />
+                </div>
+            </div>
         )
     }
 }

@@ -44,7 +44,7 @@ export default class Update extends React.Component {
     render() {
         return (
             this.props.item &&
-            <div className="update-account flex space-between align-center">
+            <div className="account update ">
                 <div>
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
