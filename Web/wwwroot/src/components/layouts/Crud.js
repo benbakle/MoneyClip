@@ -55,21 +55,24 @@ export default class Crud extends React.Component {
                     <Loading />
                 }
                 {
-                    !this.state.fetching && !this.state.items &&
-                    <div className="no-items">No items found</div>
+                    !this.state.fetching &&
+                    <React.Fragment>
+                        <div className="title">{this.props.type}:</div>
+                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? "close" : "add"}</button>
+                        <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? "close" : "edit"}</button>
+                        {
+                            this.state.inCreateMode &&
+                            React.cloneElement(this.state.create)
+                        }
+                    </React.Fragment>
                 }
                 {
                     !this.state.fetching && this.state.items &&
                     <div className={this.props.type} >
-                        <div className="title">{this.props.type}:</div>
-                        <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? "close" : "edit"}</button>
-                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? "close" : "add"}</button>
-                        {
-                            this.state.inCreateMode &&
-                            React.cloneElement(this.state.create)}
+
                         {
                             this.state.items.map((item, key) =>
-                                <div className={`item ${this.props.type}`} key={key}>
+                                <React.Fragment key={key}>
                                     {
                                         !this.state.inEditMode &&
                                         React.cloneElement(this.state.view, { item: item })
@@ -78,10 +81,14 @@ export default class Crud extends React.Component {
                                         this.state.inEditMode &&
                                         React.cloneElement(this.state.update, { item: item })
                                     }
-                                </div>
+                                </React.Fragment>
                             )
                         }
                     </div>
+                }
+                {
+                    !this.state.fetching && !this.state.items &&
+                    <div className="no-items">No items found</div>
                 }
             </React.Fragment>
         )

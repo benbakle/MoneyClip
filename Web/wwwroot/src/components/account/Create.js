@@ -25,7 +25,7 @@ export default class Create extends React.Component {
 
     render() {
         return (
-            <div className="create-income">
+            <div className="create">
                 <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 <div>Amount: </div>
                 <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance}/>

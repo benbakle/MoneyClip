@@ -18,7 +18,6 @@ import AccountCreate from './account/Create';
 import AccountUpdate from './account/Update';
 
 export default class Dashcard extends React.Component {
-
     render() {
         return (
             <div className="grid">
@@ -29,11 +28,11 @@ export default class Dashcard extends React.Component {
                         <Card50 content={displayIncomes()} />
                         <Card50 content={displayTransactions()} />
                         <Card50 content={
-                            <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" />} />
+                            <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" orderby="date" />} />
                         <Card50 content={
-                            <Crud view={<IncomeView />} create={<IncomeCreate />} update={<IncomeUpdate />} type="incomes" />} />
+                            <Crud view={<IncomeView />} create={<IncomeCreate />} update={<IncomeUpdate />} type="incomes" orderby="description" />} />
                         <Card50 content={
-                            <Crud view={<AccountView />} create={<AccountCreate />} update={<AccountUpdate />} type="accounts" />} />
+                            <Crud view={<AccountView />} create={<AccountCreate />} update={<AccountUpdate />} type="accounts" orderby="name" />} />
                         <Card50 content={<Loading />} />
                     </div>
                 </div>
