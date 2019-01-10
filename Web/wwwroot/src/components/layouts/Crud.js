@@ -12,23 +12,27 @@ export default class Crud extends React.Component {
 
         this.state = {
             type: this.props.type,
+            orderby: this.props.orderby,
             view: this.props.view,
             update: this.props.update,
+            create: this.props.create,
             fetching: true,
             items: null,
             inEditMode: false,
+            inCreateMode: false,
 
         }
 
         this.fetchItems = this.fetchItems.bind(this);
         this.load = this.load.bind(this);
         this.toggleEditMode = this.toggleEditMode.bind(this);
+        this.toggleCreateMode = this.toggleCreateMode.bind(this);
 
         this.fetchItems();
     }
 
     fetchItems() {
-        Api.fetch(this.state.type, "date").then(this.load);
+        Api.fetch(this.state.type, this.state.orderby).then(this.load);
     }
 
     load(data) {
@@ -37,6 +41,10 @@ export default class Crud extends React.Component {
 
     toggleEditMode() {
         this.setState({ inEditMode: !this.state.inEditMode });
+    }
+
+    toggleCreateMode() {
+        this.setState({ inCreateMode: !this.state.inCreateMode });
     }
 
     render() {
@@ -53,7 +61,12 @@ export default class Crud extends React.Component {
                 {
                     !this.state.fetching && this.state.items &&
                     <div className={this.props.type} >
+                        <div className="title">{this.props.type}:</div>
                         <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? "close" : "edit"}</button>
+                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? "close" : "add"}</button>
+                        {
+                            this.state.inCreateMode &&
+                            React.cloneElement(this.state.create)}
                         {
                             this.state.items.map((item, key) =>
                                 <div className={`item ${this.props.type}`} key={key}>

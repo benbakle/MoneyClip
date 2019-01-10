@@ -1,17 +1,21 @@
 ﻿import React from 'react';
 import Balance from './Balance';
 import Listing from './layouts/Listing';
-import AccountView from './account/View.js';
-import IncomeView from './income/View.js';
-import TransactionView from './transaction/View.js';
 import Loading from './Loading';
 import Card50 from './layouts/Card50';
 import Crud from './layouts/Crud';
-import View from './transaction/View.js';
-import Create from './transaction/Create';
-import Update from './transaction/Update';
 import Card100 from './layouts/Card100';
+import TransactionView from './transaction/View.js';
+import TransactionCreate from './transaction/Create';
+import TransactionUpdate from './transaction/Update';
 
+import IncomeView from './income/View.js';
+import IncomeCreate from './income/Create';
+import IncomeUpdate from './income/Update';
+
+import AccountView from './account/View.js';
+import AccountCreate from './account/Create';
+import AccountUpdate from './account/Update';
 
 export default class Dashcard extends React.Component {
 
@@ -20,12 +24,17 @@ export default class Dashcard extends React.Component {
             <div className="grid">
                 <div className="mc-container">
                     <div className="flex-row">
-                        <Card50 content={<Balance />} className="balance"/>
+                        <Card50 content={<Balance />} className="balance" />
                         <Card50 content={displayAccounts()} />
                         <Card50 content={displayIncomes()} />
                         <Card50 content={displayTransactions()} />
+                        <Card50 content={
+                            <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" />} />
+                        <Card50 content={
+                            <Crud view={<IncomeView />} create={<IncomeCreate />} update={<IncomeUpdate />} type="incomes" />} />
+                        <Card50 content={
+                            <Crud view={<AccountView />} create={<AccountCreate />} update={<AccountUpdate />} type="accounts" />} />
                         <Card50 content={<Loading />} />
-                        <Card100 content={<Crud view={<View />} create={<Create />} update={<Update/>} type="transactions"/>} />
                     </div>
                 </div>
             </div>

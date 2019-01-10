@@ -18,7 +18,7 @@ describe("The crud component", () => {
 
     it('calls the api', () => {
         spyOn(Api, "fetch").and.returnValue(promise());
-        _component = shallow(<Crud view={<View />} update={<Update />} type="transactions" />);
+        _component = shallow(<Crud view={<View />} update={<Update />} create={<Create />} type="transactions" orderby="date" />);
         expect(Api.fetch).toHaveBeenCalledWith("transactions", "date");
     });
 
@@ -58,7 +58,7 @@ describe("The crud component", () => {
                 describe('given the button is clicked again', () => {
                     it('exits edit mode', () => {
                         let items = [{ description: "Waste of Money" }, { description: "Not worth it" }]
-                        _component = shallow(<Crud view={<View />} update={<Update />} type="transactions"/>);
+                        _component = shallow(<Crud view={<View />} update={<Update />} create={<Create />} type="transactions"  />);
                         _component.setState({ inEditMode: true, fetching: false, items: items });
                         _component.find(".toggle-edit").simulate("click");
                         expect(_component.state().inEditMode).toEqual(false);
@@ -67,7 +67,14 @@ describe("The crud component", () => {
                     it('hides the update list', () => {
                         expect(_component.find("Update").length).toEqual(0);
                     });
-                    
+
+                });
+            });
+
+            describe('given the add button is clicked', () => {
+                it('shows a create component', () => {
+                    _component.find("button.create").simulate("click");
+                    expect(_component.find("Create").length).toEqual(1);
                 });
             });
         });
