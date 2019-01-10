@@ -11,151 +11,66 @@ export default class Crud extends React.Component {
         super(props);
 
         this.state = {
-            data: [],
+            type: this.props.type,
+            view: this.props.view,
+            update: this.props.update,
             fetching: true,
-            inCreateMode: false,
-            itemInEditMode: null
+            items: null,
+            inEditMode: false,
+
         }
 
+        this.fetchItems = this.fetchItems.bind(this);
         this.load = this.load.bind(this);
-        this.fetch = this.fetch.bind(this);
-        this.toggleCreateMode = this.toggleCreateMode.bind(this);
-        this.enterEditMode = this.enterEditMode.bind(this);
-        this.exitEditMode = this.exitEditMode.bind(this);
-        this.callback = this.callback.bind(this);
+        this.toggleEditMode = this.toggleEditMode.bind(this);
 
-        this.fetch();
+        this.fetchItems();
+    }
+
+    fetchItems() {
+        Api.fetch(this.state.type, "date").then(this.load);
     }
 
     load(data) {
-        this.setState({
-            data: data,
-            fetching: false
-        })
-    };
-
-    fetch() {
-        Api.fetch(this.props.type, this.props.orderBy).then(this.load);
+        this.setState({ items: data, fetching: false });
     }
 
-    toggleCreateMode() {
-        this.setState({
-            inCreateMode: !this.state.inCreateMode
-        })
-    }
-
-    callback() {
-        this.setState({
-            fetching: true,
-            inCreateMode: false,
-            itemInEditMode: false
-        }, this.fetch);
-    }
-
-    enterEditMode(index) {
-        this.setState({
-            itemInEditMode: index,
-        })
-    }
-
-    exitEditMode() {
-        this.setState({
-            itemInEditMode: null
-        })
+    toggleEditMode() {
+        this.setState({ inEditMode: !this.state.inEditMode });
     }
 
     render() {
         return (
-            <div className={this.props.type}>
-                <div className="flex space-between">
-                    <div className="title">{this.props.type}</div>
-                    <button className="create link" onClick={this.toggleCreateMode}>
-                        {this.state.inCreateMode ? <i className='far fa-times-circle'></i> : <i className="fas fa-plus-circle"></i>}
-                    </button>
-                </div>
+            <React.Fragment>
                 {
-                    this.state.fetching &&
+                    this.state.fetching && !this.state.items &&
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.data && this.state.inCreateMode && this.props.create &&
-                    React.cloneElement(this.props.create, { callback: this.callback })
+                    !this.state.fetching && !this.state.items &&
+                    <div className="no-items">No items found</div>
                 }
                 {
-                    !this.state.fetching && this.state.data &&
-                    <React.Fragment>
-                        <div className={this.props.type.slice(0, -1)} >
-                            {displayListings(this.state.data, this.callback, this.props.update, this.props.view, this.state.itemInEditMode, this.enterEditMode, this.exitEditMode)}
-                        </div>
-                        {displayListingsTotal(this.state.data)}
-                    </React.Fragment>
-                }
-            </div>
-        )
-    }
-}
-
-function displayListings(listings, callback, update, view, itemInEditMode, enterEditMode, exitEditMode) {
-    return (
-        listings.map((item, key) =>
-            //<View account={item} />
-            <React.Fragment key={key}>
-                {
-                    key !== itemInEditMode &&
-                    <button className="edit link" onClick={() => { enterEditMode(key) }}>
-                        {React.cloneElement(view, { item: item })}
-                    </button>
-                }
-                {
-                    key === itemInEditMode &&
-                    <React.Fragment>
-                        {React.cloneElement(update, { callback: callback, item: item })}
-                        <button className="link close" onClick={exitEditMode}><i className='far fa-times-circle'></i></button>
-                    </React.Fragment>
+                    !this.state.fetching && this.state.items &&
+                    <div className={this.props.type} >
+                        <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? "close" : "edit"}</button>
+                        {
+                            this.state.items.map((item, key) =>
+                                <div className={`item ${this.props.type}`} key={key}>
+                                    {
+                                        !this.state.inEditMode &&
+                                        React.cloneElement(this.state.view, { item: item })
+                                    }
+                                    {
+                                        this.state.inEditMode &&
+                                        React.cloneElement(this.state.update, { item: item })
+                                    }
+                                </div>
+                            )
+                        }
+                    </div>
                 }
             </React.Fragment>
         )
-    )
-}
-
-function displayItem(item) {
-    let properties = Object.keys(item);
-    let display = [];
-
-    for (let i = 0; i < properties.length; i++) {
-        display.push({ field: properties[i], value: item[properties[i]] });
     }
-
-    return (
-        display.map((item, key) => (
-            item.field !== "id" && item.field !== "$id" && item.field !== "url" &&
-            <div className={properties[key]} key={key}>
-                {formatValue(item)}
-            </div>
-        ))
-    )
-}
-
-function displayListingsTotal(listings) {
-    return (
-        <div className="listing-total">
-            <div className="flex flex-end">
-                <div>
-                    Total: <Money value={Helpers.sumProperty(listings, 'amount')} />
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function formatValue(item) {
-    let value = item.value;
-    let field = item.field;
-
-    if (typeof value == 'number')
-        return (<Money value={value} />);
-    if (field == 'date')
-        return (<Moment date={value} format="MMMM DD, YYYY" />);
-
-    return value;
 }

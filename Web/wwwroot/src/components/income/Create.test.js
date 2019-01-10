@@ -112,8 +112,4 @@ describe("The create incomes component", () => {
             });
         });
     });
-
-
-
-
 });

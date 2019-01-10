@@ -29,6 +29,5 @@ function displayTransactions() {
             </div>
             <ListingLayout view={<View />} type="transactions" orderby="date" />
         </React.Fragment>
-        //<ListingLayout view={<Update />} type="transactions" orderby="date" />
     )
 }

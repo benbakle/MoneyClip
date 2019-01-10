@@ -6,6 +6,11 @@ import IncomeView from './income/View.js';
 import TransactionView from './transaction/View.js';
 import Loading from './Loading';
 import Card50 from './layouts/Card50';
+import Crud from './layouts/Crud';
+import View from './transaction/View.js';
+import Create from './transaction/Create';
+import Update from './transaction/Update';
+import Card100 from './layouts/Card100';
 
 
 export default class Dashcard extends React.Component {
@@ -20,6 +25,7 @@ export default class Dashcard extends React.Component {
                         <Card50 content={displayIncomes()} />
                         <Card50 content={displayTransactions()} />
                         <Card50 content={<Loading />} />
+                        <Card100 content={<Crud view={<View />} create={<Create />} update={<Update/>} type="transactions"/>} />
                     </div>
                 </div>
             </div>
