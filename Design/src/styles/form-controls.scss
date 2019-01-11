@@ -1,16 +1,10 @@
 @include inputs{
-    font-family: "Muli",sans-serif;
-    display: block;
-    width:100%;
-    padding: 1rem;
-    box-sizing: border-box;
-    font-size:1.4rem;
-    margin-bottom:1rem;
     border:none;
-    color:lighten($color-body,20);
-    &:last-child{
-        margin-bottom:0;
-    }
+    background-color:transparent;
+    font-weight: 400;
+    font-size: 1.6rem;
+    width:100%;
+    background-color: #f8f8f8;
 }
 
 input, textarea, select, button {

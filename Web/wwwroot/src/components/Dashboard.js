@@ -24,16 +24,15 @@ export default class Dashcard extends React.Component {
                 <div className="mc-container">
                     <div className="flex-row">
                         <Card50 content={<Balance />} className="balance" />
-                        <Card50 content={displayAccounts()} />
-                        <Card50 content={displayIncomes()} />
-                        <Card50 content={displayTransactions()} />
+                        <Card50 content={<Loading />} />
+                        <Card50 content={
+                            <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" orderby="date" />} />
                         <Card50 content={
                             <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" orderby="date" />} />
                         <Card50 content={
                             <Crud view={<IncomeView />} create={<IncomeCreate />} update={<IncomeUpdate />} type="incomes" orderby="description" />} />
                         <Card50 content={
                             <Crud view={<AccountView />} create={<AccountCreate />} update={<AccountUpdate />} type="accounts" orderby="name" />} />
-                        <Card50 content={<Loading />} />
                     </div>
                 </div>
             </div>

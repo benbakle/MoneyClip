@@ -58,8 +58,8 @@ export default class Crud extends React.Component {
                     !this.state.fetching &&
                     <React.Fragment>
                         <div className="title">{this.props.type}:</div>
-                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? "close" : "add"}</button>
-                        <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? "close" : "edit"}</button>
+                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? <i className="fa fa-times-circle"></i> : <i className="fa fa-plus-circle"></i>}</button>
+                        <button className="link toggle-edit" onClick={this.toggleEditMode}>{this.state.inEditMode ? <i className="fa fa-times-circle"></i> : <i className="fa fa-edit"></i>}</button>
                         {
                             this.state.inCreateMode &&
                             React.cloneElement(this.state.create)

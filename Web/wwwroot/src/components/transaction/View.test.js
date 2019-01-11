@@ -17,7 +17,7 @@ describe("The view account component", () => {
     describe("given an account", () => {
         let account;
         beforeEach(() => {
-            account = { description: "Names biatch", amount: 1000000, date: "2018-12-12" };
+            account = { description: "Names biatch", amount: 1000000, date: "2018-12-12", cleared: false };
             _component = shallow(<View item={account} />)
         });
 
@@ -31,6 +31,24 @@ describe("The view account component", () => {
 
         it("displays the balance as money", () => {
             expect(_component.find(".amount Money").props().value).toEqual(1000000);
+        });
+
+        it("displays status", () => {
+            expect(_component.find(".status").length).toEqual(1);
+        });
+
+        describe('given the status is pending', () => {
+            it('it displays pending', () => {
+                expect(_component.find(".status").text()).toEqual("pending");
+            });
+        });
+
+        describe('given the status has cleared', () => {
+            it('it displays cleared', () => {
+                account.cleared = true;
+                _component = shallow(<View item={account} />)
+                expect(_component.find(".status").text()).toEqual("cleared");
+            });
         });
     });
 

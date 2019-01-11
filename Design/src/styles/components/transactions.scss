@@ -27,6 +27,9 @@
             &.mc-label {
                 @include mcLabel;
             }
+            input {
+                text-align: right;
+            }
         }
     }
 }

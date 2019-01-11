@@ -1,60 +1,155 @@
-$loaderWidth:10rem;
+/*LOADER SCSS*/
 
+$loaderWidth: 15rem;
+$circumference: 75%;
+$speed: 1s;
 .loader {
     width: $loaderWidth;
-    margin:0 auto;
+    margin: 0 auto;
     text-align: center;
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-  
-    .circle {
-      position: relative;
-      display: inline-block;
-      width: ($loaderWidth * .2);
-      height: ($loaderWidth * .2);
-      &:after {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        content: "";
-        display: block;
-        width: 50%;
-        height: 50%;
-        border-radius: 100%;
-        background-color: $color-primary;
-        animation-name: loading;
-        animation-duration: 1.2s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-      }
-      &:nth-child(2){
-        &:after{
-        animation-delay:.3s;
+    &.ready-set-go {
+        .circle {
+            &:after {
+                animation-name: ready-set-go;
+            }
         }
-      }
-       &:nth-child(3){
-        &:after{
-        animation-delay:.6s;
-        }
-      }
     }
-  }
-  
-  @keyframes loading {
+    &.bounce {
+        .circle {
+            &:after {
+                animation-name: bounce;
+                top:100%;
+            }
+        }
+    }
+    &.three-eyed-blink {
+        .circle {
+            &:after {
+                animation-name: three-eyed-blink;
+            }
+        }
+    }
+    &.peek-a-boo {
+        .circle {
+            &:after {
+                animation-name: peek-a-boo;
+                width: 0 !important;
+                height: 0 !important;
+            }
+        }
+    }
+    &.pop {
+        .circle {
+            &:after {
+                animation-name: pop;
+            }
+        }
+    }
+    .circle {
+        position: relative;
+        display: inline-block;
+        width: ($loaderWidth * 0.2);
+        height: ($loaderWidth * 0.2);
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            content: "";
+            display: block;
+            width: $circumference;
+            height: $circumference;
+            border-radius: ($circumference * 2);
+            background-color: $color-primary;
+            animation-duration: $speed;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        &:nth-child(2) {
+            &:after {
+                animation-delay: ($speed * .2);
+            }
+        }
+        &:nth-child(3) {
+            &:after {
+                animation-delay: ($speed * .4);
+            }
+        }
+    }
+}
+
+@keyframes ready-set-go {
     0% {
-      width: 50%;
-      height: 50%;
+        width: 33%;
+        height: 33%;
     }
     20% {
-      width: 100%;
-      height: 100%;
+        width: 100%;
+        height: 100%;
     }
     40% {
-      width: 50%;
-      height: 50%;
+        width: 33%;
+        height: 33%;
     }
-  }
-  
+    100% {
+        width: 33%;
+        height: 33%;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        top: 100%;
+    }
+    20% {
+        top: 0;
+    }
+    40% {
+        top: 100%;
+    }
+}
+
+@keyframes three-eyed-blink {
+    0% {
+        width: 75%;
+        height: 75%;
+    }
+    20% {
+        width: 0%;
+        height: 0%;
+    }
+    40% {
+        width: 75%;
+        height: 75%;
+    }
+}
+
+@keyframes peek-a-boo {
+    0% {
+        width: 0%;
+        height: 0%;
+    }
+    20% {
+        width: 100%;
+        height: 100%;
+    }
+    40% {
+        width: 0%;
+        height: 0%;
+    }
+}
+
+@keyframes pop {
+    0% {
+        width: 0%;
+        height: 0%;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+    }
+}
