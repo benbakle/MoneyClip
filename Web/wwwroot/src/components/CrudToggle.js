@@ -30,6 +30,7 @@ export default class CrudToggle extends React.Component {
         if (this.node && this.node.contains(e.target)) {
             return;
         }
+
         this.setState({
             inCreateMode: false,
             inSaveMode: false,

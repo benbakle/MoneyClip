@@ -11,16 +11,19 @@ export default class Balance extends React.Component {
             fetching: true,
             accountTotal: null,
             transactionTotal: null,
+            incomeTotal: null,
             currentBalance: null
         }
 
-        this.loadIncomeTotal = this.loadIncomeTotal.bind(this);
+        this.loadAccountTotal = this.loadAccountTotal.bind(this);
         this.loadTransactionTotal = this.loadTransactionTotal.bind(this);
+        this.loadIncomeTotal = this.loadIncomeTotal.bind(this);
 
-        Api.fetch("/accounts/total").then(this.loadIncomeTotal);
+        Api.fetch("/accounts/total").then(this.loadAccountTotal);
+        Api.fetch("/incomes/total").then(this.loadIncomeTotal);
     }
 
-    loadIncomeTotal(total) {
+    loadAccountTotal(total) {
         this.setState({ accountTotal: total }, () => {
             (total) ?
                 Api.fetch("/transactions/total").then(this.loadTransactionTotal) :
@@ -30,6 +33,10 @@ export default class Balance extends React.Component {
 
     loadTransactionTotal(total) {
         this.setState({ transactionTotal: total, fetching: false }, this.calculateBalance);
+    }
+
+    loadIncomeTotal(total) {
+        this.setState({ incomeTotal: total });
     }
 
     calculateBalance() {
@@ -46,9 +53,14 @@ export default class Balance extends React.Component {
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.accountTotal && this.state.transactionTotal &&
+                    !this.state.fetching && this.state.accountTotal && this.state.transactionTotal && this.state.incomeTotal &&
                     <React.Fragment>
                         <div className="title">Balance: </div>
+                        <div className="flex align-center space-between">
+                            <div className="">Incomes Total (per month): </div>
+                            <Money value={this.state.incomeTotal} />
+                        </div>
+                        <hr />
                         <div className="flex align-center space-between">
                             <div className="">Accounts Total: </div>
                             <Money value={this.state.accountTotal} />
@@ -57,7 +69,7 @@ export default class Balance extends React.Component {
                             <div className="">Pending Transactions: </div>
                             <Money value={this.state.transactionTotal} />
                         </div>
-                        <hr />  
+                        <hr />
                         <div className="flex align-center space-between balance">
                             <div className="">Current Balance: </div>
                             <Money value={this.state.currentBalance} />

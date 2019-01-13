@@ -3,7 +3,7 @@ import Api from '../../services/Api';
 //import Calendar from 'react-calendar';
 import Moment from 'react-moment';
 import Delete from './Delete';
-
+import Notification from '../../services/Notification';
 
 export default class Update extends React.Component {
     constructor(props) {
@@ -40,7 +40,13 @@ export default class Update extends React.Component {
     }
 
     callback() {
-        this.props.callback && this.props.callback();
+        this.props.callback();
+        Notification.success({ text: "Updated!" })
+    }
+
+    componentWillReceiveProps(props) {
+        if (props.inUpdateMode)
+            this.submit();
     }
 
     render() {
@@ -62,12 +68,7 @@ export default class Update extends React.Component {
                 <div className="amount">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-
-                <div>
-                    <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                </div>
             </div>
-                    //<Delete id={this.props.item.id} callback={this.props.callback} />
         )
     }
 }

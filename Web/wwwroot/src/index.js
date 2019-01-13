@@ -1,4 +1,7 @@
 import './assets/css/bundle.min.css';
+import 'noty/lib/noty.css';
+import 'noty/lib/themes/semanticui.css';
+import 'noty/lib/themes/relax.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';

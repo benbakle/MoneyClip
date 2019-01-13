@@ -6,6 +6,8 @@ import Money from '../Money';
 import Moment from 'react-moment';
 import View from '../account/View.js';
 import CrudToggle from '../CrudToggle';
+import Noty from 'noty';
+import Notification from '../../services/Notification';
 
 export default class Crud extends React.Component {
     constructor(props) {
@@ -19,17 +21,19 @@ export default class Crud extends React.Component {
             create: this.props.create,
             fetching: true,
             items: null,
-            inEditMode: false,
             inCreateMode: false,
-            itemInEditMode: -1
+            itemInEditMode: -1,
+            inUpdateMode: false
 
         }
 
         this.fetchItems = this.fetchItems.bind(this);
         this.load = this.load.bind(this);
-        this.toggleEditMode = this.toggleEditMode.bind(this);
         this.itemInEditMode = this.itemInEditMode.bind(this);
         this.toggleCreateMode = this.toggleCreateMode.bind(this);
+        this.saveCallback = this.saveCallback.bind(this);
+        this.callback = this.callback.bind(this);
+
         this.fetchItems();
     }
 
@@ -41,10 +45,6 @@ export default class Crud extends React.Component {
         this.setState({ items: data, fetching: false });
     }
 
-    toggleEditMode() {
-        this.setState({ inEditMode: !this.state.inEditMode });
-    }
-
     itemInEditMode(key) {
         return this.state.itemInEditMode == key;
     }
@@ -53,6 +53,14 @@ export default class Crud extends React.Component {
         this.setState({ inCreateMode: !this.state.inCreateMode })
     }
 
+    callback() {
+        this.fetchItems();
+        this.setState({ itemInEditMode: -1, inCreateMode: false, inUpdateMode: false })
+    }
+
+    saveCallback() {
+        this.setState({ inUpdateMode: true });
+    }
 
     render() {
         return (
@@ -64,11 +72,10 @@ export default class Crud extends React.Component {
                 {
                     !this.state.fetching &&
                     <React.Fragment>
-                        <div className="title">{this.props.type}:</div>
                         <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? <i className="fa fa-times-circle"></i> : <i className="fa fa-plus-circle"></i>}</button>
                         {
                             this.state.inCreateMode &&
-                            React.cloneElement(this.state.create)
+                            React.cloneElement(this.state.create, { callback: this.callback })
                         }
                     </React.Fragment>
                 }
@@ -85,11 +92,11 @@ export default class Crud extends React.Component {
                             {
                                 this.itemInEditMode(key) &&
                                 <div ref={node => this.node = node} >
-                                    {React.cloneElement(this.state.update, { item: item })}
+                                    {React.cloneElement(this.state.update, { item: item, callback: this.callback, inUpdateMode: this.state.inUpdateMode })}
                                 </div>
                             }
                             <div className="crud" onClick={() => this.setState({ itemInEditMode: key })}>
-                                <CrudToggle saveCallback={() => alert("saved")} confirmCallback={() => { console.log(key + " " + this.state.itemInEditMode); alert("deleted") }} />
+                                <CrudToggle saveCallback={this.saveCallback} confirmCallback={() => {Notification.error({text: "Deleted"})}} />
                             </div>
                         </div>
                     )

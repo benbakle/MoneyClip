@@ -26,8 +26,8 @@ $crud-width:4.5rem;
         display: flex;
         align-items: center;
         height: 100%;
-        background-color: $color-primary;
-        color: $color-light;
+        background-color: transparent;
+        color: $color-body;
         width: ($crud-width * 5);
         padding: .3rem 0;
         box-sizing: border-box;
@@ -50,6 +50,10 @@ $crud-width:4.5rem;
         .save,
         .delete {
             width: ($crud-width * .55);
+            color:#fff;
+        }
+        .confirm{
+            color:#fff;
         }
         .toggle-bar {
             height: ($crud-width * .45);
