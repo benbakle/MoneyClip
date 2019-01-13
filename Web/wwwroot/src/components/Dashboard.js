@@ -28,8 +28,6 @@ export default class Dashcard extends React.Component {
                         <Card50 content={
                             <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" orderby="date" />} />
                         <Card50 content={
-                            <Crud view={<TransactionView />} create={<TransactionCreate />} update={<TransactionUpdate />} type="transactions" orderby="date" />} />
-                        <Card50 content={
                             <Crud view={<IncomeView />} create={<IncomeCreate />} update={<IncomeUpdate />} type="incomes" orderby="description" />} />
                         <Card50 content={
                             <Crud view={<AccountView />} create={<AccountCreate />} update={<AccountUpdate />} type="accounts" orderby="name" />} />

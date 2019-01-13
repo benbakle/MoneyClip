@@ -2,6 +2,8 @@
     .transaction {
         padding: 1rem 0;
         display: flex;
+
+        width:calc(100% - 5rem);
         .date,
         [name='date'] {
             width: 17.5rem;
@@ -17,6 +19,9 @@
             text-align: left;
             font-weight: 400;
             font-size: 1.6rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &.mc-label {
                 @include mcLabel;
             }

@@ -1,0 +1,91 @@
+$crud-width:4.5rem;
+
+.crud{
+    position: absolute;
+    right: -2rem;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.crud-toggle {
+    display: inline-block;
+    position: relative;
+    width: $crud-width;
+    height: ($crud-width * .75);
+    font-size: ($crud-width * .4);
+    line-height: 1.5em;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+    border-radius: ($crud-width * .09);
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    .slide {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        background-color: $color-primary;
+        color: $color-light;
+        width: ($crud-width * 5);
+        padding: .3rem 0;
+        box-sizing: border-box;
+        left: 0;
+        transition-duration: .3s;
+        .edit,
+        .save,
+        .delete,
+        .confirm {
+            width: $crud-width;
+            text-align: center;
+            position: relative;
+            opacity: .75;
+            transition-duration: .3s;
+            @include states() {
+                font-size: 1.15em;
+                opacity: 1;
+            }
+        }
+        .save,
+        .delete {
+            width: ($crud-width * .55);
+        }
+        .toggle-bar {
+            height: ($crud-width * .45);
+            border-radius: .3rem;
+            width: ($crud-width * .25);
+            background-color: #efefef;
+            transition-duration: .2s;
+            opacity: .75;
+            margin:0 .4rem;
+            @include states() {
+                height: ($crud-width * .5);
+                opacity: 1;
+            }
+        }
+    }
+    &.edit-mode {
+        .slide {
+            left: 0rem;
+        }
+    }
+    &.save-mode {
+        .slide {
+            background-color: #57B157;
+            left: ($crud-width * -1);
+        }
+    }
+    &.delete-mode {
+        .slide {
+            background-color: #D9534F;
+            left: ($crud-width * -1.53);
+        }
+    }
+    &.confirm-mode {
+        .slide {
+            background-color: #57B157;
+            left: ($crud-width * -2.5);
+        }
+    }
+}

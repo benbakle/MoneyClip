@@ -33,17 +33,17 @@ describe("The view account component", () => {
             expect(_component.find(".amount Money").props().value).toEqual(1000000);
         });
 
-        it("displays status", () => {
+        xit("displays status", () => {
             expect(_component.find(".status").length).toEqual(1);
         });
 
-        describe('given the status is pending', () => {
+        xdescribe('given the status is pending', () => {
             it('it displays pending', () => {
                 expect(_component.find(".status").text()).toEqual("pending");
             });
         });
 
-        describe('given the status has cleared', () => {
+        xdescribe('given the status has cleared', () => {
             it('it displays cleared', () => {
                 account.cleared = true;
                 _component = shallow(<View item={account} />)

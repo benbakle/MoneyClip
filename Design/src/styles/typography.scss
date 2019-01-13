@@ -6,7 +6,6 @@ body {
     height: 100%;
     margin: 0;
     font-size: 1.8rem;
-    line-height: 1.75em;
     font-weight: 400;
     color: $color-body;
     font-family: $font-family-body;
@@ -17,6 +16,9 @@ main {
     width: calc(100% - 32.5rem);
 }
 
+.relative{
+    position: relative;
+}
 .mc-container {
     width: 100%; // max-width: 120rem;
     margin: 0 auto;

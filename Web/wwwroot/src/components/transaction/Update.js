@@ -65,9 +65,9 @@ export default class Update extends React.Component {
 
                 <div>
                     <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
-                    <Delete id={this.props.item.id} callback={this.props.callback} />
                 </div>
             </div>
+                    //<Delete id={this.props.item.id} callback={this.props.callback} />
         )
     }
 }

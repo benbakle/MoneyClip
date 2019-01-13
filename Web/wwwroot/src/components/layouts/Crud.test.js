@@ -42,7 +42,7 @@ describe("The crud component", () => {
             });
 
             describe('given the edit button is clicked', () => {
-                it('enters edit mode', () => {
+                xit('enters edit mode', () => {
                     _component.find(".toggle-edit").simulate("click");
                     expect(_component.state().inEditMode).toEqual(true);
                 });
@@ -56,7 +56,7 @@ describe("The crud component", () => {
                 });
 
                 describe('given the button is clicked again', () => {
-                    it('exits edit mode', () => {
+                    xit('exits edit mode', () => {
                         let items = [{ description: "Waste of Money" }, { description: "Not worth it" }]
                         _component = shallow(<Crud view={<View />} update={<Update />} create={<Create />} type="transactions"  />);
                         _component.setState({ inEditMode: true, fetching: false, items: items });
