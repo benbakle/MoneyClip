@@ -16,7 +16,7 @@ describe("The balance component", () => {
     it("calls the accounts total api", () => {
         spyOn(Api, "fetch").and.returnValue(resolved());
         _component = shallow(<Balance />);
-        expect(Api.fetch).toHaveBeenCalledWith("/accounts/total");
+        expect(Api.fetch).toHaveBeenCalledWith("/api/accounts/total");
     });
 
     describe("given the call returns", () => {
@@ -30,14 +30,14 @@ describe("The balance component", () => {
         describe("with a total", () => {
             it("sets the accounts total value", () => {
                 spyOn(Api, "fetch").and.returnValue(resolved());
-                _component.instance().loadIncomeTotal(123);
+                _component.instance().loadAccountTotal(123);
                 expect(_component.state().accountTotal).toEqual(123);
             })
 
             it("calls the transaction total api", () => {
                 spyOn(Api, "fetch").and.returnValue(resolved());
-                _component.instance().loadIncomeTotal(123);
-                expect(Api.fetch).toHaveBeenCalledWith("/transactions/total");
+                _component.instance().loadAccountTotal(123);
+                expect(Api.fetch).toHaveBeenCalledWith("/api/transactions/total");
             });
 
             describe("given the call returns", () => {
@@ -48,8 +48,14 @@ describe("The balance component", () => {
                 });
 
                 describe("with a total", () => {
-                    it("sets the transactions total value", () => {
+                    beforeEach(() => {
+                        _component = shallow(<Balance />);
+                        _component.instance().loadAccountTotal(123);
+                        _component.instance().loadIncomeTotal(563.25);
                         _component.instance().loadTransactionTotal(7.08);
+                    });
+
+                    it("sets the transactions total value", () => {
                         expect(_component.state().transactionTotal).toEqual(7.08);
                     })
 

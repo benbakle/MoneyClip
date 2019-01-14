@@ -38,7 +38,7 @@ export default class Crud extends React.Component {
     }
 
     fetchItems() {
-        Api.fetch(this.state.type, this.state.orderby).then(this.load);
+        Api.fetch(`/api/${this.state.type}?${this.props.filter}`).then(this.load);
     }
 
     load(data) {

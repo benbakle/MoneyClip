@@ -24,25 +24,5 @@ describe("The update incomes component", () => {
             expect(_component.find("input[name='description']").props().value).toEqual("this shiz");
             expect(_component.find("input[name='amount']").props().value).toEqual(75.26);
         });
-
-        it("shows the submit button", () => {
-            expect(_component.find(".submit").length).toEqual(1);
-        })
-
-        describe("and the submit is clicked", () => {
-            let value = 0;
-            beforeEach(() => {
-                _component = shallow(<Update item={transaction} callback={() => { value = 69 }} />);
-                _component.find(".submit").simulate("click");
-            });
-
-            it("calls the api", () => {
-                expect(Api.update).toHaveBeenCalledWith("transactions", _component.state().id, _component.state());
-            });
-
-            it("calls the callback", () => {
-                expect(value).toEqual(69);
-            });
-        });
     });
 });

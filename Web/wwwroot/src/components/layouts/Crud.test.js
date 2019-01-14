@@ -18,8 +18,8 @@ describe("The crud component", () => {
 
     it('calls the api', () => {
         spyOn(Api, "fetch").and.returnValue(promise());
-        _component = shallow(<Crud view={<View />} update={<Update />} create={<Create />} type="transactions" orderby="date" />);
-        expect(Api.fetch).toHaveBeenCalledWith("transactions", "date");
+        _component = shallow(<Crud view={<View />} update={<Update />} create={<Create />} type="transactions" filter="$filter=cleared eq true" />);
+        expect(Api.fetch).toHaveBeenCalledWith("/api/transactions?$filter=cleared eq true");
     });
 
     describe('given the call returns', () => {

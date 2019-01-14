@@ -13,7 +13,7 @@ export default class Listing extends React.Component {
         this.load = this.load.bind(this);
 
         if (this.props.view && this.props.type)
-            Api.fetch(this.props.type, this.props.orderby).then(this.load);
+            Api.fetch(`/api/${this.props.type}`).then(this.load);
     }
 
     load(data) {

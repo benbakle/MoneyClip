@@ -1,4 +1,4 @@
-$crud-width:4.5rem;
+$crud-width:3.5rem;
 
 .crud{
     position: absolute;
@@ -29,7 +29,7 @@ $crud-width:4.5rem;
         background-color: transparent;
         color: $color-body;
         width: ($crud-width * 5);
-        padding: .3rem 0;
+        padding: ($crud-width * .1) 0;
         box-sizing: border-box;
         left: 0;
         transition-duration: .3s;

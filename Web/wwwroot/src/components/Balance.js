@@ -18,15 +18,16 @@ export default class Balance extends React.Component {
         this.loadAccountTotal = this.loadAccountTotal.bind(this);
         this.loadTransactionTotal = this.loadTransactionTotal.bind(this);
         this.loadIncomeTotal = this.loadIncomeTotal.bind(this);
+        this.calculateBalance = this.calculateBalance.bind(this);
 
-        Api.fetch("/accounts/total").then(this.loadAccountTotal);
-        Api.fetch("/incomes/total").then(this.loadIncomeTotal);
+        Api.fetch("/api/accounts/total").then(this.loadAccountTotal);
+        Api.fetch("/api/incomes/total").then(this.loadIncomeTotal);
     }
 
     loadAccountTotal(total) {
         this.setState({ accountTotal: total }, () => {
             (total) ?
-                Api.fetch("/transactions/total").then(this.loadTransactionTotal) :
+                Api.fetch("/api/transactions/total").then(this.loadTransactionTotal) :
                 this.setState({ fetching: false });
         })
     }

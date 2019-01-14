@@ -8,12 +8,27 @@ import Crud from '../layouts/Crud';
 import Card50 from '../layouts/Card50';
 
 export default class Listing extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { cleared: false }
+    }
     render() {
         return (
             <div className="grid">
                 <div className="mc-container">
                     <div className="title">Transactions</div>
-                        <Card100 content={<Crud view={<View />} create={<Create />} update={<Update />} type="transactions" orderby="date" />} />
+
+                    <Card100 content={
+                        <Crud
+                            view={<View />}
+                            create={<Create />}
+                            update={<Update />}
+                            type="transactions"
+                            filter={`$filter=cleared eq ${this.state.cleared}`}
+                        />
+                    }
+                    />
                 </div>
             </div>
         )

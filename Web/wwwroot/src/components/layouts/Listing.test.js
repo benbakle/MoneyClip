@@ -26,8 +26,8 @@ describe("The listing component", () => {
     describe("given a view component and a type", () => {
         it("calls the api", () => {
             spyOn(Api, "fetch").and.returnValue(promise());
-            _component = shallow(<Listing view={<View />} type="accounts" orderby="name" />);
-            expect(Api.fetch).toHaveBeenCalledWith("accounts", "name");
+            _component = shallow(<Listing view={<View />} type="accounts" />);
+            expect(Api.fetch).toHaveBeenCalledWith("/api/accounts");
         });
 
         it("displays a loading message", () => {

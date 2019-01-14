@@ -31,6 +31,11 @@ export default class Update extends React.Component {
             });
     }
 
+    componentWillReceiveProps(props) {
+        if (props.inUpdateMode)
+            this.submit();
+    }
+
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }
@@ -39,14 +44,14 @@ export default class Update extends React.Component {
         Api.update("transactions", this.state.id, this.state).then(this.callback);
     }
 
-    callback() {
-        this.props.callback();
-        Notification.success({ text: "Updated!" })
-    }
-
-    componentWillReceiveProps(props) {
-        if (props.inUpdateMode)
-            this.submit();
+    callback(res) {
+        if (res.ok) {
+            this.props.callback();
+            Notification.success({ text: "Updated!" })
+        }
+        else {
+            Notification.error({ text: res.statusText })
+        }
     }
 
     render() {

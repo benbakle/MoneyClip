@@ -61,7 +61,7 @@ export default class CrudToggle extends React.Component {
                                          ${this.state.inDeleteMode ? "delete-mode" : ""}
                                          ${this.state.inConfirmMode ? "confirm-mode" : ""}`} ref={node => this.node = node} >
                 <div className="slide">
-                    <div className="edit" onClick={() => this.setState({ inSaveMode: true })}><i className="fa fa-edit"></i></div>
+                    <div className="edit" onClick={() => this.setState({ inSaveMode: true })}><i className="fa fa-ellipsis-h"></i></div>
                     <div className="save" onClick={this.save}><i className="fa fa-save"></i></div>
                     <div className="toggle-bar" onClick={this.toggleSaveDelete}></div>
                     <div className="delete" onClick={() => this.setState({ inConfirmMode: true, inDeleteMode: false })}><i className="fa fa-trash-alt"></i></div>
