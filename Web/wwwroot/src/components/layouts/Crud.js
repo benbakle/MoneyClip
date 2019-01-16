@@ -52,7 +52,7 @@ export default class Crud extends React.Component {
         if (this.node && this.node.contains(e.target)) {
             return;
         }
-        this.setState({ itemInEditMode: -1, triggerUpdate:true})
+        this.setState({ itemInEditMode: -1, triggerUpdate: true })
     }
 
     fetchItems() {
@@ -78,12 +78,12 @@ export default class Crud extends React.Component {
 
     saveAction() {
         this.setState({ triggerUpdate: true });
-        Notification.success({ text: "Updated!" })
+        Notification.success({ text: "Saved!" })
     }
 
     deleteAction() {
-        this.setState({ itemInEditMode: -1});
-        Notification.error({ text: "Deleted" });
+        this.setState({ itemInEditMode: -1 });
+        Notification.message({ text: "Hope you wanted to do that..." });
     }
 
     editAction(key) {
@@ -93,6 +93,7 @@ export default class Crud extends React.Component {
     render() {
         return (
             <div className={this.props.type} ref={node => this.node = node}>
+                <div className="title">{this.props.type}</div>
                 {
                     this.state.fetching && !this.state.items &&
                     <Loading />
@@ -106,6 +107,15 @@ export default class Crud extends React.Component {
                             React.cloneElement(this.state.create, { callback: this.callback })
                         }
                     </React.Fragment>
+                }
+                {
+                    !this.state.fetching && this.state.items &&
+
+                    <div className={this.props.type}>
+                        <div className={this.props.type.slice(0, -1)}>
+                            {React.cloneElement(this.props.header)}
+                        </div>
+                    </div>
                 }
                 {
                     !this.state.fetching && this.state.items &&
@@ -124,7 +134,7 @@ export default class Crud extends React.Component {
                                 </div>
                             }
                             <div className="crud">
-                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key != this.state.itemInEditMode}/>
+                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key != this.state.itemInEditMode} />
                             </div>
                         </div>
                     )

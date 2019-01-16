@@ -6,6 +6,7 @@ import ListingLayout from '../layouts/Listing';
 import Card100 from '../layouts/Card100';
 import Crud from '../layouts/Crud';
 import Card50 from '../layouts/Card50';
+import ListingHeader from './ListingHeader';
 
 export default class Listing extends React.Component {
 
@@ -15,22 +16,17 @@ export default class Listing extends React.Component {
     }
     render() {
         return (
-            <div className="grid">
-                <div className="mc-container">
-                    <div className="title">Transactions</div>
-
-                    <Card100 content={
-                        <Crud
-                            view={<View />}
-                            create={<Create />}
-                            update={<Update />}
-                            type="transactions"
-                            filter={`$filter=cleared eq ${this.state.cleared}&$orderBy=date`}
-                        />
-                    }
-                    />
-                </div>
-            </div>
+            <Card100 content={
+                <Crud
+                    view={<View />}
+                    create={<Create />}
+                    update={<Update />}
+                    header={<ListingHeader />}
+                    type="transactions"
+                    filter={`$filter=cleared eq ${this.state.cleared}&$orderBy=date`}
+                />
+            }
+            />
         )
     }
 }

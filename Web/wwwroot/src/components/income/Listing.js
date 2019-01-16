@@ -4,23 +4,21 @@ import View from './View';
 import Create from './Create';
 import Update from './Update';
 import Crud from '../layouts/Crud';
+import ListingHeader from './ListingHeader';
 
 export default class Listing extends React.Component {
     render() {
         return (
-            <div className="grid">
-                <div className="mc-container">
-                    <Card100 content={
-                        <Crud
-                            view={<View />}
-                            create={<Create />}
-                            update={<Update />}
-                            type="incomes"
-                        />
-                    }
-                    />
-                </div>
-            </div>
+            <Card100 content={
+                <Crud
+                    view={<View />}
+                    create={<Create />}
+                    update={<Update />}
+                    header={<ListingHeader />}
+                    type="incomes"
+                />
+            }
+            />
         )
     }
 }

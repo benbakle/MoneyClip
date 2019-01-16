@@ -4,7 +4,7 @@ import Update from './Update';
 import Api from '../../services/Api';
 import { promise, resolved } from '../../setupTests';
 
-describe("The update incomes component", () => {
+describe("The update accounts component", () => {
     let _component, _item;
 
     describe("given no item", () => {
@@ -25,15 +25,11 @@ describe("The update incomes component", () => {
             expect(_component.find("input[name='balance']").props().value).toEqual(75.26);
         });
 
-        it("shows the submit button", () => {
-            expect(_component.find(".submit").length).toEqual(1);
-        })
-
         describe("and the submit is clicked", () => {
             let value = 0;
             beforeEach(() => {
                 _component = shallow(<Update item={item} callback={() => { value = 69 }} />);
-                _component.find(".submit").simulate("click");
+                _component.instance().submit();
             });
 
             it("calls the api", () => {

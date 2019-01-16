@@ -4,23 +4,29 @@ import Crud from '../layouts/Crud';
 import View from './View';
 import Create from './Create';
 import Update from './Update';
+import ListingHeader from './ListingHeader';
 
 export default class Listing extends React.Component {
     render() {
         return (
-            <div className="grid">
-                <div className="mc-container">
-                    <Card100 content={
-                        <Crud
-                            view={<View />}
-                            create={<Create />}
-                            update={<Update />}
-                            type="accounts"
-                        />
-                    }
-                    />
+            <React.Fragment>
+                <div className="accounts">
+                    <div className="account">
+
+                    </div>
                 </div>
-            </div>
+                <Card100 content={
+                    <Crud
+                        view={<View />}
+                        create={<Create />}
+                        update={<Update />}
+                        header={<ListingHeader/>}
+                        type="accounts"
+                    />
+                }
+                />
+            </React.Fragment>
+
         )
     }
 }

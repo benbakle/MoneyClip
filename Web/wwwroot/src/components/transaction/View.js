@@ -12,6 +12,7 @@ export default class View extends React.Component {
                 </div>
                 <div className="description">{this.props.item.description}</div>
                 <div className="amount"><Money value={this.props.item.amount} /></div>
+                <input type="checkbox" checked={this.props.item.cleared} />
             </div>
         )
     }

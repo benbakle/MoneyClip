@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import Balance from './Balance';
-import Card50 from './layouts/Card50';
+import Card100 from './layouts/Card100';
 
 export default class Dashcard extends React.Component {
     render() {
@@ -8,7 +8,7 @@ export default class Dashcard extends React.Component {
             <div className="grid">
                 <div className="mc-container">
                     <div className="flex-row">
-                        <Card50 content={<Balance />} className="balance" />
+                        <Card100 content={<Balance />} className="balance" />
                     </div>
                 </div>
             </div>
