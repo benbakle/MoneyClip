@@ -25,7 +25,7 @@ export default class Listing extends React.Component {
                             create={<Create />}
                             update={<Update />}
                             type="transactions"
-                            filter={`$filter=cleared eq ${this.state.cleared}`}
+                            filter={`$filter=cleared eq ${this.state.cleared}&$orderBy=date`}
                         />
                     }
                     />

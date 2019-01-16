@@ -23,18 +23,36 @@ export default class Crud extends React.Component {
             items: null,
             inCreateMode: false,
             itemInEditMode: -1,
-            inUpdateMode: false
-
+            triggerUpdate: false,
         }
 
         this.fetchItems = this.fetchItems.bind(this);
         this.load = this.load.bind(this);
         this.itemInEditMode = this.itemInEditMode.bind(this);
         this.toggleCreateMode = this.toggleCreateMode.bind(this);
-        this.saveCallback = this.saveCallback.bind(this);
+        this.saveAction = this.saveAction.bind(this);
+        this.deleteAction = this.deleteAction.bind(this);
+        this.editAction = this.editAction.bind(this);
         this.callback = this.callback.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+
 
         this.fetchItems();
+    }
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClick, false);
+    }
+
+    handleClick(e) {
+        if (this.node && this.node.contains(e.target)) {
+            return;
+        }
+        this.setState({ itemInEditMode: -1, triggerUpdate:true})
     }
 
     fetchItems() {
@@ -55,16 +73,26 @@ export default class Crud extends React.Component {
 
     callback() {
         this.fetchItems();
-        this.setState({ itemInEditMode: -1, inCreateMode: false, inUpdateMode: false })
+        this.setState({ itemInEditMode: -1, inCreateMode: false, triggerUpdate: false })
     }
 
-    saveCallback() {
-        this.setState({ inUpdateMode: true });
+    saveAction() {
+        this.setState({ triggerUpdate: true });
+        Notification.success({ text: "Updated!" })
+    }
+
+    deleteAction() {
+        this.setState({ itemInEditMode: -1});
+        Notification.error({ text: "Deleted" });
+    }
+
+    editAction(key) {
+        this.setState({ itemInEditMode: key });
     }
 
     render() {
         return (
-            <div className={this.props.type} >
+            <div className={this.props.type} ref={node => this.node = node}>
                 {
                     this.state.fetching && !this.state.items &&
                     <Loading />
@@ -91,12 +119,12 @@ export default class Crud extends React.Component {
                             }
                             {
                                 this.itemInEditMode(key) &&
-                                <div ref={node => this.node = node} >
-                                    {React.cloneElement(this.state.update, { item: item, callback: this.callback, inUpdateMode: this.state.inUpdateMode })}
+                                <div  >
+                                    {React.cloneElement(this.state.update, { item: item, callback: this.callback, triggerUpdate: this.state.triggerUpdate })}
                                 </div>
                             }
-                            <div className="crud" onClick={() => this.setState({ itemInEditMode: key })}>
-                                <CrudToggle saveCallback={this.saveCallback} confirmCallback={() => {Notification.error({text: "Deleted"})}} />
+                            <div className="crud">
+                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key != this.state.itemInEditMode}/>
                             </div>
                         </div>
                     )

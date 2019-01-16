@@ -29,15 +29,14 @@ describe("The update incomes component", () => {
         });
 
         it("sets the state", () => {
-
             expect(_component.state().id).toEqual(65);
             expect(_component.state().description).toEqual("pooooop");
             expect(_component.state().amount).toEqual(99.99);
         });
 
-        describe("given the update button is clicked", () => {
+        describe("the the update is triggered by the props", () => {
             it("calls the update api", () => {
-                _component.find("button.submit").simulate("click");
+                _component.instance().componentWillReceiveProps({ triggerUpdate: true });
                 expect(Api.update).toHaveBeenCalledWith("incomes", 65, _item);
             });
 
@@ -51,7 +50,7 @@ describe("The update incomes component", () => {
                 it("calls the callback", () => {
                     let callback = () => { _value = "that" };
                     _component = shallow(<Update id={_item} callback={callback} />);
-                    _component.instance().callback();
+                    _component.instance().callback({ ok: true });
 
                     expect(_value).toEqual("that");
                 });

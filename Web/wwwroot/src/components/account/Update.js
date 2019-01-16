@@ -29,6 +29,10 @@ export default class Update extends React.Component {
             });
     }
 
+    componentWillReceiveProps(props) {
+        if (props.triggerUpdate)
+            this.submit();
+    }
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }

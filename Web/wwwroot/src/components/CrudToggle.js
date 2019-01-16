@@ -5,7 +5,6 @@ export default class CrudToggle extends React.Component {
         super(props);
 
         this.state = {
-            inCreateMode: false,
             inSaveMode: false,
             inDeleteMode: false,
             inConfirmMode: false,
@@ -13,30 +12,24 @@ export default class CrudToggle extends React.Component {
         }
 
         this.toggleSaveDelete = this.toggleSaveDelete.bind(this);
-        this.handleClick = this.handleClick.bind(this);
         this.save = this.save.bind(this);
         this.confirm = this.confirm.bind(this);
+        this.enterSaveMode = this.enterSaveMode.bind(this);
+        this.enterConfirmMode = this.enterConfirmMode.bind(this);
+        this.resetToggle = this.resetToggle.bind(this);
     }
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
+    componentWillReceiveProps(props) {
+        if (props.resetToggle)
+            this.resetToggle();
     }
 
-    componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClick, false);
+    enterSaveMode() {
+        this.setState({ inSaveMode: true}, this.props.editAction);
     }
 
-    handleClick(e) {
-        if (this.node && this.node.contains(e.target)) {
-            return;
-        }
-
-        this.setState({
-            inCreateMode: false,
-            inSaveMode: false,
-            inDeleteMode: false,
-            inConfirmMode: false,
-        })
+    enterConfirmMode() {
+        this.setState({ inConfirmMode: true, inDeleteMode: false })
     }
 
     toggleSaveDelete() {
@@ -45,14 +38,21 @@ export default class CrudToggle extends React.Component {
             this.setState({ inSaveMode: true, inDeleteMode: false })
     }
 
+    resetToggle() {
+        this.setState({
+            inSaveMode: false,
+            inDeleteMode: false,
+            inConfirmMode: false
+        })
+    }
+
     save() {
-        this.props.saveCallback();
-        this.handleClick({ target: null });
+        this.props.saveAction();
+        this.resetToggle();
     }
 
     confirm() {
-        this.props.confirmCallback();
-        this.handleClick({ target: null });
+        this.props.deleteAction();
     }
 
     render() {
@@ -61,10 +61,10 @@ export default class CrudToggle extends React.Component {
                                          ${this.state.inDeleteMode ? "delete-mode" : ""}
                                          ${this.state.inConfirmMode ? "confirm-mode" : ""}`} ref={node => this.node = node} >
                 <div className="slide">
-                    <div className="edit" onClick={() => this.setState({ inSaveMode: true })}><i className="fa fa-ellipsis-h"></i></div>
+                    <div className="edit" onClick={this.enterSaveMode}><i className="fa fa-ellipsis-h"></i></div>
                     <div className="save" onClick={this.save}><i className="fa fa-save"></i></div>
                     <div className="toggle-bar" onClick={this.toggleSaveDelete}></div>
-                    <div className="delete" onClick={() => this.setState({ inConfirmMode: true, inDeleteMode: false })}><i className="fa fa-trash-alt"></i></div>
+                    <div className="delete" onClick={this.enterConfirmMode}><i className="fa fa-trash-alt"></i></div>
                     <div className="confirm" onClick={this.confirm}><i className="fa fa-check"></i></div>
                 </div>
             </div>

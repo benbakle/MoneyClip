@@ -4,7 +4,7 @@ import Update from './Update';
 import Api from '../../services/Api';
 import { promise, resolved } from '../../setupTests';
 
-describe("The update incomes component", () => {
+describe("The update transactions update component", () => {
     let _component, _item;
 
     describe("given no item", () => {

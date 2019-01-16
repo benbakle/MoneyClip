@@ -6,9 +6,9 @@ export default class Update extends React.Component {
         super(props);
 
         this.state = {
-            id: null,
+            id: "",
             description: "",
-            amount: ""
+            amount: null
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,6 +25,11 @@ export default class Update extends React.Component {
             });
     }
 
+    componentWillReceiveProps(props) {
+        if (props.triggerUpdate)
+            this.submit();
+    }
+
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }
@@ -33,8 +38,13 @@ export default class Update extends React.Component {
         Api.update("incomes", this.state.id, this.state).then(this.callback);
     }
 
-    callback() {
-        this.props.callback && this.props.callback();
+    callback(res) {
+        if (res.ok) {
+            this.props.callback();
+        }
+        else {
+            Notification.error({ text: res.statusText })
+        }
     }
 
     render() {
@@ -47,7 +57,6 @@ export default class Update extends React.Component {
                 <div className="amount" >
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-                <button className="submit link" onClick={this.submit}><i className="far fa-check-circle"></i></button>
             </div>
 
         )

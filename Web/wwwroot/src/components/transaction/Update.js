@@ -11,9 +11,9 @@ export default class Update extends React.Component {
 
         this.state = {
             id: null,
-            date: "",
-            description: "",
-            amount: ""
+            date: null,
+            description: null,
+            amount: null
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,15 +24,15 @@ export default class Update extends React.Component {
     componentDidMount() {
         this.props.item &&
             this.setState({
-                id: this.props.item.id,
-                date: this.props.item.date,
-                description: this.props.item.description,
-                amount: this.props.item.amount
+            id: this.props.item.id,
+            date: this.props.item.date,
+            description: this.props.item.description,
+            amount: this.props.item.amount
             });
     }
 
     componentWillReceiveProps(props) {
-        if (props.inUpdateMode)
+        if (props.triggerUpdate)
             this.submit();
     }
 
@@ -47,7 +47,6 @@ export default class Update extends React.Component {
     callback(res) {
         if (res.ok) {
             this.props.callback();
-            Notification.success({ text: "Updated!" })
         }
         else {
             Notification.error({ text: res.statusText })
