@@ -15,7 +15,7 @@
             }
         }
         .description {
-            width: calc(100% - 30rem);
+            width: calc(100% - 35rem);
             text-align: left;
             font-weight: 400;
             font-size: 1.6rem;
@@ -35,6 +35,10 @@
             input {
                 text-align: right;
             }
+        }
+        .status{
+            width:5rem;
+            text-align: center;
         }
     }
 }

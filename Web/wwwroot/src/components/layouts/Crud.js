@@ -39,6 +39,10 @@ export default class Crud extends React.Component {
 
         this.fetchItems();
     }
+    componentWillReceiveProps(props) {
+        if (props.filter != "")
+            this.fetchItems(props.filter);
+    }
 
     componentWillMount() {
         document.addEventListener('mousedown', this.handleClick, false);
@@ -55,8 +59,9 @@ export default class Crud extends React.Component {
         this.setState({ itemInEditMode: -1, triggerUpdate: true })
     }
 
-    fetchItems() {
-        Api.fetch(`/api/${this.state.type}?${this.props.filter}`).then(this.load);
+    fetchItems(filter) {
+        filter = filter || this.props.filter;
+        Api.fetch(`/api/${this.state.type}?${filter}`).then(this.load);
     }
 
     load(data) {
@@ -83,7 +88,7 @@ export default class Crud extends React.Component {
 
     deleteAction() {
         this.setState({ itemInEditMode: -1 });
-        Notification.message({ text: "Hope you wanted to do that..." });
+        Notification.message({ text: "Bye, Felicia!" });
     }
 
     editAction(key) {

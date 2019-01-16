@@ -33,8 +33,10 @@ function defaults() {
     return {
         layout: 'topRight',
         theme: 'semanticui',
-        timeout: 2000,
-        easing: "bounce"
+        timeout: 1500,
+        easing: "bounce",
+        progressBar:false,
     }
 }
+
 export default new Notification();

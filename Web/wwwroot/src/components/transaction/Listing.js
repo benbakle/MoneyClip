@@ -12,21 +12,37 @@ export default class Listing extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { cleared: false }
+        this.state = {
+            cleared: false,
+            filter: "$filter=cleared eq false&$orderBy=date"
+        }
+
+        this.handleFilter = this.handleFilter.bind(this);
+    }
+
+    handleFilter(e) {
+        this.setState({ filter: `$filter=cleared eq ${e.target.value}&$orderBy=date`, cleared: e.target.value });
     }
     render() {
         return (
-            <Card100 content={
-                <Crud
-                    view={<View />}
-                    create={<Create />}
-                    update={<Update />}
-                    header={<ListingHeader />}
-                    type="transactions"
-                    filter={`$filter=cleared eq ${this.state.cleared}&$orderBy=date`}
-                />
-            }
-            />
+            <React.Fragment>
+                    <select onChange={this.handleFilter} value={this.state.cleared}>
+                        <option value={true} >Cleared</option>
+                        <option value={false}>Pending</option>
+                    </select>
+                    <Card100 content={
+                        <Crud
+                            view={<View />}
+                            create={<Create />}
+                            update={<Update />}
+                            header={<ListingHeader />}
+                            type="transactions"
+                            filter={this.state.filter}
+                        />
+                    }
+                    />
+            </React.Fragment>
+
         )
     }
 }
