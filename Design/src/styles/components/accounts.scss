@@ -1,8 +1,9 @@
 .accounts {
     .account{
-        padding: 1rem 0;
         display:flex;
         justify-content: space-between;
         width: calc(100% - 5rem);
+        height: 5.7rem;
+        align-items: center;
     }
 }

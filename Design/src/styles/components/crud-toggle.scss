@@ -1,10 +1,18 @@
 $crud-width:4.5rem;
-
-.crud{
+.crud {
     position: absolute;
     right: -2rem;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
+}
+
+.crud-layout {
+    position: relative;
+    button.create {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
 }
 
 .crud-toggle {
@@ -50,10 +58,10 @@ $crud-width:4.5rem;
         .save,
         .delete {
             width: ($crud-width * .55);
-            color:#fff;
+            color: #fff;
         }
-        .confirm{
-            color:#fff;
+        .confirm {
+            color: #fff;
         }
         .toggle-bar {
             height: ($crud-width * .45);
@@ -62,7 +70,7 @@ $crud-width:4.5rem;
             background-color: #efefef;
             transition-duration: .2s;
             opacity: .75;
-            margin:0 .4rem;
+            margin: 0 .4rem;
             @include states() {
                 height: ($crud-width * .5);
                 opacity: 1;

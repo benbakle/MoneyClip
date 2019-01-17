@@ -1,12 +1,7 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
 import Loading from '../Loading';
-import Helpers from '../../Helpers';
-import Money from '../Money';
-import Moment from 'react-moment';
-import View from '../account/View.js';
 import CrudToggle from '../CrudToggle';
-import Noty from 'noty';
 import Notification from '../../services/Notification';
 
 export default class Crud extends React.Component {
@@ -97,7 +92,7 @@ export default class Crud extends React.Component {
 
     render() {
         return (
-            <div className={this.props.type} ref={node => this.node = node}>
+            <div className={`crud-layout ${this.props.type}`} ref={node => this.node = node}>
                 <div className="title">{this.props.type}</div>
                 {
                     this.state.fetching && !this.state.items &&
@@ -115,11 +110,8 @@ export default class Crud extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.items &&
-
-                    <div className={this.props.type}>
-                        <div className={this.props.type.slice(0, -1)}>
-                            {React.cloneElement(this.props.header)}
-                        </div>
+                    <div className={this.props.type.slice(0, -1)}>
+                        {React.cloneElement(this.props.header)}
                     </div>
                 }
                 {
@@ -129,12 +121,12 @@ export default class Crud extends React.Component {
                             {
                                 !this.itemInEditMode(key) &&
                                 <React.Fragment>
-                                    {React.cloneElement(this.state.view, { item: item })}
+                                    {React.cloneElement(this.state.view, { item: item, callback: this.callback })}
                                 </React.Fragment>
                             }
                             {
                                 this.itemInEditMode(key) &&
-                                <div  >
+                                <div>
                                     {React.cloneElement(this.state.update, { item: item, callback: this.callback, triggerUpdate: this.state.triggerUpdate })}
                                 </div>
                             }

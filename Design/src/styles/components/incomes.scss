@@ -1,8 +1,9 @@
 .incomes {
     .income{
-        padding: 1rem 0;
         display:flex;
         justify-content: space-between;
+        height: 5.7rem;
+        align-items: center;
         width: calc(100% - 5rem);
     }
 }

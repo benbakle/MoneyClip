@@ -42,7 +42,6 @@ export default class Listing extends React.Component {
                     }
                     />
             </React.Fragment>
-
         )
     }
 }
