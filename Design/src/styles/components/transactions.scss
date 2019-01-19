@@ -1,14 +1,7 @@
 .transactions {
- 
     .transaction {
-        display: flex;
-        align-items:center;
-        height: 5.7rem;
-        width:calc(100% - 5rem);
-        
-        .date,
-        [name='date'] {
-            width: 17.5rem;
+        .date{
+            width: 25rem;
             text-align: left;
             font-weight: 200;
             font-size: 1.6rem;
@@ -17,7 +10,7 @@
             }
         }
         .description {
-            width: calc(100% - 37.5rem);
+            width: calc(100% - 53.5rem);
             text-align: left;
             font-weight: 400;
             font-size: 1.6rem;
@@ -30,16 +23,15 @@
         }
         .amount {
             width: 12.5rem;
-            text-align: right;
             &.mc-label {
                 @include mcLabel;
             }
             input {
-                text-align: right;
+               padding-left:2rem;
             }
         }
-        .status{
-            width:7.5rem;
+        .status {
+            width: 7.5rem;
             text-align: center;
         }
     }

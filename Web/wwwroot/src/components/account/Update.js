@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
 //import Calendar from 'react-calendar';
-import Moment from 'react-moment';
-import Delete from './Delete';
+//import Moment from 'react-moment';
+//import Delete from './Delete';
 
 
 export default class Update extends React.Component {

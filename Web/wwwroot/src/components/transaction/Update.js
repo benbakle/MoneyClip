@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
 //import Calendar from 'react-calendar';
-import Moment from 'react-moment';
-import Delete from './Delete';
+//import Moment from 'react-moment';
+//import Delete from './Delete';
 import Notification from '../../services/Notification';
 
 export default class Update extends React.Component {
@@ -13,7 +13,8 @@ export default class Update extends React.Component {
             id: null,
             date: null,
             description: null,
-            amount: null
+            amount: null,
+            cleared: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,10 +25,11 @@ export default class Update extends React.Component {
     componentDidMount() {
         this.props.item &&
             this.setState({
-            id: this.props.item.id,
-            date: this.props.item.date,
-            description: this.props.item.description,
-            amount: this.props.item.amount
+                id: this.props.item.id,
+                date: this.props.item.date,
+                description: this.props.item.description,
+                amount: this.props.item.amount,
+                cleared: this.props.item.cleared
             });
     }
 
@@ -56,23 +58,39 @@ export default class Update extends React.Component {
     render() {
         return (
             this.props.item &&
-            <div className="transaction">
+            <React.Fragment>
                 {
                     //<Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
-                <div className="date">
+                <div className="cell date input-wrapper">
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                 </div>
                 {
                     //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
-                <div className="description">
+                <div className="cell description input-wrapper">
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
                 </div>
-                <div className="amount">
+                <div className="cell amount  input-wrapper">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-            </div>
+                <div className="cell status">
+                    {
+                        !this.props.item.cleared &&
+                        <div className="status-toggle">
+                            <button className="link"><i className="far fa-square"></i></button>
+                            <button onClick={this.confirm} className="link"><i className="fa fa-check"></i></button>
+                        </div>
+                    }
+                    {
+                        this.props.item.cleared &&
+                        <div className="link">
+                            <i className="fa fa-check"></i>
+                        </div>
+                    }
+                </div>
+                <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>
+            </React.Fragment>
         )
     }
 }

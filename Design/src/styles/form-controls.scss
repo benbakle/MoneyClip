@@ -1,47 +1,49 @@
-@include inputs{
-    border:none;
-    background-color:transparent;
-    font-weight: 400;
-    font-size: 1.6rem;
-    width:100%;
-    background-color: #fff;
-    height: 3.5rem;
+.input-wrapper {
+    @include inputs {
+        font-family: "Muli", sans-serif;
+        box-shadow: 0 0 7px rgba(0, 0, 0, .17);
+        width: 100%;
+        font-size: 16px;
+        border: none;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
+select{
+    cursor: pointer;
+    margin-bottom: 2.5rem;
 }
 
-input, textarea, select, button {
-    font-family: "Muli", sans-serif;
+.required,
+.error {
+    color: brown;
 }
 
-.required, .error{
-    color:brown;
-}
-
-.help{
-    font-size:.9rem;
+.help {
+    font-size: .9rem;
     line-height: 1.2rem;
     text-transform: uppercase;
     font-weight: 700;
-    color:brown;
+    color: brown;
     letter-spacing: .1rem;
 }
 
-.button{
+.button {
     font-family: "Muli", sans-serif;
-    background-color:  $color-link;
-    color:#fff;
-    border:none;
-    font-size:1.4rem;
-    padding:.5rem 2.5rem;
+    background-color: $color-link;
+    color: #fff;
+    border: none;
+    font-size: 1.4rem;
+    padding: .5rem 2.5rem;
     cursor: pointer;
-    margin:1.5rem 0;
+    margin: 1.5rem 0;
     border-radius: .2rem;
     transition-duration: .3s;
-    @include states{
-        background-color:$color-link-hover;
+    @include states {
+        background-color: $color-link-hover;
     }
+}
 
- }
-
- .mc-label{
+.mc-label {
     @include mcLabel;
- }
+}

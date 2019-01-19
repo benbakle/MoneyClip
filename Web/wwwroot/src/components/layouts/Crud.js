@@ -35,7 +35,7 @@ export default class Crud extends React.Component {
         this.fetchItems();
     }
     componentWillReceiveProps(props) {
-        if (props.filter != "")
+        if (props.filter !== "")
             this.fetchItems(props.filter);
     }
 
@@ -64,7 +64,7 @@ export default class Crud extends React.Component {
     }
 
     itemInEditMode(key) {
-        return this.state.itemInEditMode == key;
+        return this.state.itemInEditMode === key;
     }
 
     toggleCreateMode() {
@@ -73,7 +73,7 @@ export default class Crud extends React.Component {
 
     callback() {
         this.fetchItems();
-        this.setState({ itemInEditMode: -1, inCreateMode: false, triggerUpdate: false })
+        this.setState({ itemInEditMode: -1, inCreateMode: false, triggerUpdate: false });
     }
 
     saveAction() {
@@ -110,14 +110,14 @@ export default class Crud extends React.Component {
                 }
                 {
                     !this.state.fetching && this.state.items &&
-                    <div className={this.props.type.slice(0, -1)}>
+                    <div className={`${this.props.type.slice(0, -1)} crud-header`}>
                         {React.cloneElement(this.props.header)}
                     </div>
                 }
                 {
                     !this.state.fetching && this.state.items &&
                     this.state.items.map((item, key) =>
-                        <div className="relative" key={key}>
+                        <div className={`${this.props.type.slice(0, -1)} crud-item`} key={key}>
                             {
                                 !this.itemInEditMode(key) &&
                                 <React.Fragment>
@@ -126,12 +126,10 @@ export default class Crud extends React.Component {
                             }
                             {
                                 this.itemInEditMode(key) &&
-                                <div>
-                                    {React.cloneElement(this.state.update, { item: item, callback: this.callback, triggerUpdate: this.state.triggerUpdate })}
-                                </div>
+                                React.cloneElement(this.state.update, { item: item, callback: this.callback, triggerUpdate: this.state.triggerUpdate })
                             }
-                            <div className="crud">
-                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key != this.state.itemInEditMode} />
+                            <div className="crud cell">
+                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key !== this.state.itemInEditMode} />
                             </div>
                         </div>
                     )

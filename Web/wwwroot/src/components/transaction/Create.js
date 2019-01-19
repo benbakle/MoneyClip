@@ -20,20 +20,26 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        let transaction = { Date:this.state.date, Description: this.state.description, Amount: this.state.amount };
-        Api.create("transactions",transaction).then(this.props.callback);
+        let transaction = { Date: this.state.date, Description: this.state.description, Amount: this.state.amount };
+        Api.create("transactions", transaction).then(this.props.callback);
     }
 
     render() {
         return (
-            <div className="create-income">
+            <div className="create-transaction">
                 <div>Post Date: </div>
-                <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
-                <div>Description: </div>
-                <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
-                <div>Amount: </div>
-                <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount}/>
-                <button className="button submit" onClick={this.submit}>Add </button>
+                <div className="input-wrapper">
+                    <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                    <div>Description: </div>
+                </div>
+                <div className="input-wrapper">
+                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                    <div>Amount: </div>
+                </div>
+                <div className="input-wrapper">
+                    <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
+                    <button className="button submit" onClick={this.submit}>Add </button>
+                </div>
             </div>
         );
     }

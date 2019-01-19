@@ -1,7 +1,5 @@
 ﻿class Api {
     fetch(route,) {
-        let filter = "";
-
         return fetch(route, {
             headers: {
                 'Content-Type': 'application/json',

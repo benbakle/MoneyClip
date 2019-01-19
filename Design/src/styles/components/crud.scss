@@ -1,0 +1,153 @@
+$crud-width:4.5rem;
+.crud-layout {
+    padding: 5rem;
+    position: relative;
+    button.create {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    button.close {
+        position: absolute;
+        right: -5rem;
+        font-size: 3rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color:$color-primary;
+        transition-duration: .3s;
+        opacity: .4;
+        @include states{
+            opacity: 8;
+        }
+    }
+    .crud-item,
+    .crud-header {
+        position: relative;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+    .crud-item:nth-child(even) {
+        background-color: lighten($color-background, 5);
+    }
+    .cell {
+        box-sizing: border-box;
+        padding: 13px 20px;
+        &.input-wrapper {
+            padding: 2.5px 10px;
+        }
+    }
+}
+
+.status {
+    .status-toggle {
+        height: 3.5rem;
+        position: relative;
+        @include states {
+            button:first-child {
+                opacity: .2;
+            }
+            button:last-child {
+                opacity: 1;
+            }
+        }
+        button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            &:last-child {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.crud {
+    .crud-toggle {
+        display: inline-block;
+        position: relative;
+        width: $crud-width;
+        height: ($crud-width * .75);
+        font-size: ($crud-width * .4);
+        line-height: 1.5em;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: none;
+        border-radius: ($crud-width * .09);
+        padding: 0;
+        cursor: pointer;
+        overflow: hidden;
+        .slide {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            background-color: transparent;
+            color: $color-body;
+            width: ($crud-width * 5);
+            padding: ($crud-width * .1) 0;
+            box-sizing: border-box;
+            left: 0;
+            transition-duration: .3s;
+            .edit,
+            .save,
+            .delete,
+            .confirm {
+                width: $crud-width;
+                text-align: center;
+                position: relative;
+                opacity: .75;
+                transition-duration: .3s;
+                @include states() {
+                    font-size: 1.15em;
+                    opacity: 1;
+                }
+            }
+            .save,
+            .delete {
+                width: ($crud-width * .55);
+                color: #fff;
+            }
+            .confirm {
+                color: #fff;
+            }
+            .toggle-bar {
+                height: ($crud-width * .45);
+                border-radius: .3rem;
+                width: ($crud-width * .25);
+                background-color: #efefef;
+                transition-duration: .2s;
+                opacity: .75;
+                margin: 0 .4rem;
+                @include states() {
+                    height: ($crud-width * .5);
+                    opacity: 1;
+                }
+            }
+        }
+        &.edit-mode {
+            .slide {
+                left: 0rem;
+            }
+        }
+        &.save-mode {
+            .slide {
+                background-color: #57B157;
+                left: ($crud-width * -1);
+            }
+        }
+        &.delete-mode {
+            .slide {
+                background-color: #D9534F;
+                left: ($crud-width * -1.53);
+            }
+        }
+        &.confirm-mode {
+            .slide {
+                background-color: #57B157;
+                left: ($crud-width * -2.5);
+            }
+        }
+    }
+}

@@ -2,10 +2,8 @@
 import View from './View';
 import Update from './Update';
 import Create from './Create';
-import ListingLayout from '../layouts/Listing';
 import Card100 from '../layouts/Card100';
 import Crud from '../layouts/Crud';
-import Card50 from '../layouts/Card50';
 import ListingHeader from './ListingHeader';
 
 export default class Listing extends React.Component {
@@ -26,21 +24,23 @@ export default class Listing extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <div className="input-wrapper">
                     <select onChange={this.handleFilter} value={this.state.cleared}>
                         <option value={true} >Cleared</option>
                         <option value={false}>Pending</option>
                     </select>
-                    <Card100 content={
-                        <Crud
-                            view={<View />}
-                            create={<Create />}
-                            update={<Update />}
-                            header={<ListingHeader />}
-                            type="transactions"
-                            filter={this.state.filter}
-                        />
-                    }
+                </div>
+                <Card100 content={
+                    <Crud
+                        view={<View />}
+                        create={<Create />}
+                        update={<Update />}
+                        header={<ListingHeader />}
+                        type="transactions"
+                        filter={this.state.filter}
                     />
+                }
+                />
             </React.Fragment>
         )
     }
