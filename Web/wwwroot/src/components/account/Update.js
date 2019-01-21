@@ -49,12 +49,13 @@ export default class Update extends React.Component {
         return (
             this.props.item &&
             <div className="account update ">
-                <div>
+                <div className="cell input-wrapper">
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
-                <div>
+                <div className="cell input-wrapper">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
                 </div>
+                <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>
             </div>
 
         )

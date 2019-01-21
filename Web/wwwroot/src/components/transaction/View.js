@@ -6,7 +6,9 @@ import Notification from '../../services/Notification';
 export default class View extends React.Component {
     constructor(props) {
         super(props);
+
         this.clear = this.clear.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
     }
 
     clear() {
@@ -14,12 +16,20 @@ export default class View extends React.Component {
         Notification.success({ text: "Cleared!" });
     }
 
+    handleEnter(e) {
+       if (e.keyCode === 13)
+           this.clear() ;
+    }
+
     render() {
         return (
             this.props.item &&
             <React.Fragment>
-                <div className="cell date">
+                <div className="cell date desktop">
                     <Moment date={this.props.item.date} format="MMMM DD, YYYY" />
+                </div>
+                <div className="cell date mobile">
+                    <Moment date={this.props.item.date} format="MM-DD-YY" />
                 </div>
                 <div className="cell description">{this.props.item.description}</div>
                 <div className="cell amount"><Money value={this.props.item.amount} /></div>
@@ -27,7 +37,7 @@ export default class View extends React.Component {
                     {
                         !this.props.item.cleared &&
                         <div className="status-toggle">
-                            <button className="link"><i className="far fa-square"></i></button>
+                            <button onKeyUp={this.handleEnter} className="link"><i className="far fa-square"></i></button>
                             <button onClick={this.clear} className="link"><i className="fa fa-check"></i></button>
                         </div>
                     }

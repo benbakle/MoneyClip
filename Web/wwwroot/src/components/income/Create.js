@@ -50,14 +50,14 @@ export default class Create extends React.Component {
     render() {
         return (
             <div className="create-income">
-                <div className="description">
+                <div className="description input-wrapper">
                     <label>Description:</label>
                     <span className="required">
                         {this.state.description === "" && this.state.descriptionHasBeenUpdated && "*"}
                     </span>
                     <input type="text" name="description" onChange={this.validateDescription} value={this.state.description} />
                 </div>
-                <div className="amount">
+                <div className="amount input-wrapper">
                     <label>Amount:</label>
                     <span className="required">
                         {this.state.amount === "" && this.state.amountHasBeenUpdated && "*"}

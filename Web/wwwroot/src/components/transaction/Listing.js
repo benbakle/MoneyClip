@@ -24,23 +24,25 @@ export default class Listing extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="input-wrapper">
+                <div className="input-wrapper mc-container">
                     <select onChange={this.handleFilter} value={this.state.cleared}>
                         <option value={true} >Cleared</option>
                         <option value={false}>Pending</option>
                     </select>
                 </div>
-                <Card100 content={
-                    <Crud
-                        view={<View />}
-                        create={<Create />}
-                        update={<Update />}
-                        header={<ListingHeader />}
-                        type="transactions"
-                        filter={this.state.filter}
+                <div className="mc-container">
+                    <Card100 content={
+                        <Crud
+                            view={<View />}
+                            create={<Create />}
+                            update={<Update />}
+                            header={<ListingHeader />}
+                            type="transactions"
+                            filter={this.state.filter}
+                        />
+                    }
                     />
-                }
-                />
+                </div>
             </React.Fragment>
         )
     }

@@ -9,16 +9,18 @@ import ListingHeader from './ListingHeader';
 export default class Listing extends React.Component {
     render() {
         return (
-            <Card100 content={
-                <Crud
-                    view={<View />}
-                    create={<Create />}
-                    update={<Update />}
-                    header={<ListingHeader />}
-                    type="incomes"
+            <div className="mc-container">
+                <Card100 content={
+                    <Crud
+                        view={<View />}
+                        create={<Create />}
+                        update={<Update />}
+                        header={<ListingHeader />}
+                        type="incomes"
+                    />
+                }
                 />
-            }
-            />
+            </div>
         )
     }
 }

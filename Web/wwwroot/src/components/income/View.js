@@ -6,8 +6,8 @@ export default class View extends React.Component {
         return (
             this.props.item &&
             <div className="income">
-                <div className="description">{this.props.item.description}</div>
-                <div className="amount"><Money value={this.props.item.amount} /></div>
+                <div className="cell description">{this.props.item.description}</div>
+                <div className="cell amount"><Money value={this.props.item.amount} /></div>
             </div>
         )
     }

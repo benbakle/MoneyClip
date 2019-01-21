@@ -58,21 +58,21 @@ export default class Balance extends React.Component {
                     <React.Fragment>
                         <div className="title">Balance: </div>
                         <div className="flex align-center space-between">
-                            <div className="">Incomes Total (per month): </div>
+                            <div className="cell">Incomes Total (per month): </div>
                             <Money value={this.state.incomeTotal} />
                         </div>
                         <hr />
                         <div className="flex align-center space-between">
-                            <div className="">Accounts Total: </div>
+                            <div className="cell">Accounts Total: </div>
                             <Money value={this.state.accountTotal} />
                         </div>
                         <div className="flex align-center space-between">
-                            <div className="">Pending Transactions: </div>
+                            <div className="cell">Pending Transactions: </div>
                             <Money value={this.state.transactionTotal} />
                         </div>
                         <hr />
                         <div className="flex align-center space-between balance">
-                            <div className="">Current Balance: </div>
+                            <div className="cell">Current Balance: </div>
                             <Money value={this.state.currentBalance} />
                         </div>
                     </React.Fragment>

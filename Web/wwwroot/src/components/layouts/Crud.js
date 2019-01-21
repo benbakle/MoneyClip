@@ -48,7 +48,7 @@ export default class Crud extends React.Component {
     }
 
     handleClick(e) {
-        if (this.node && this.node.contains(e.target)) {
+        if (this.node.contains(e.target)) {
             return;
         }
         this.setState({ itemInEditMode: -1, triggerUpdate: true })
@@ -93,7 +93,6 @@ export default class Crud extends React.Component {
     render() {
         return (
             <div className={`crud-layout ${this.props.type}`} ref={node => this.node = node}>
-                <div className="title">{this.props.type}</div>
                 {
                     this.state.fetching && !this.state.items &&
                     <Loading />
@@ -101,6 +100,7 @@ export default class Crud extends React.Component {
                 {
                     !this.state.fetching &&
                     <React.Fragment>
+                        <div className="title">{this.props.type}</div>
                         <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? <i className="fa fa-times-circle"></i> : <i className="fa fa-plus-circle"></i>}</button>
                         {
                             this.state.inCreateMode &&

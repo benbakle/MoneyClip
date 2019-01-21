@@ -39,14 +39,13 @@ header {
             letter-spacing: .2rem;
             color: $color-body;
             @include states {
-                color: $color-link;
                 text-decoration: none;
-                background-color: darken($color-background, 20);
+                background-color: lighten($color-primary,20);
             }
             &.active{
                 color: $color-link;
                 text-decoration: none;
-                background-color: darken($color-background, 10);
+                background-color: lighten($color-primary,25);
             }
             i {
                 display: inline-block;

@@ -10,23 +10,24 @@ export default class Listing extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="accounts">
-                    <div className="account">
+                <div className="mc-container">
+                    <div className="accounts">
+                        <div className="account">
 
+                        </div>
                     </div>
-                </div>
-                <Card100 content={
-                    <Crud
-                        view={<View />}
-                        create={<Create />}
-                        update={<Update />}
-                        header={<ListingHeader/>}
-                        type="accounts"
+                    <Card100 content={
+                        <Crud
+                            view={<View />}
+                            create={<Create />}
+                            update={<Update />}
+                            header={<ListingHeader />}
+                            type="accounts"
+                        />
+                    }
                     />
-                }
-                />
+                </div>
             </React.Fragment>
-
         )
     }
 }

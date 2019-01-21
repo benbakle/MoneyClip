@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-//import Calendar from 'react-calendar';
-//import Moment from 'react-moment';
+import Calendar from 'react-calendar';
+import Moment from 'react-moment';
 //import Delete from './Delete';
 import Notification from '../../services/Notification';
 
@@ -60,13 +60,13 @@ export default class Update extends React.Component {
             this.props.item &&
             <React.Fragment>
                 {
-                    //<Moment date={this.state.date} format="dddd, MMMM Do YYYY" />
+                    //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
+                    //<Moment date={this.state.date} format="MMMM DD, YYYY" />
                 }
                 <div className="cell date input-wrapper">
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                 </div>
                 {
-                    //<Calendar date={this.state.date} format="dddd, MMMM Do YYYY" />
                 }
                 <div className="cell description input-wrapper">
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />

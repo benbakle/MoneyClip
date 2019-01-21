@@ -5,5 +5,8 @@
         padding:1.5rem;
         box-sizing: border-box;
         height: 100%;
+        @include large-tablet{
+            padding: 5rem;
+        }
     }
    

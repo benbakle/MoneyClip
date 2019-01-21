@@ -19,16 +19,21 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        let account = { Name: this.state.name, Balance: this.state.balance};
-        Api.create("accounts",account,).then(this.props.callback);
+        let account = { Name: this.state.name, Balance: this.state.balance };
+        Api.create("accounts", account).then(this.props.callback);
     }
 
     render() {
         return (
             <div className="create">
-                <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
-                <div>Amount: </div>
-                <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance}/>
+                <label>Account Name: </label>
+                <div className="input-wrapper">
+                    <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
+                </div>
+                <label>Amount: </label>
+                <div className="input-wrapper">
+                    <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
+                </div>
                 <button className="button submit" onClick={this.submit}>Add </button>
             </div>
         );

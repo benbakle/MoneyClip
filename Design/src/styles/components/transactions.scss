@@ -1,38 +1,51 @@
 .transactions {
     .transaction {
-        .date{
-            width: 25rem;
+        .date {
             text-align: left;
             font-weight: 200;
-            font-size: 1.6rem;
+            font-size: ($font-size-body * .778);
+            @include large-tablet {
+                width: 25%;
+            }
             &.mc-label {
                 @include mcLabel;
             }
         }
         .description {
-            width: calc(100% - 53.5rem);
             text-align: left;
             font-weight: 400;
-            font-size: 1.6rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            @include large-tablet {
+                width: 45%;
+            }
             &.mc-label {
                 @include mcLabel;
             }
         }
         .amount {
-            width: 12.5rem;
+            @include large-tablet {
+                width: 15%;
+            }
             &.mc-label {
                 @include mcLabel;
             }
             input {
-               padding-left:2rem;
+                padding-left: 2rem;
             }
         }
         .status {
-            width: 7.5rem;
             text-align: center;
+            @include large-tablet {
+                width: 5%;
+            }
+        }
+        .crud {
+            width: 10%;
+            @include large-tablet {
+                text-align: center;
+            }
         }
     }
 }
