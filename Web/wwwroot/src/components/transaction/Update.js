@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import Moment from 'react-moment';
 //import Delete from './Delete';
 import Notification from '../../services/Notification';
+import StatusToggle from './StatusToggle';
 
 export default class Update extends React.Component {
     constructor(props) {
@@ -74,21 +75,7 @@ export default class Update extends React.Component {
                 <div className="cell amount  input-wrapper">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-                <div className="cell status">
-                    {
-                        !this.props.item.cleared &&
-                        <div className="status-toggle">
-                            <button className="link"><i className="far fa-square"></i></button>
-                            <button onClick={this.confirm} className="link"><i className="fa fa-check"></i></button>
-                        </div>
-                    }
-                    {
-                        this.props.item.cleared &&
-                        <div className="link">
-                            <i className="fa fa-check"></i>
-                        </div>
-                    }
-                </div>
+                <StatusToggle callback={this.props.callback} cleared={this.state.cleared} />
                 <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>
             </React.Fragment>
         )

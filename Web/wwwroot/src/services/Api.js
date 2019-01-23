@@ -1,11 +1,12 @@
 ﻿class Api {
-    fetch(route,) {
+    fetch(route, options) {
         return fetch(route, {
             headers: {
                 'Content-Type': 'application/json',
                 'pragma': 'no-cache',
-                'cache-control': 'no-cache'
-            }
+                'cache-control': 'no-cache',
+            },
+            ...options
         })
             .then(res => {
                 if (!res.ok)

@@ -67,5 +67,22 @@ namespace MoneyClip.Api
             return NoContent();
         }
 
+        [HttpPut("toggleStatus/{id}")]
+        public async Task<IActionResult> ToggleStatus(int id)
+        {
+
+            var transaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == id);
+
+            if (transaction == null)
+            {
+                return BadRequest();
+            }
+            transaction.Cleared = !transaction.Cleared;
+            await _context.Save();
+
+            return NoContent();
+        }
+
+
     }
 }
