@@ -11,9 +11,9 @@ export default class StatusToggle extends React.Component {
     }
 
     toggleClear() {
-        Api.fetch(`/api/transactions/toggleStatus/${this.props.id}`, {method: 'PUT'}).then(() => {
+        Api.fetch(`/api/transactions/toggleStatus/${this.props.item.id}`, { method: 'PUT' }).then(() => {
             this.props.callback();
-            Notification.success({ text: "Cleared!" });
+            Notification.success({ text: `${this.props.item.description} status updated.` });
         })
     }
 
@@ -27,14 +27,14 @@ export default class StatusToggle extends React.Component {
             <React.Fragment>
                 <div className="cell status">
                     {
-                        !this.props.cleared &&
+                        !this.props.item.cleared &&
                         <div className="status-toggle">
                             <button onKeyUp={this.handleEnter} className="link"><i className="far fa-square"></i></button>
                             <button onClick={this.toggleClear} className="link"><i className="fa fa-check"></i></button>
                         </div>
                     }
                     {
-                        this.props.cleared &&
+                        this.props.item.cleared &&
                         <div className="status-toggle">
                             <button onKeyUp={this.handleEnter} className="link"><i className="fa fa-check"></i></button>
                             <button onClick={this.toggleClear} className="link"><i className="far fa-square"></i></button>

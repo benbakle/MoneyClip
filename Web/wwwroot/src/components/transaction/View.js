@@ -18,7 +18,7 @@ export default class View extends React.Component {
                 </div>
                 <div className="cell description">{this.props.item.description}</div>
                 <div className="cell amount"><Money value={this.props.item.amount} /></div>
-                <StatusToggle callback={this.props.callback} cleared={this.props.item.cleared} id={this.props.item.id} />
+                <StatusToggle callback={this.props.callback}  item={this.props.item} />
             </React.Fragment>
         )
     }

@@ -75,7 +75,7 @@ export default class Update extends React.Component {
                 <div className="cell amount  input-wrapper">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
                 </div>
-                <StatusToggle callback={this.props.callback} cleared={this.state.cleared} />
+                <StatusToggle callback={this.props.callback} item={this.state} />
                 <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>
             </React.Fragment>
         )
