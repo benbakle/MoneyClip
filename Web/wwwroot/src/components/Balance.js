@@ -10,9 +10,9 @@ export default class Balance extends React.Component {
         this.state = {
             fetching: true,
             accountTotal: null,
-            transactionTotal: null,
-            incomeTotal: null,
-            currentBalance: null
+            transactionTotal: 0,
+            incomeTotal: 0,
+            currentBalance: 0
         }
 
         this.loadAccountTotal = this.loadAccountTotal.bind(this);
@@ -54,7 +54,7 @@ export default class Balance extends React.Component {
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.accountTotal && this.state.transactionTotal && this.state.incomeTotal &&
+                    !this.state.fetching && this.state.accountTotal && 
                     <React.Fragment>
                         <div className="title">Balance: </div>
                         <div className="flex align-center space-between">

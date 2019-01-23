@@ -28,7 +28,7 @@ namespace MoneyClip.Api
         [EnableQuery]
         public decimal TransactionTotal()
         {
-            return _context.Query<Transaction>().Sum(item => item.Amount);
+            return _context.Query<Transaction>().Where(t => t.Cleared == false).Sum(item => item.Amount);
         }
 
         [HttpPost]

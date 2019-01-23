@@ -13,7 +13,7 @@ export default class StatusToggle extends React.Component {
     toggleClear() {
         Api.fetch(`/api/transactions/toggleStatus/${this.props.item.id}`, { method: 'PUT' }).then(() => {
             this.props.callback();
-            Notification.success({ text: `${this.props.item.description} status updated.` });
+            Notification.success({ text: `${this.props.item.description} status has been updated to ${generateStatusText(this.props.item.cleared)}.` });
         })
     }
 
@@ -44,4 +44,8 @@ export default class StatusToggle extends React.Component {
             </React.Fragment>
         )
     }
+}
+
+function generateStatusText(cleared) {
+    return cleared ? "'PENDING'" : "'CLEARED'";
 }
