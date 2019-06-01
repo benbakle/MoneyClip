@@ -8,6 +8,7 @@ export default class Create extends React.Component {
         this.state = {
             date: new Date(),
             description: "",
+            number: "",
             amount: 0
         }
 
@@ -20,7 +21,7 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        let transaction = { Date: this.state.date, Description: this.state.description, Amount: this.state.amount };
+        let transaction = { Date: this.state.date, Description: this.state.description, Amount: this.state.amount, Number: this.state.number };
         Api.create("transactions", transaction).then(this.props.callback);
     }
 
@@ -30,16 +31,20 @@ export default class Create extends React.Component {
                 <div>Post Date: </div>
                 <div className="input-wrapper">
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
-                    <div>Description: </div>
                 </div>
+                <div>Description: </div>
                 <div className="input-wrapper">
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
-                    <div>Amount: </div>
                 </div>
+                <div>Amount: </div>
                 <div className="input-wrapper">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />
-                    <button className="button submit" onClick={this.submit}>Add </button>
                 </div>
+                <div>Number: </div>
+                <div className="input-wrapper">
+                    <input type="text" name="number" onChange={this.handleChange} value={this.state.number} />
+                </div>
+                <button className="button submit" onClick={this.submit}>Add </button>
             </div>
         );
     }

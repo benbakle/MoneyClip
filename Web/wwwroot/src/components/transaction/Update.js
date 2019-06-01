@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-import Calendar from 'react-calendar';
-import Moment from 'react-moment';
-//import Delete from './Delete';
+//import Calendar from 'react-calendar';
+//import Moment from 'react-moment';
 import Notification from '../../services/Notification';
 import StatusToggle from './StatusToggle';
 
@@ -15,6 +14,7 @@ export default class Update extends React.Component {
             date: null,
             description: null,
             amount: null,
+            number: null,
             cleared: false
         }
 
@@ -30,6 +30,7 @@ export default class Update extends React.Component {
                 date: this.props.item.date,
                 description: this.props.item.description,
                 amount: this.props.item.amount,
+                number: this.props.item.number,
                 cleared: this.props.item.cleared
             });
     }
@@ -71,6 +72,9 @@ export default class Update extends React.Component {
                 }
                 <div className="cell description input-wrapper">
                     <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                </div>
+                <div className="cell number input-wrapper">
+                    <input type="text" name="number" onChange={this.handleChange} value={this.state.number} />
                 </div>
                 <div className="cell amount  input-wrapper">
                     <input type="text" name="amount" onChange={this.handleChange} value={this.state.amount} />

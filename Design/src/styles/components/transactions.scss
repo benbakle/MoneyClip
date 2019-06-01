@@ -5,7 +5,7 @@
             font-weight: 200;
             font-size: ($font-size-body * .778);
             @include large-tablet {
-                width: 25%;
+                width: 20%;
             }
             &.mc-label {
                 @include mcLabel;
@@ -18,7 +18,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             @include large-tablet {
-                width: 45%;
+                width: 35%;
             }
             &.mc-label {
                 @include mcLabel;
@@ -33,6 +33,12 @@
             }
             input {
                 padding-left: 1.75rem;
+            }
+        }
+        .number {
+            text-align: left;
+            @include large-tablet {
+                width: 15%;
             }
         }
         .status {

@@ -70,7 +70,6 @@ namespace MoneyClip.Api
         [HttpPut("toggleStatus/{id}")]
         public async Task<IActionResult> ToggleStatus(int id)
         {
-
             var transaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == id);
 
             if (transaction == null)
@@ -83,6 +82,13 @@ namespace MoneyClip.Api
             return NoContent();
         }
 
+        [HttpGet("payees")]
+        public IQueryable<string> Payees()
+        {
+            var payees = _context.Query<Transaction>().Select(d => d.Description).Distinct();
+
+            return payees;
+        }
 
     }
 }

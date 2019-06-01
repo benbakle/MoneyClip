@@ -12,7 +12,8 @@
                 if (!res.ok)
                     throw Error(res.statusText);
                 return res.json();
-            }).catch(e => console.log(e));
+            })
+            .catch(e => console.log(e));
     }
 
     create(route, item) {

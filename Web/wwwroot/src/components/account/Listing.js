@@ -11,11 +11,6 @@ export default class Listing extends React.Component {
         return (
             <React.Fragment>
                 <div className="mc-container">
-                    <div className="accounts">
-                        <div className="account">
-
-                        </div>
-                    </div>
                     <Card100 content={
                         <Crud
                             view={<View />}
@@ -23,6 +18,7 @@ export default class Listing extends React.Component {
                             update={<Update />}
                             header={<ListingHeader />}
                             type="accounts"
+                            filter="$orderby=name"
                         />
                     }
                     />
