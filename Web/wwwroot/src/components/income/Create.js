@@ -48,27 +48,37 @@ export default class Create extends React.Component {
     }
 
     render() {
+        const { validateDescription, validateAmount, submit } = this;
+        const {
+            description,
+            amount,
+            amountHasBeenUpdated,
+            descriptionHasBeenUpdated,
+            amountIsValid
+        } = this.state;
+
+
         return (
             <div className="create-income">
                 <div className="description input-wrapper">
                     <label>Description:</label>
                     <span className="required">
-                        {this.state.description === "" && this.state.descriptionHasBeenUpdated && "*"}
+                        {description === "" && descriptionHasBeenUpdated && "*"}
                     </span>
-                    <input type="text" name="description" onChange={this.validateDescription} value={this.state.description} />
+                    <input type="text" name="description" onChange={validateDescription} value={description} />
                 </div>
                 <div className="amount input-wrapper">
                     <label>Amount:</label>
                     <span className="required">
-                        {this.state.amount === "" && this.state.amountHasBeenUpdated && "*"}
+                        {amount === "" && amountHasBeenUpdated && "*"}
                     </span>
-                    <input autoComplete="off" type="text" name="amount" onChange={this.validateAmount} value={this.state.amount} />
+                    <input autoComplete="off" type="text" name="amount" onChange={validateAmount} value={amount} />
                     {
-                        !this.state.amountIsValid &&
+                        !amountIsValid &&
                         <div className="help">'Amount' must be a number</div>
                     }
                     <div className="flex flex-end">
-                        <button className="button" onClick={this.submit}>Add</button>
+                        <button className="button" onClick={submit}>Add</button>
                     </div>
                 </div>
             </div>

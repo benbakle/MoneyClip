@@ -19,15 +19,15 @@ export default class Navigation extends React.Component {
                            </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/incomes" className="link" activeClassName="active">
-                            <i className="far fa-money-bill-alt"></i>
-                            &nbsp;Incomes
-                           </NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/transactions" className="link" activeClassName="active">
                             <i className="far fa-money-bill-alt"></i>
                             &nbsp;Transactions
+                           </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/incomes" className="link" activeClassName="active">
+                            <i className="far fa-money-bill-alt"></i>
+                            &nbsp;Incomes
                            </NavLink>
                     </li>
                 </ul>

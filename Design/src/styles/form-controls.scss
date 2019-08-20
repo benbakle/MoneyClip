@@ -1,12 +1,12 @@
 .input-wrapper {
     @include inputs {
         font-family: "Muli", sans-serif;
-        box-shadow: 0 0 7px rgba(0, 0, 0, .17);
         width: 100%;
         font-size: $font-size-body;
         border: none;
         padding: 10px;
         box-sizing: border-box;
+        @include boxShadow;
     }
 
     input[type='date']{

@@ -54,7 +54,7 @@ $crud-width:($font-size-body * 2.5);
         position: relative;
         @include states {
             button:first-child {
-                opacity: .2;
+                opacity: 0;
             }
             button:last-child {
                 opacity: 1;

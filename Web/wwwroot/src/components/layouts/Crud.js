@@ -81,8 +81,8 @@ export default class Crud extends React.Component {
         Notification.success({ text: "Saved!" })
     }
 
-    deleteAction() {
-        this.setState({ itemInEditMode: -1 });
+    deleteAction(itemId) {
+        Api.delete(this.props.type, itemId).then(this.callback);
         Notification.message({ text: "Bye, Felicia!" });
     }
 
@@ -129,7 +129,11 @@ export default class Crud extends React.Component {
                                 React.cloneElement(this.state.update, { item: item, callback: this.callback, triggerUpdate: this.state.triggerUpdate })
                             }
                             <div className="crud cell">
-                                <CrudToggle saveAction={this.saveAction} deleteAction={this.deleteAction} editAction={() => this.editAction(key)} resetToggle={key !== this.state.itemInEditMode} />
+                                <CrudToggle
+                                    saveAction={this.saveAction}
+                                    deleteAction={()=> this.deleteAction(item.id)}
+                                    editAction={() => this.editAction(key)}
+                                    resetToggle={key !== this.state.itemInEditMode} />
                             </div>
                         </div>
                     )

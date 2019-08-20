@@ -49,3 +49,7 @@
     color:$color-primary;
     text-transform: uppercase;
 }
+
+@mixin boxShadow {
+    box-shadow: 0 .1rem .3rem 0 rgba(0,0,0,.22);
+}

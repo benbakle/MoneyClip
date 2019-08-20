@@ -28,7 +28,7 @@ namespace MoneyClip.Api
         [EnableQuery]
         public decimal TransactionTotal()
         {
-            return _context.Query<Transaction>().Sum(item => item.Amount);
+            return _context.Query<Transaction>().Where(t => t.Cleared == false).Sum(item => item.Amount);
         }
 
         [HttpPost]
@@ -65,6 +65,29 @@ namespace MoneyClip.Api
             await _context.Save();
 
             return NoContent();
+        }
+
+        [HttpPut("toggleStatus/{id}")]
+        public async Task<IActionResult> ToggleStatus(int id)
+        {
+            var transaction = _context.Query<Transaction>().FirstOrDefault(i => i.Id == id);
+
+            if (transaction == null)
+            {
+                return BadRequest();
+            }
+            transaction.Cleared = !transaction.Cleared;
+            await _context.Save();
+
+            return NoContent();
+        }
+
+        [HttpGet("payees")]
+        public IQueryable<string> Payees()
+        {
+            var payees = _context.Query<Transaction>().Select(d => d.Description).Distinct();
+
+            return payees;
         }
 
     }
