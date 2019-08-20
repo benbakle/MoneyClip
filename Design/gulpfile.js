@@ -22,18 +22,6 @@ const config = {
         port: 8000,
         ui: 8080
     },
-    // quicktype: {
-    //     distributionPath: './dist/csharp/',
-    //     rootUrl: 'http://localhost:3000',
-    //     modelServicePaths: [{
-    //         fileName: "Article",
-    //         url: "/api/articles"
-    //     },
-    //     {
-    //         fileName: "HeroVideo",
-    //         url: "/api/heroVideos"
-    //     }]
-    // }
 }
 
 const log = (o, level = 0) => {
@@ -59,81 +47,22 @@ let server = null;
 const templateDistributionLocation = "./dist";
 const webDistributionLocation = "../Web/wwwroot/src/assets/";
 
-
-// const createModels = (cb) => {
-//     console.log(colors.cyan('[QUICKTYPE] Generating C# Models'.big));
-//     delete require.cache[require.resolve('./src/data/generate.js')];
-
-//     try {
-//         exec('quicktype ./src/data/db.json -l schema -o ./src/data/schema.json')
-//         if (!fs.existsSync(config.quicktype.distributionPath)) {
-//             fs.mkdirSync(config.quicktype.distributionPath);
-//         }
-//         config.quicktype.modelServicePaths.forEach(path => {
-//             console.log("Item" + path.url, path.fileName);
-//             exec(`quicktype ${config.quicktype.rootUrl}${path.url} -l csharp -o ${config.quicktype.distributionPath}${path.fileName}.cs`, function (err, stdout, stderr) {
-//                 if (stdout)
-//                     console.log('[QUICKTYPE] ' + colors.green(stdout));
-//                 if (stderr) {
-//                     console.log('[QUICKTYPE] ' + colors.red(stderr));
-//                     if (err)
-//                         console.log('[QUICKTYPE] ' + colors.red(err));
-//                 }
-//             });
-//         });
-//     } catch (err) {
-//         console.log(colors.red(err));
-//         if(cb) cb();
-//     }
-//     if (cb) cb();
-// }
-
-// const json = (callback) => {
-//     console.log(colors.cyan('[JSON] Generating a new DB'));
-
-//     delete require.cache[require.resolve('./src/data/generate.js')];
-
-//     try {
-//         var jsonData = require('./src/data/generate.js')
-//         fs.writeFile("./src/data/db.json", JSON.stringify(jsonData()), 'utf8', (err) => {
-//             if (err) {
-//                 console.log('[JSON] ' + colors.red(err));
-//                 if (callback)
-//                     callback()
-//             } else
-//                 console.log(colors.green('[JSON] DB.json Saved'.bold));
-
-//             if (callback)
-//                 callback();
-//         });
-//     } catch (err) {
-//         console.log('[JSON] ' + colors.red(err.toString()));
-//         if (callback)
-//             callback();
-//     }
-// };
-
 const html = (callback) => {
     console.log(colors.cyan('[HTML] Transpiling PUG'));
-    //console.log(colors.bold('[HTML] Injecting db.json into pug hyperspace'));
 
-    //const json = JSON.parse(fs.readFileSync('./src/data/db.json'));
     return gulp.src(['./src/markup/**/*.pug', '!src/markup/content/**/*.pug', '!src/markup/grids/**/*.pug', '!src/markup/mixins/**/*.pug'])
         .pipe(
             pug({
                 pretty: true,
                 debug: false,
                 compileDebug: false,
-                //data: json
             }).on('error', function (err) {
                 console.log('[HTML] ' + colors.bgWhite.red(err.toString()));
                 console.log('[HTML] ' + colors.red(err.message));
                 callback();
             })
         )
-        //.pipe(replace(entities.decode("&#65279;"), ''))
         .pipe(gulp.dest(templateDistributionLocation + '/'))
-        // .pipe(gulp.dest(webDistributionLocation + '/'))
         .on('end', function () {
             console.log(colors.green('[HTML] Transpilation complete'));
             callback();
@@ -143,7 +72,6 @@ const img = (callback) => {
     console.log(colors.cyan('[IMAGE] Copying Images'));
     return gulp.src('./src/img/**/*.*')
         .pipe(gulp.dest(templateDistributionLocation + '/img'))
-        // .pipe(gulp.dest(webDistributionLocation + '/img'))
         .on('error', function (err) {
             console.log('[IMAGE] ' + colors.red(err.toString()));
             callback();
@@ -188,7 +116,6 @@ const js = (callback) => {
         })
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(templateDistributionLocation + '/js'))
-        // .pipe(gulp.dest(webDistributionLocation + '/js'))
         .on('end', function () {
             callback();
         });
@@ -225,7 +152,6 @@ const jsv = (callback) => {
         })
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(templateDistributionLocation + '/js'))
-    // .pipe(gulp.dest(webDistributionLocation + '/js'));
 };
 const scss = (callback) => {
     console.log(colors.cyan('[SCSS] Transpiling Sass to Css'));
@@ -280,20 +206,6 @@ const serve = (callback) => {
     });
 };
 const build_routes = (cb) => {
-    //console.log(colors.cyan('[ROUTE] Rebuilding routes'));
-    //router = express.Router();
-    // server = jsonServer.create({
-    //     verbosity: {
-    //         level: "info",
-    //         urlTracing: false
-    //     }
-    // });
-    //server.use(jsonServer.defaults());
-    //server.use(jsonServer.router('./src/data/db.json'));
-    //router.use('/api', server)
-    // router.use('/test', (req, res, next) => {
-    //     res.render("Oh No")
-    // })
     if (cb) cb();
 };
 const watch = (callback) => {
@@ -307,7 +219,6 @@ const watch = (callback) => {
         console.log(colors.yellow('File ' + path + ' ' + event));
         scss(() => {
             console.log(browserSync);
-            //browserSync.stream();
         });
     });
 
