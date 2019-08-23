@@ -2,7 +2,6 @@
 
     _dragged;
 
-
     //to be called in componentDidMount
     makeDroppable = () => {
         this.handleDrag();
@@ -23,7 +22,6 @@
             node.style.cursor = "-webkit-grabing";
         });
     }
-
 
     handleDrag = () => {
         document.addEventListener("drag", () => { }, false);
@@ -50,9 +48,8 @@
     handleDragEnter = () => {
         document.addEventListener("dragenter",
             (e) => {
-                if (e.target.classList.contains("dropzone")) {
+                if (e.target.classList.contains("dropzone"))
                     e.target.classList.add("enter");
-                }
             }, false);
     }
 
@@ -70,7 +67,9 @@
             e.preventDefault();
             if (e.target.classList.contains("dropzone")) {
                 e.target.classList.remove("enter");
-                this._dragged.parentNode.removeChild(this._dragged);
+                document.getElementById(this._dragged.id)
+                    .parentNode
+                    .removeChild(this._dragged);
                 e.target.appendChild(this._dragged);
             }
         }, false);
