@@ -1,5 +1,4 @@
 ﻿class DropZone {
-
     _dragged;
 
     //to be called in componentDidMount
