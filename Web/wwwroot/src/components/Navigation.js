@@ -1,11 +1,13 @@
 ﻿import React from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import DropZone from './DropZone';
+import Draggable from './Draggable';
 
 export default class Navigation extends React.Component {
     render() {
         return (
             <div className="main-navigation">
+                <Draggable>
                 <ul>
                     <li>
                         <NavLink to="/dashboard" className="link" activeClassName="active">
@@ -31,7 +33,9 @@ export default class Navigation extends React.Component {
                             &nbsp;Incomes
                            </NavLink>
                     </li>
-                </ul>
+                    </ul>
+                    </Draggable>
+
                 <DropZone />
             </div>
         );

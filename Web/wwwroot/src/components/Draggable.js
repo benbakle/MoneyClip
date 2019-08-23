@@ -1,16 +1,11 @@
 ﻿import React from 'react';
+import dropZone from '../drop-zone';
 
 export default class Draggable extends React.Component {
 
     componentDidMount() {
-        if (this.node) {
-            this.node.id = Math.round(Math.random()* 1000000);
-            this.node.draggable = true;
-            this.node.ondragstart = "event.dataTransfer.setData('text/plain',null)";
-            this.node.addEventListener("mousedown", () => {
-                this.node.style.cursor = "-webkit-grabing";
-            })
-        }
+        if (this.node)
+            dropZone.makeDraggable(this.node);
     }
 
     render() {

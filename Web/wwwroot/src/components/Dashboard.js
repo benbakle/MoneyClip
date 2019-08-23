@@ -20,6 +20,7 @@ export default class Dashcard extends React.Component {
                     </Draggable>
                 </DropZone >
                 <DropZone />
+                <DropZone />
             </>
         );
     }
