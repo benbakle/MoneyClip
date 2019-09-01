@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import dropZone from '../drop-zone';
+import dropZone from '../libraries/drop-zone';
 
 export default class Draggable extends React.Component {
 

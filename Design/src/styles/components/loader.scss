@@ -3,7 +3,9 @@
 $loaderWidth: 15rem;
 $circumference: 75%;
 $speed: 1s;
+
 .loader {
+    position:relative;
     width: $loaderWidth;
     margin: 0 auto;
     text-align: center;

@@ -7,7 +7,6 @@ export default class Navigation extends React.Component {
     render() {
         return (
             <div className="main-navigation">
-                <Draggable>
                 <ul>
                     <li>
                         <NavLink to="/dashboard" className="link" activeClassName="active">
@@ -34,8 +33,6 @@ export default class Navigation extends React.Component {
                            </NavLink>
                     </li>
                     </ul>
-                    </Draggable>
-
                 <DropZone />
             </div>
         );
