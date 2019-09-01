@@ -5,7 +5,6 @@ import Dashboard from './components/Dashboard';
 import AccountListing from './components/account/Listing';
 import IncomeListing from './components/income/Listing';
 import TransactionListing from './components/transaction/Listing';
-import Loading from './components/Loading';
 
 export default class App extends Component {
     displayName = App.name

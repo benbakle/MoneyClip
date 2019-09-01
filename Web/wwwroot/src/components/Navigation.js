@@ -1,7 +1,5 @@
 ﻿import React from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
-import DropZone from './DropZone';
-import Draggable from './Draggable';
 
 export default class Navigation extends React.Component {
     render() {
@@ -33,7 +31,6 @@ export default class Navigation extends React.Component {
                            </NavLink>
                     </li>
                     </ul>
-                <DropZone />
             </div>
         );
     }

@@ -7,6 +7,7 @@ import Crud from '../layouts/Crud';
 import ListingHeader from './ListingHeader';
 import Balance from '../Balance';
 import Api from '../../services/Api';
+import Card50 from '../layouts/Card50';
 
 export default class Listing extends React.Component {
 
@@ -65,42 +66,46 @@ export default class Listing extends React.Component {
 
     render() {
         return (
-            <div className="mc-container">
-                <p>&nbsp;</p>
-                <Card100 content={
-                    <Balance />
-                }
-                />
-                <p>&nbsp;</p>
-                <div className="input-wrapper">
-                    <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
-                        <option value="">All</option>
-                        <option value={true} >Cleared</option>
-                        <option value={false}>Pending</option>
-                    </select>
-                </div>
-                {
-                    !this.state.fetching && this.state.payees &&
-                    <div className="input-wrapper">
-                        <select onChange={this.handleChange} value={this.state.payee} name="payee">
-                            <option value="">All Payees</option>
-                            {this.state.payees.map((item, key) =>
-                                <option value={item} key={key}>{item}</option>
-                            )}
-                        </select>
+            <div className="">
+                <div className="grid">
+                    <div className="flex-row">
+                        <div className="col-30">
+                            <div className="card">
+                                <Balance />
+                            </div>
+                        </div>
+                        <div className="col-70">
+                            <div className="input-wrapper">
+                                <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
+                                    <option value="">All</option>
+                                    <option value={true} >Cleared</option>
+                                    <option value={false}>Pending</option>
+                                </select>
+                            </div>
+                            {
+                                !this.state.fetching && this.state.payees &&
+                                <div className="input-wrapper">
+                                    <select onChange={this.handleChange} value={this.state.payee} name="payee">
+                                        <option value="">All Payees</option>
+                                        {this.state.payees.map((item, key) =>
+                                            <option value={item} key={key}>{item}</option>
+                                        )}
+                                    </select>
+                                </div>
+                            }
+                            <Crud
+                                view={<View />}
+                                create={<Create />}
+                                update={<Update />}
+                                header={<ListingHeader />}
+                                type="transactions"
+                                filter={this.state.filter}
+                            />
+
+                        </div>
                     </div>
-                }
-                <Card100 content={
-                    <Crud
-                        view={<View />}
-                        create={<Create />}
-                        update={<Update />}
-                        header={<ListingHeader />}
-                        type="transactions"
-                        filter={this.state.filter}
-                    />
-                }
-                />
+                </div>
+
             </div>
         )
     }

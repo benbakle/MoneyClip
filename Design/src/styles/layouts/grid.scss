@@ -3,15 +3,23 @@
         flex-wrap: wrap;
     }
 
+    .col-30,
     .col-40,
-    .col-60,
     .col-50,
+    .col-60,
+    .col-70,
     .col-100 {
         @include gutter;
         width: 100%;
-        order:2;
-        margin:1.5rem auto;
+        order: 2;
+        margin: 1.5rem auto;
         position: relative;
+    }
+
+    .col-30 {
+        @include desktop {
+            width: 30%;
+        }
     }
 
     .col-40 {
@@ -31,11 +39,18 @@
             width: 60%;
         }
     }
-    
-    .first-on-mobile{
-        order:1;
-        @include desktop{
-            order:2;
+
+    .col-70 {
+        @include desktop {
+            width: 70%;
+        }
+    }
+
+    .first-on-mobile {
+        order: 1;
+
+        @include desktop {
+            order: 2;
         }
     }
 }
