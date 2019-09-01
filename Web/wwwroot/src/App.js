@@ -17,7 +17,6 @@ export default class App extends Component {
                     <Header />
                 </header>
                 <main>
-                    <Loading />
                     <Route exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/accounts' component={AccountListing} />
                     <Route exact path='/incomes' component={IncomeListing} />

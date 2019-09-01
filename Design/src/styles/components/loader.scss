@@ -4,81 +4,96 @@ $loaderWidth: 15rem;
 $circumference: 75%;
 $speed: 1s;
 
-.loader {
-    position:relative;
-    width: $loaderWidth;
-    margin: 0 auto;
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    &.ready-set-go {
+.loading {
+    position: relative;
+    height: ($loaderWidth * 0.2);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .loader {
+        width: $loaderWidth;
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &.ready-set-go {
+            .circle {
+                &:after {
+                    animation-name: ready-set-go;
+                }
+            }
+        }
+
+        &.bounce {
+            .circle {
+                &:after {
+                    animation-name: bounce;
+                    top: 100%;
+                }
+            }
+        }
+
+        &.three-eyed-blink {
+            .circle {
+                &:after {
+                    animation-name: three-eyed-blink;
+                }
+            }
+        }
+
+        &.peek-a-boo {
+            .circle {
+                &:after {
+                    animation-name: peek-a-boo;
+                    width: 0 !important;
+                    height: 0 !important;
+                }
+            }
+        }
+
+        &.pop {
+            .circle {
+                &:after {
+                    animation-name: pop;
+                }
+            }
+        }
+
         .circle {
+            position: relative;
+            display: inline-block;
+            width: ($loaderWidth * 0.2);
+            height: ($loaderWidth * 0.2);
+
             &:after {
-                animation-name: ready-set-go;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                content: "";
+                display: block;
+                width: $circumference;
+                height: $circumference;
+                border-radius: ($circumference * 2);
+                background-color: $color-primary;
+                animation-duration: $speed;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
             }
-        }
-    }
-    &.bounce {
-        .circle {
-            &:after {
-                animation-name: bounce;
-                top:100%;
+
+            &:nth-child(2) {
+                &:after {
+                    animation-delay: ($speed * .2);
+                }
             }
-        }
-    }
-    &.three-eyed-blink {
-        .circle {
-            &:after {
-                animation-name: three-eyed-blink;
-            }
-        }
-    }
-    &.peek-a-boo {
-        .circle {
-            &:after {
-                animation-name: peek-a-boo;
-                width: 0 !important;
-                height: 0 !important;
-            }
-        }
-    }
-    &.pop {
-        .circle {
-            &:after {
-                animation-name: pop;
-            }
-        }
-    }
-    .circle {
-        position: relative;
-        display: inline-block;
-        width: ($loaderWidth * 0.2);
-        height: ($loaderWidth * 0.2);
-        &:after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            content: "";
-            display: block;
-            width: $circumference;
-            height: $circumference;
-            border-radius: ($circumference * 2);
-            background-color: $color-primary;
-            animation-duration: $speed;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-        &:nth-child(2) {
-            &:after {
-                animation-delay: ($speed * .2);
-            }
-        }
-        &:nth-child(3) {
-            &:after {
-                animation-delay: ($speed * .4);
+
+            &:nth-child(3) {
+                &:after {
+                    animation-delay: ($speed * .4);
+                }
             }
         }
     }
