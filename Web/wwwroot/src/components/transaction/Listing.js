@@ -2,11 +2,11 @@
 import View from './View';
 import Update from './Update';
 import Create from './Create';
-import Card100 from '../layouts/Card100';
 import Crud from '../layouts/Crud';
 import ListingHeader from './ListingHeader';
 import Balance from '../Balance';
 import Api from '../../services/Api';
+import moment from 'moment';
 
 export default class Listing extends React.Component {
 
@@ -18,7 +18,7 @@ export default class Listing extends React.Component {
             payee: "",
             fetching: true,
             filter: "",
-            orderBy: 'date'// desc'
+            orderBy: 'date desc'// desc'
         }
 
         this.handleFilters = this.handleFilters.bind(this);
@@ -45,11 +45,11 @@ export default class Listing extends React.Component {
 
     handleFilters() {
         let filters = [];
+        console.log(moment(new Date()).add(-1, 'month'));
+        filters.push(`date ge ${moment().add(-1, 'month').toISOString()} and date le ${moment().add(1,'month').toISOString()}`);
 
-       // filters.push(`date ge 2019-05-01T00:00:00-00:00 and date le 2019-09-01T00:00:00-00:00`);
-
-        if (this.state.cleared !== "")
-            filters.push(`cleared eq ${this.state.cleared}`)
+        //if (this.state.cleared !== "")
+        //    filters.push(`cleared eq ${this.state.cleared}`)
 
         if (this.state.payee !== "")
             filters.push(`description eq '${this.state.payee}'`)
