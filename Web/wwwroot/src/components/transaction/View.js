@@ -10,7 +10,7 @@ export default class View extends React.Component {
             this.props.item &&
             <React.Fragment>
                 <div className="cell date desktop">
-                    <Moment date={this.props.item.date} format="MMMM DD, YYYY" />
+                    <Moment date={this.props.item.date} format="MM-DD-YYYY" />
                 </div>
                 <div className="cell date mobile">
                     <Moment date={this.props.item.date} format="MM-DD-YY" />

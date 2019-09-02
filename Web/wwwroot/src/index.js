@@ -1,5 +1,5 @@
 import './assets/css/bundle.min.css';
-//import './assets/css/bundle.min.css.map';
+import './assets/css/bundle.min.css.map';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/semanticui.css';
 import 'noty/lib/themes/relax.css';

@@ -7,7 +7,6 @@ import Crud from '../layouts/Crud';
 import ListingHeader from './ListingHeader';
 import Balance from '../Balance';
 import Api from '../../services/Api';
-import Card50 from '../layouts/Card50';
 
 export default class Listing extends React.Component {
 
@@ -46,6 +45,8 @@ export default class Listing extends React.Component {
 
     handleFilters() {
         let filters = [];
+
+       // filters.push(`date ge 2019-05-01T00:00:00-00:00 and date le 2019-09-01T00:00:00-00:00`);
 
         if (this.state.cleared !== "")
             filters.push(`cleared eq ${this.state.cleared}`)
@@ -105,7 +106,6 @@ export default class Listing extends React.Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         )
     }

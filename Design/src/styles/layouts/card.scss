@@ -8,5 +8,10 @@
         @include large-tablet{
             padding: 5rem;
         }
+
+        @include theme(".dark"){
+            background-color:$color-primary;
+            color:#efefef;
+        }
     }
    

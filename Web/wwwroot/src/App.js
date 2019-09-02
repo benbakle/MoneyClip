@@ -11,18 +11,21 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="flex">
-                <header>
-                    <Header />
-                </header>
-                <main>
-                    <Route exact path='/dashboard' component={Dashboard} />
-                    <Route exact path='/accounts' component={AccountListing} />
-                    <Route exact path='/incomes' component={IncomeListing} />
-                    <Route exact path='/transactions' component={TransactionListing} />
-                </main>
-                <footer>
-                </footer>
+            <div className="mc-app">
+                <div className="flex">
+                    <header>
+                        <Header />
+                    </header>
+                    <main>
+                        <Route exact path='/dashboard' component={Dashboard} />
+                        <Route exact path='/accounts' component={AccountListing} />
+                        <Route exact path='/incomes' component={IncomeListing} />
+                        <Route exact path='/transactions' component={TransactionListing} />
+                        <Route exact path='/' component={TransactionListing} />
+                    </main>
+                    <footer>
+                    </footer>
+                </div>
             </div>
         );
     }

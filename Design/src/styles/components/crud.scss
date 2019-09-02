@@ -1,14 +1,16 @@
 $crud-width:($font-size-body * 2.5);
 .crud-layout {
     position: relative;
+
     button.create {
         position: absolute;
         right: 0;
         top: 0;
     }
+
     button.close {
         position: absolute;
-        right: -5rem;
+        right: -4.5rem;
         font-size: ($font-size-body * 1.666);
         background: transparent;
         border: none;
@@ -16,26 +18,35 @@ $crud-width:($font-size-body * 2.5);
         color: $color-primary;
         transition-duration: .3s;
         opacity: .4;
+
         @include states {
             opacity: 8;
             transform: scale(1.1);
         }
     }
+
     .crud-header {
         display: none;
     }
+
     .crud-item,
     .crud-header {
         position: relative;
         width: 100%;
         align-items: center;
         border-bottom: .1rem dashed $color-border;
+
         @include large-tablet {
             display: flex;
         }
     }
+
     .crud-item:nth-child(even) {
         background-color: lighten($color-background, 5);
+
+        @include theme(".dark") {
+            background-color: lighten(#333, 5);
+        }
     }
 }
 
