@@ -5,6 +5,7 @@ export default class ListingHeader extends React.Component {
         return (
             <React.Fragment>
                 <div className="cell description mc-label">Description</div>
+                <div className="cell description mc-label">Type</div>
                 <div className="cell balance mc-label">Balance</div>
             </React.Fragment>
         )

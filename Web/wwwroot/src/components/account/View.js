@@ -7,6 +7,7 @@ export default class View extends React.Component {
             this.props.item &&
             <div className="account">
                 <div className="cell name">{this.props.item.name}</div>
+                <div className="cell type">{this.props.item.accountType}</div>
                 <div className="cell balance"><Money value={this.props.item.balance} /></div>
             </div>
         )
