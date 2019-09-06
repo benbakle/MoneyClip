@@ -30,6 +30,15 @@ export default class Create extends React.Component {
                 <div className="input-wrapper">
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
+                <label>Type: </label>
+                <div className="cell type select-wrapper">
+                    <select type="text" name="type" onChange={this.handleChange} value={this.state.type} >
+                        <option value="Credit">credit</option>
+                        <option value="Checking">checking</option>
+                        <option value="Savings">savings</option>
+                    </select>
+                </div>
+
                 <label>Amount: </label>
                 <div className="input-wrapper">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />

@@ -1,4 +1,5 @@
-$crud-width:($font-size-body * 2.5);
+$crud-width: ($font-size-body * 2.5);
+
 .crud-layout {
     position: relative;
 
@@ -18,6 +19,10 @@ $crud-width:($font-size-body * 2.5);
         color: $color-primary;
         transition-duration: .3s;
         opacity: .4;
+
+        @include theme(".dark") {
+            color: $color-white;
+        }
 
         @include states {
             opacity: 8;
@@ -53,6 +58,7 @@ $crud-width:($font-size-body * 2.5);
 .cell {
     box-sizing: border-box;
     padding: 8px 20px;
+
     &.input-wrapper {
         padding: 3px 10px;
         ;
@@ -63,19 +69,23 @@ $crud-width:($font-size-body * 2.5);
     .status-toggle {
         height: ($font-size-body * 1.222);
         position: relative;
+
         @include states {
             button:first-child {
                 opacity: 0;
             }
+
             button:last-child {
                 opacity: 1;
             }
         }
+
         button {
             position: absolute;
             left: 50%;
             top: 0;
             transform: translateX(-50%);
+
             &:last-child {
                 opacity: 0;
             }
@@ -97,6 +107,7 @@ $crud-width:($font-size-body * 2.5);
     padding: 0;
     cursor: pointer;
     overflow: hidden;
+
     .slide {
         position: absolute;
         display: flex;
@@ -109,6 +120,11 @@ $crud-width:($font-size-body * 2.5);
         box-sizing: border-box;
         left: 0;
         transition-duration: .3s;
+
+        @include theme(".dark") {
+            color: $color-white;
+        }
+
         .edit,
         .save,
         .delete,
@@ -118,19 +134,23 @@ $crud-width:($font-size-body * 2.5);
             position: relative;
             opacity: .75;
             transition-duration: .3s;
+
             @include states() {
                 transform: scale(1.2);
                 opacity: 1;
             }
         }
+
         .save,
         .delete {
             width: ($crud-width * .55);
             color: #fff;
         }
+
         .confirm {
             color: #fff;
         }
+
         .toggle-bar {
             height: ($crud-width * .45);
             border-radius: .3rem;
@@ -139,29 +159,34 @@ $crud-width:($font-size-body * 2.5);
             transition-duration: .2s;
             opacity: .75;
             margin: 0 ($font-size-body * .222);
+
             @include states() {
                 height: ($crud-width * .5);
                 opacity: 1;
             }
         }
     }
+
     &.edit-mode {
         .slide {
             left: 0rem;
         }
     }
+
     &.save-mode {
         .slide {
             background-color: #57B157;
             left: ($crud-width * -1);
         }
     }
+
     &.delete-mode {
         .slide {
             background-color: #D9534F;
             left: ($crud-width * -1.53);
         }
     }
+
     &.confirm-mode {
         .slide {
             background-color: #57B157;

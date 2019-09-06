@@ -28,7 +28,7 @@ namespace MoneyClip.Api
         [EnableQuery]
         public decimal AccountTotal()
         {
-            return _context.Query<Account>().Sum(item => item.Balance);
+            return _context.Query<Account>().Where(item => item.Type == AccountType.checking).Sum(item => item.Balance);
         }
 
         [HttpPost]

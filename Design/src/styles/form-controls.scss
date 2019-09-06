@@ -1,5 +1,6 @@
-.input-wrapper {
-    @include inputs {
+.input-wrapper,
+.select-wrapper {
+    @include controls {
         font-family: "Muli", sans-serif;
         width: 100%;
         font-size: $font-size-body;
@@ -9,14 +10,13 @@
         @include boxShadow;
     }
 
-    input[type='date']{
+    input[type='date'] {
         font-size: ($font-size-body * .778);
     }
 }
 
-select{
+select {
     cursor: pointer;
-    margin-bottom: 2.5rem;
 }
 
 .required,
@@ -44,8 +44,17 @@ select{
     margin: 1.5rem 0;
     border-radius: .2rem;
     transition-duration: .3s;
+
     @include states {
         background-color: $color-link-hover;
+    }
+
+    @include theme(".dark") {
+        background-color: $color-link-hover;
+
+        @include states {
+            background-color: lighten($color-link-hover,5);
+        }
     }
 }
 

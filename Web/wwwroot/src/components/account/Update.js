@@ -12,6 +12,7 @@ export default class Update extends React.Component {
         this.state = {
             id: null,
             name: "",
+            type: "",
             balance: ""
         }
 
@@ -25,6 +26,7 @@ export default class Update extends React.Component {
             this.setState({
                 id: this.props.item.id,
                 name: this.props.item.name,
+                type: this.props.item.type,
                 balance: this.props.item.balance
             });
     }
@@ -49,10 +51,17 @@ export default class Update extends React.Component {
         return (
             this.props.item &&
             <div className="account update ">
-                <div className="cell input-wrapper">
+                <div className="cell name input-wrapper">
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
-                <div className="cell input-wrapper">
+                <div className="cell type select-wrapper">
+                    <select type="text" name="type" onChange={this.handleChange} value={this.state.type} >
+                        <option value="Credit">credit</option>
+                        <option value="Checking">checking</option>
+                        <option value="Savings">savings</option>
+                    </select>
+                </div>
+                <div className="cell balance input-wrapper">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
                 </div>
                 <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>

@@ -1,9 +1,21 @@
 .accounts {
-    .account{
-        display:flex;
-        justify-content: space-between;
+    .account {
+        display: flex;
+        justify-content: flex-start;
         width: calc(100% - 5rem);
         height: 5.7rem;
         align-items: center;
+
+        .name, .type, .balance {
+            width: 33.33%;
+        }
+
+        .type {
+            font-style: italic;
+        }
+
+        .crud {
+            width: 8rem;
+        }
     }
 }

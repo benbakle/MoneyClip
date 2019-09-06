@@ -10,7 +10,7 @@ export default class App extends Component {
     displayName = App.name
     constructor(props) {
         super(props);
-        this.state = { dark: false }
+        this.state = { dark: true }
     }
 
     toggleDarkMode = () => {
@@ -28,7 +28,7 @@ export default class App extends Component {
                         <Header />
                     </header>
                     <main>
-                        <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+                        <button className="button" onClick={toggleDarkMode}>Toggle Dark Mode</button>
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/accounts' component={AccountListing} />
                         <Route exact path='/incomes' component={IncomeListing} />
