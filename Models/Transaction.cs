@@ -10,5 +10,7 @@ namespace MoneyClip.Models
         public decimal Amount { get; set; }
         public string Number { get; set; }
         public bool Cleared { get; set; }
+        public Type Type { get; set; }
+        public Category Category { get; set; }
     }
 }

@@ -2,8 +2,9 @@ $color-primary:#6a88a6;
 
 $color-background: lighten($color-primary,40);
 $color-body: darken($color-primary,40);
-$color-border:rgba($color-body,.25);
+$color-border: rgba($color-body,.25);
+$color-light:rgba($color-body,.25);
 $color-link: lighten($color-body,20);
 $color-link-hover: lighten($color-link,20);
 
-$color-light: #fff;
+$color-white: #fff;

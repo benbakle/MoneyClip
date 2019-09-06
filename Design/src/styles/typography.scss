@@ -6,20 +6,24 @@ $font-size-body: 1.6rem;
 
 body {
     margin: 0;
-}
-
-.mc-app {
     height: 100%;
     font-size: $font-size-body;
     font-weight: 400;
-    color: $color-body;
     font-family: $font-family-body;
-    background-color: $color-background;
-    min-height:100vh;
+    /*background: linear-gradient($color-primary, lighten($color-primary,20));*/
+}
 
-    @include theme(".dark"){
-        background-color:#333;
-        color:#efefef;
+.mc-app {
+    background-color: $color-background;
+    color: $color-body;
+    min-height: 100vh;
+    /*@include theme(".dark") {
+        background-color: #333;
+        color: #efefef;
+    }*/
+    &.dark {
+        background-color: #333;
+        color: #efefef;
     }
 }
 

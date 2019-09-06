@@ -13,12 +13,12 @@ export default class Listing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cleared: false,
+            //cleared: false,
             payees: [],
             payee: "",
             fetching: true,
             filter: "",
-            orderBy: 'date desc'// desc'
+            orderBy: 'date desc'
         }
 
         this.handleFilters = this.handleFilters.bind(this);
@@ -45,8 +45,8 @@ export default class Listing extends React.Component {
 
     handleFilters() {
         let filters = [];
-        console.log(moment(new Date()).add(-1, 'month'));
-        filters.push(`date ge ${moment().add(-1, 'month').toISOString()} and date le ${moment().add(1,'month').toISOString()}`);
+
+        filters.push(`date ge ${moment().add(-2, 'month').toISOString()} and date le ${moment().add(1, 'month').toISOString()}`);
 
         //if (this.state.cleared !== "")
         //    filters.push(`cleared eq ${this.state.cleared}`)
@@ -76,13 +76,15 @@ export default class Listing extends React.Component {
                             </div>
                         </div>
                         <div className="col-70">
-                            <div className="input-wrapper">
-                                <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
-                                    <option value="">All</option>
-                                    <option value={true} >Cleared</option>
-                                    <option value={false}>Pending</option>
-                                </select>
-                            </div>
+                            {
+                                //<div className="input-wrapper">
+                                //    <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
+                                //        <option value="">All</option>
+                                //        <option value={true} >Cleared</option>
+                                //        <option value={false}>Pending</option>
+                                //    </select>
+                                //</div>
+                            }
                             {
                                 !this.state.fetching && this.state.payees &&
                                 <div className="input-wrapper">

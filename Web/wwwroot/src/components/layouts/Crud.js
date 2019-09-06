@@ -117,7 +117,7 @@ export default class Crud extends React.Component {
                 {
                     !this.state.fetching && this.state.items &&
                     this.state.items.map((item, key) =>
-                        <div className={`${this.props.type.slice(0, -1)} crud-item`} key={key}>
+                        <div className={`${this.props.type.slice(0, -1)} crud-item ${item.cleared ? "cleared" : "pending"}`} key={key}>
                             {
                                 !this.itemInEditMode(key) &&
                                 <React.Fragment>

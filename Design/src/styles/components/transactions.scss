@@ -1,54 +1,79 @@
 .transactions {
     .transaction {
+        transition-duration: .3s;
+
+        /*&.pending {
+            font-style: italic;
+            color: $color-light;
+
+            @include states {
+                color: $color-body;
+            }
+        }*/
+
         .date {
             text-align: left;
             font-weight: 200;
             font-size: ($font-size-body * .778);
+
             @include large-tablet {
                 width: 20%;
             }
+
             &.mc-label {
                 @include mcLabel;
             }
         }
+
         .description {
             text-align: left;
             font-weight: 400;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
             @include large-tablet {
                 width: 35%;
             }
+
             &.mc-label {
                 @include mcLabel;
             }
         }
+
         .amount {
             @include large-tablet {
                 width: 15%;
             }
+
             &.mc-label {
                 @include mcLabel;
             }
+
             input {
                 padding-left: 1.75rem;
             }
         }
+
         .number {
             text-align: left;
+
             @include large-tablet {
                 width: 15%;
             }
         }
+
         .status {
             text-align: center;
+
             @include large-tablet {
                 width: 5%;
             }
         }
+
         .crud {
             width: 10%;
+
             @include large-tablet {
                 text-align: center;
             }
