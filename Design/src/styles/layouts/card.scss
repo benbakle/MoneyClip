@@ -1,17 +1,17 @@
-    .card {
-        background-color: lighten($color-background, 10);
-        border-radius: .3rem;
-        padding:1.5rem;
-        box-sizing: border-box;
-        height: 100%;
-        @include boxShadow;
-        @include large-tablet{
-            padding: 5rem;
-        }
+.card {
+    background-color: rgba($gunmetal,.5);
+    border-radius: .3rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    height: 100%;
+    @include boxShadow;
 
-        @include theme(".dark"){
-            background-color:$color-primary;
-            color:#efefef;
-        }
+    @include large-tablet {
+        padding: 5rem;
     }
-   
+
+    @include theme(".dark") {
+        background-color: rgba($blue,.5);
+        color: #efefef;
+    }
+}

@@ -69,37 +69,40 @@ export default class Listing extends React.Component {
         return (
             <div className="">
                 <div className="grid">
+
                     <div className="flex-row">
                         <div className="col-70">
-                            {
-                                //<div className="input-wrapper">
-                                //    <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
-                                //        <option value="">All</option>
-                                //        <option value={true} >Cleared</option>
-                                //        <option value={false}>Pending</option>
-                                //    </select>
-                                //</div>
-                            }
-                            {
-                                !this.state.fetching && this.state.payees &&
-                                <div className="input-wrapper">
-                                    <select onChange={this.handleChange} value={this.state.payee} name="payee">
-                                        <option value="">All Payees</option>
-                                        {this.state.payees.map((item, key) =>
-                                            <option value={item} key={key}>{item}</option>
-                                        )}
-                                    </select>
-                                </div>
-                            }
-                            <Crud
-                                view={<View />}
-                                create={<Create />}
-                                update={<Update />}
-                                header={<ListingHeader />}
-                                type="transactions"
-                                filter={this.state.filter}
-                            />
+                            <div className="card">
+                                {
+                                    //<div className="input-wrapper">
+                                    //    <select onChange={this.handleChange} value={this.state.cleared} name="cleared">
+                                    //        <option value="">All</option>
+                                    //        <option value={true} >Cleared</option>
+                                    //        <option value={false}>Pending</option>
+                                    //    </select>
+                                    //</div>
+                                }
+                                {
+                                    !this.state.fetching && this.state.payees &&
+                                    <div className="input-wrapper">
+                                        <select onChange={this.handleChange} value={this.state.payee} name="payee">
+                                            <option value="">All Payees</option>
+                                            {this.state.payees.map((item, key) =>
+                                                <option value={item} key={key}>{item}</option>
+                                            )}
+                                        </select>
+                                    </div>
+                                }
+                                <Crud
+                                    view={<View />}
+                                    create={<Create />}
+                                    update={<Update />}
+                                    header={<ListingHeader />}
+                                    type="transactions"
+                                    filter={this.state.filter}
+                                />
 
+                            </div>
                         </div>
                         <div className="col-30">
                             <Balance />

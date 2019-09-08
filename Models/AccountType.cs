@@ -4,6 +4,6 @@
     {
         credit = 0,
         checking = 1,
-        savings = 2
+        savings = 2,
     }
 }

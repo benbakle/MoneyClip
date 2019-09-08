@@ -13,8 +13,10 @@ $transition-duration:.5s;
 
         .icon {
             position: relative;
+            transform: translateX(25%);
             opacity: 0.8;
             transition-duration: $transition-duration;
+            cursor: pointer;
         }
 
         .value {
@@ -45,6 +47,7 @@ $transition-duration:.5s;
             font-size: 4rem;
 
             .icon {
+                transform: none;
                 opacity: 0.2;
             }
 
@@ -61,11 +64,19 @@ $transition-duration:.5s;
         }
     }
 
-    .plus {
-        color: #77dd77;
+    .available {
+        color: $white;
     }
 
-    .minus {
-        color: #ff6961;
+    .checking {
+        color: $green;
+    }
+
+    .credit {
+        color: $red;
+    }
+
+    .savings {
+        color: $blue;
     }
 }

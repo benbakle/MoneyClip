@@ -9,7 +9,7 @@ export default class Balance extends React.Component {
 
         this.state = {
             fetching: true,
-            accountTotal: null,
+            checkingTotal: null,
             transactionTotal: 0,
             incomeTotal: 0,
             currentBalance: 0,
@@ -29,7 +29,7 @@ export default class Balance extends React.Component {
     }
 
     loadCheckingTotal(total) {
-        this.setState({ accountTotal: total }, () => {
+        this.setState({ checkingTotal: total }, () => {
             (total) ?
                 Api.fetch("/api/transactions/total").then(this.loadTransactionTotal) :
                 this.setState({ fetching: false });
@@ -50,7 +50,7 @@ export default class Balance extends React.Component {
 
     calculateBalance() {
         this.setState({
-            currentBalance: this.state.accountTotal - this.state.transactionTotal
+            currentBalance: this.state.checkingTotal - this.state.transactionTotal
         })
     }
 
@@ -58,23 +58,30 @@ export default class Balance extends React.Component {
         return (
             <div className="balances">
                 {
-                    this.state.fetching && !this.state.accountTotal &&
+                    this.state.fetching && !this.state.checkingTotal &&
                     <Loading />
                 }
                 {
-                    !this.state.fetching && this.state.accountTotal &&
+                    !this.state.fetching && this.state.checkingTotal &&
                     <>
-                        <div className="balance plus active">
+                        <div className="balance available active">
                             <div className="icon"><i className="fas fa-plus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={this.state.currentBalance} /></div>
-                                {
-                                //<Money value={this.state.transactionTotal} />
-                                }
                                 <div className="type">available cash</div>
                             </div>
                         </div>
-                        <div className="balance minus">
+                        <div className="balance checking">
+                            <div className="icon"><i className="fas fa-plus-circle"></i></div>
+                            <div className="value">
+                                <div className="amount"><Money value={this.state.checkingTotal} /></div>
+                                {
+                                    //<Money value={this.state.transactionTotal} />
+                                }
+                                <div className="type">checking</div>
+                            </div>
+                        </div>
+                        <div className="balance credit">
                             <div className="icon"><i className="fas fa-minus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={this.state.credit} /></div>

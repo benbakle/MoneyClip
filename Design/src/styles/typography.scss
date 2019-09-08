@@ -11,12 +11,11 @@ body {
     font-weight: 400;
     font-family: $font-family-body;
     font-family: "Muli", sans-serif;
-    /*background: linear-gradient($color-primary, lighten($color-primary,20));*/
 }
 
 .mc-app {
-    background-color: $color-background;
-    color: $color-body;
+    background-color: $blue;
+    color: $gunmetal;
     min-height: 100vh;
 
     &.dark {
@@ -51,8 +50,8 @@ main {
     text-decoration: none;
     transition-duration: .3s;
 
-    @include theme(".dark"){
-        color:$color-white;
+    @include theme(".dark") {
+        color: $color-white;
     }
 
     @include states {
