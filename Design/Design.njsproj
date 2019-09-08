@@ -41,6 +41,7 @@
     <Content Include="src\markup\dashboard.pug" />
     <Content Include="src\markup\header.pug" />
     <Content Include="src\markup\index.pug" />
+    <Content Include="src\styles\components\balances.scss" />
     <Content Include="src\styles\components\accounts.scss" />
     <Content Include="src\styles\components\crud.scss" />
     <Content Include="src\styles\components\draggable.scss" />

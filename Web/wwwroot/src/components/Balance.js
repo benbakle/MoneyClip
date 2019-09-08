@@ -12,24 +12,32 @@ export default class Balance extends React.Component {
             accountTotal: null,
             transactionTotal: 0,
             incomeTotal: 0,
-            currentBalance: 0
+            currentBalance: 0,
+            credit: 0,
         }
 
-        this.loadAccountTotal = this.loadAccountTotal.bind(this);
+        this.loadCheckingTotal = this.loadCheckingTotal.bind(this);
         this.loadTransactionTotal = this.loadTransactionTotal.bind(this);
         this.loadIncomeTotal = this.loadIncomeTotal.bind(this);
         this.calculateBalance = this.calculateBalance.bind(this);
 
-        Api.fetch("/api/accounts/total").then(this.loadAccountTotal);
+    }
+    componentDidMount() {
+        Api.fetch("/api/accounts/total/checking").then(this.loadCheckingTotal);
+        Api.fetch("/api/accounts/total/credit").then(this.loadCreditTotal);
         Api.fetch("/api/incomes/total").then(this.loadIncomeTotal);
     }
 
-    loadAccountTotal(total) {
+    loadCheckingTotal(total) {
         this.setState({ accountTotal: total }, () => {
             (total) ?
                 Api.fetch("/api/transactions/total").then(this.loadTransactionTotal) :
                 this.setState({ fetching: false });
         })
+    }
+
+    loadCreditTotal = (total) => {
+        this.setState({ credit: total });
     }
 
     loadTransactionTotal(total) {
@@ -48,36 +56,39 @@ export default class Balance extends React.Component {
 
     render() {
         return (
-            <div className="current-balance">
+            <div className="balances">
                 {
                     this.state.fetching && !this.state.accountTotal &&
                     <Loading />
                 }
                 {
                     !this.state.fetching && this.state.accountTotal &&
-                    <React.Fragment>
-                        <div className="title">Balance: </div>
-                        {
-                            //<div className="flex align-center space-between">
-                            //    <div className="cell">Incomes Total (per month): </div>
-                            //    <Money value={this.state.incomeTotal} />
-                            //</div>
-                        }
-                        <hr />
-                        <div className="flex align-center space-between">
-                            <div className="cell">Checking Account: </div>
-                            <Money value={this.state.accountTotal} />
+                    <>
+                        <div className="balance plus active">
+                            <div className="icon"><i className="fas fa-plus-circle"></i></div>
+                            <div className="value">
+                                <div className="amount"><Money value={this.state.currentBalance} /></div>
+                                {
+                                //<Money value={this.state.transactionTotal} />
+                                }
+                                <div className="type">available cash</div>
+                            </div>
                         </div>
-                        <div className="flex align-center space-between">
-                            <div className="cell">Pending Transactions: </div>
-                            <Money value={this.state.transactionTotal} />
+                        <div className="balance minus">
+                            <div className="icon"><i className="fas fa-minus-circle"></i></div>
+                            <div className="value">
+                                <div className="amount"><Money value={this.state.credit} /></div>
+                                <div className="type">credit debt</div>
+                            </div>
                         </div>
-                        <hr />
-                        <div className="flex align-center space-between balance">
-                            <div className="cell">Current Balance: </div>
-                            <Money value={this.state.currentBalance} />
+                        <div className="balance savings">
+                            <div className="icon"><i className="fas fa-plus-circle"></i></div>
+                            <div className="value">
+                                <div className="amount"><Money value={0} /></div>
+                                <div className="type">savings</div>
+                            </div>
                         </div>
-                    </React.Fragment>
+                    </>
                 }
             </div>
         );

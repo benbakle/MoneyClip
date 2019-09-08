@@ -24,11 +24,13 @@ namespace MoneyClip.Api
             return _context.Query<Account>();
         }
 
-        [HttpGet("total")]
+        [HttpGet("total/{type}")]
         [EnableQuery]
-        public decimal AccountTotal()
+        public decimal AccountTotal(AccountType type)
         {
-            return _context.Query<Account>().Where(item => item.Type == AccountType.checking).Sum(item => item.Balance);
+            return _context.Query<Account>()
+                .Where(account => account.Type == type)
+                .Sum(account => account.Balance);
         }
 
         [HttpPost]

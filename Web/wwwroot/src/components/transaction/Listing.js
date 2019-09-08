@@ -70,11 +70,6 @@ export default class Listing extends React.Component {
             <div className="">
                 <div className="grid">
                     <div className="flex-row">
-                        <div className="col-30">
-                            <div className="card">
-                                <Balance />
-                            </div>
-                        </div>
                         <div className="col-70">
                             {
                                 //<div className="input-wrapper">
@@ -105,6 +100,9 @@ export default class Listing extends React.Component {
                                 filter={this.state.filter}
                             />
 
+                        </div>
+                        <div className="col-30">
+                            <Balance />
                         </div>
                     </div>
                 </div>

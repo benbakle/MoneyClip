@@ -1,5 +1,9 @@
-$color-primary:#6a88a6;
+$gunmetal: #2c3539;
+$blue: #aec6cf;
+$green:#77dd77;
+$red:ff6961;
 
+$color-primary:#6a88a6;
 $color-background: lighten($color-primary,40);
 $color-body: darken($color-primary,40);
 $color-border: rgba($color-body,.25);

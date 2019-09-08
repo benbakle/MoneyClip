@@ -14,7 +14,7 @@ export default class App extends Component {
     }
 
     toggleDarkMode = () => {
-        this.setState({ dark: !this.state.dark})
+        this.setState({ dark: !this.state.dark })
     }
 
     render() {
@@ -28,7 +28,7 @@ export default class App extends Component {
                         <Header />
                     </header>
                     <main>
-                        <button className="button" onClick={toggleDarkMode}>Toggle Dark Mode</button>
+                        <button className="button" onClick={toggleDarkMode}>{dark ? "gimmee vanilla" : "gimmee chocolate"}</button>
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/accounts' component={AccountListing} />
                         <Route exact path='/incomes' component={IncomeListing} />
