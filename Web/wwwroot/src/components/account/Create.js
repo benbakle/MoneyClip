@@ -7,7 +7,8 @@ export default class Create extends React.Component {
 
         this.state = {
             name: "",
-            balance: 0
+            balance: 0,
+            offset: 0,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -42,6 +43,10 @@ export default class Create extends React.Component {
                 <label>Amount: </label>
                 <div className="input-wrapper">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
+                </div>
+                <label>Offset: </label>
+                <div className="input-wrapper">
+                    <input type="text" name="offset" onChange={this.handleChange} value={this.state.offset} />
                 </div>
                 <button className="button submit" onClick={this.submit}>Add </button>
             </div>

@@ -5,13 +5,15 @@
         width: calc(100% - 5rem);
         height: 5.7rem;
         align-items: center;
+      
 
-        .name, .type, .balance {
-            width: 33.33%;
+        .cell {
+            width: 25%;
         }
 
         .type {
             font-style: italic;
+            font-size: 1.2rem;
         }
 
         .crud {

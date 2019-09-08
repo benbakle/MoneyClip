@@ -1,12 +1,13 @@
 ﻿import React from 'react';
 
-export default class Card50 extends React.Component {
+export default class Card extends React.Component {
     render() {
+        const { col } = this.props;
         return (
-            <div className="col-50">
+            <div className={`col-${col}`}>
                 <div className="card">
                     <div className="mc-container">
-                        {this.props.content}
+                        {this.props.children}
                     </div>
                 </div>
             </div>

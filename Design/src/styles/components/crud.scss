@@ -1,4 +1,5 @@
 $crud-width: ($font-size-body * 2.5);
+$transition-duration:.5s;
 
 .crud-layout {
     position: relative;
@@ -16,12 +17,12 @@ $crud-width: ($font-size-body * 2.5);
         background: transparent;
         border: none;
         cursor: pointer;
-        color: $color-primary;
+        color: $gunmetal;
         transition-duration: .3s;
         opacity: .4;
 
         @include theme(".dark") {
-            color: $color-white;
+            color: $blue;
         }
 
         @include states {
@@ -30,27 +31,38 @@ $crud-width: ($font-size-body * 2.5);
         }
     }
 
-    .crud-header {
-        display: none;
-    }
-
     .crud-item,
     .crud-header {
         position: relative;
         width: 100%;
         align-items: center;
-        border-bottom: .1rem dashed $color-border;
+        transition-duration:$transition-duration;
 
         @include large-tablet {
             display: flex;
         }
     }
 
+    .crud-header {
+        display: none;
+    }
+
+    .crud-item {
+        opacity: .7;
+
+        @include states {
+            opacity: 1;
+        }
+    }
+
+
     .crud-item:nth-child(even) {
-        background-color: lighten($color-background, 5);
+        background-color: $gunmetal;
+        color: $blue;
 
         @include theme(".dark") {
-            background-color: lighten(#333, 5);
+            background-color: $blue;
+            color: $gunmetal;
         }
     }
 }
@@ -114,16 +126,12 @@ $crud-width: ($font-size-body * 2.5);
         align-items: center;
         height: 100%;
         background-color: transparent;
-        color: $color-body;
+        color: $white;
         width: ($crud-width * 5);
         padding: ($crud-width * .1) 0;
         box-sizing: border-box;
         left: 0;
         transition-duration: .3s;
-
-        @include theme(".dark") {
-            color: $color-white;
-        }
 
         .edit,
         .save,

@@ -2,6 +2,7 @@ $transition-duration:.5s;
 
 .balances {
     .balance {
+        @include resetButton;
         letter-spacing: 0.1rem;
         font-size: 2.4rem;
         font-weight: 900;
@@ -10,13 +11,13 @@ $transition-duration:.5s;
         align-items: center;
         justify-content: space-between;
         border-bottom: 0.1rem solid #555;
+        cursor: pointer;
 
         .icon {
             position: relative;
             transform: translateX(25%);
             opacity: 0.8;
             transition-duration: $transition-duration;
-            cursor: pointer;
         }
 
         .value {
@@ -42,8 +43,8 @@ $transition-duration:.5s;
             transition-duration: $transition-duration;
         }
 
-        &:hover,
-        &.active {
+
+        @include states {
             font-size: 4rem;
 
             .icon {

@@ -23,8 +23,8 @@ export default class Balance extends React.Component {
 
     }
     componentDidMount() {
-        Api.fetch("/api/accounts/total/checking").then(this.loadCheckingTotal);
-        Api.fetch("/api/accounts/total/credit").then(this.loadCreditTotal);
+        Api.fetch("/api/accounts/balance/checking").then(this.loadCheckingTotal);
+        Api.fetch("/api/accounts/balance/credit").then(this.loadCreditTotal);
         Api.fetch("/api/incomes/total").then(this.loadIncomeTotal);
     }
 
@@ -64,14 +64,14 @@ export default class Balance extends React.Component {
                 {
                     !this.state.fetching && this.state.checkingTotal &&
                     <>
-                        <div className="balance available active">
+                        <button className="balance available active">
                             <div className="icon"><i className="fas fa-plus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={this.state.currentBalance} /></div>
                                 <div className="type">available cash</div>
                             </div>
-                        </div>
-                        <div className="balance checking">
+                        </button>
+                        <button className="balance checking">
                             <div className="icon"><i className="fas fa-plus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={this.state.checkingTotal} /></div>
@@ -80,21 +80,21 @@ export default class Balance extends React.Component {
                                 }
                                 <div className="type">checking</div>
                             </div>
-                        </div>
-                        <div className="balance credit">
+                        </button>
+                        <button className="balance credit">
                             <div className="icon"><i className="fas fa-minus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={this.state.credit} /></div>
                                 <div className="type">credit debt</div>
                             </div>
-                        </div>
-                        <div className="balance savings">
+                        </button>
+                        <button className="balance savings">
                             <div className="icon"><i className="fas fa-plus-circle"></i></div>
                             <div className="value">
                                 <div className="amount"><Money value={0} /></div>
                                 <div className="type">savings</div>
                             </div>
-                        </div>
+                        </button>
                     </>
                 }
             </div>

@@ -1,6 +1,13 @@
 .grid {
+    @include gutter;
     .flex-row {
+        display:flex;
         flex-wrap: wrap;
+        margin: 0 -1.5rem;
+
+        @include tablet {
+            margin: 0 -3rem;
+        }
     }
 
     .col-30,

@@ -1,7 +1,6 @@
 .transactions {
     .transaction {
         transition-duration: .3s;
-
         /*&.pending {
             font-style: italic;
             color: $color-light;
@@ -10,7 +9,6 @@
                 color: $color-body;
             }
         }*/
-
         .date {
             text-align: left;
             font-weight: 200;

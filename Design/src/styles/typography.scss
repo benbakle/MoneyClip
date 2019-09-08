@@ -25,9 +25,8 @@ body {
 }
 
 main {
-    width: calc(100% - 32.5rem);
-    padding: 10rem 5rem;
-    box-sizing: border-box;
+    /*padding: 10rem 5rem;
+    box-sizing: border-box;*/
 }
 
 .relative {
@@ -36,23 +35,18 @@ main {
 
 .mc-container {
     width: 100%;
-    max-width: 120rem;
     margin: 0 auto;
     @include gutter;
 }
 
 .link {
     display: inline-block;
-    color: $color-link;
+        color: $white;
     background-color: transparent;
     border: none;
     font-weight: 400;
     text-decoration: none;
     transition-duration: .3s;
-
-    @include theme(".dark") {
-        color: $color-white;
-    }
 
     @include states {
         text-decoration: underline;
@@ -101,12 +95,6 @@ ul {
     &.align-center {
         align-items: center;
     }
-}
-
-.flex-row {
-    display: flex;
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
 }
 
 .section-header {

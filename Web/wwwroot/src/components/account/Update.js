@@ -13,7 +13,8 @@ export default class Update extends React.Component {
             id: null,
             name: "",
             type: "",
-            balance: ""
+            balance: "",
+            offset: 0,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,10 +25,7 @@ export default class Update extends React.Component {
     componentDidMount() {
         this.props.item &&
             this.setState({
-                id: this.props.item.id,
-                name: this.props.item.name,
-                type: this.props.item.type,
-                balance: this.props.item.balance
+                ...this.props.item
             });
     }
 
@@ -63,6 +61,9 @@ export default class Update extends React.Component {
                 </div>
                 <div className="cell balance input-wrapper">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
+                </div>
+                <div className="cell offset input-wrapper">
+                    <input type="text" name="offset" onChange={this.handleChange} value={this.state.offset} />
                 </div>
                 <button className="close" onClick={this.props.callback}><i className="far fa-times-circle"></i></button>
             </div>
