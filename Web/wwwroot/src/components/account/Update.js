@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
+import Balance from '../../services/Balance';
 //import Calendar from 'react-calendar';
 //import Moment from 'react-moment';
 //import Delete from './Delete';
@@ -33,6 +34,7 @@ export default class Update extends React.Component {
         if (props.triggerUpdate)
             this.submit();
     }
+
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }
@@ -42,6 +44,7 @@ export default class Update extends React.Component {
     }
 
     callback() {
+        Balance.updateSubscribers();
         this.props.callback && this.props.callback();
     }
 

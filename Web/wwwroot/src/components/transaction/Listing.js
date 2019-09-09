@@ -47,9 +47,6 @@ export default class Listing extends React.Component {
 
         filters.push(`date ge ${moment().add(-2, 'month').toISOString()} and date le ${moment().add(1, 'month').toISOString()}`);
 
-        //if (this.state.cleared !== "")
-        //    filters.push(`cleared eq ${this.state.cleared}`)
-
         if (this.state.payee !== "")
             filters.push(`description eq '${this.state.payee}'`)
 
@@ -66,27 +63,14 @@ export default class Listing extends React.Component {
 
     render() {
         return (
-            <>
-                {
-                    !this.state.fetching && this.state.payees &&
-                    <div className="input-wrapper">
-                        <select onChange={this.handleChange} value={this.state.payee} name="payee">
-                            <option value="">All Payees</option>
-                            {this.state.payees.map((item, key) =>
-                                <option value={item} key={key}>{item}</option>
-                            )}
-                        </select>
-                    </div>
-                }
-                <Crud
-                    view={<View />}
-                    create={<Create />}
-                    update={<Update />}
-                    header={<ListingHeader />}
-                    type="transactions"
-                    filter={this.state.filter}
-                />
-            </>
+            <Crud
+                view={<View />}
+                create={<Create />}
+                update={<Update />}
+                header={<ListingHeader />}
+                type="transactions"
+                filter={this.state.filter}
+            />
         )
     }
 }

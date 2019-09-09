@@ -26,24 +26,20 @@ $transition-duration: .5s;
         cursor: pointer;
         opacity: 0;
         transition-duration: $transition-duration;
-
-        @include states {
-            opacity: .8;
-        }
     }
 
     .icon {
         position: absolute;
         transform: translateY(-50%) translateX(25%);
-        top:50%;
-        left:0;
+        top: 50%;
+        left: 0;
         opacity: 0.8;
         transition-duration: $transition-duration;
     }
 
     .value {
         text-align: right;
-        width: calc(100% - 3rem);
+        width: 100%;
         position: relative;
         opacity: 0.2;
         text-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
@@ -73,7 +69,11 @@ $transition-duration: .5s;
         font-size: 4rem;
 
         .pin {
-            opacity: .5;
+            opacity: .2;
+
+            @include states {
+                opacity: .8;
+            }
         }
 
         .icon {
@@ -87,7 +87,6 @@ $transition-duration: .5s;
 
         .value {
             opacity: 0.8;
-            width: calc(100% - 12rem);
             width: 100%;
             padding-bottom: 2rem;
         }
