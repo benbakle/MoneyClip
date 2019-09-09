@@ -4,7 +4,6 @@ import Update from './Update';
 import Create from './Create';
 import Crud from '../layouts/Crud';
 import ListingHeader from './ListingHeader';
-import Balance from '../Balance';
 import Api from '../../services/Api';
 import moment from 'moment';
 

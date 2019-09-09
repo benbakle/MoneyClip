@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
-import Balance from './Balance';
 import Api from '../services/Api';
 import { resolved, promise } from '../setupTests';
 

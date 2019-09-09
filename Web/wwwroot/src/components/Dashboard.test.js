@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 import Dashboard from './Dashboard';
-import Balance from './Balance';
 
 describe("The dasbboard component", () => {
     let _component;

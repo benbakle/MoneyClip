@@ -1,0 +1,116 @@
+$transition-duration: .5s;
+
+.account-balance {
+    @include resetButton;
+    position: relative;
+    letter-spacing: 0.1rem;
+    font-size: 2.4rem;
+    font-weight: 900;
+    padding: 2rem 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.1rem solid #555;
+    overflow: hidden;
+
+    .pin {
+        @include resetButton;
+        padding: 0;
+        position: absolute;
+        color: $blue;
+        width: .75rem;
+        height: .75rem;
+        font-size: 1rem;
+        top: 1rem;
+        right: 0.5rem;
+        cursor: pointer;
+        opacity: 0;
+        transition-duration: $transition-duration;
+
+        @include states {
+            opacity: .8;
+        }
+    }
+
+    .icon {
+        position: absolute;
+        transform: translateY(-50%) translateX(25%);
+        top:50%;
+        left:0;
+        opacity: 0.8;
+        transition-duration: $transition-duration;
+    }
+
+    .value {
+        text-align: right;
+        width: calc(100% - 3rem);
+        position: relative;
+        opacity: 0.2;
+        text-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
+        transition-duration: $transition-duration;
+        padding-bottom: 0;
+    }
+
+    .type {
+        @include resetButton;
+        text-align: right;
+        color: inherit;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.4rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        visibility: hidden;
+        opacity: 0;
+        transition-duration: $transition-duration;
+        cursor: pointer;
+    }
+
+
+    @include states {
+        font-size: 4rem;
+
+        .pin {
+            opacity: .5;
+        }
+
+        .icon {
+            transform: none;
+            opacity: 0.1;
+            font-size: 30rem;
+            top: 50%;
+            left: -3rem;
+            transform: translateY(-50%);
+        }
+
+        .value {
+            opacity: 0.8;
+            width: calc(100% - 12rem);
+            width: 100%;
+            padding-bottom: 2rem;
+        }
+
+        .type {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &.available {
+        color: $white;
+    }
+
+    &.checking {
+        color: $green;
+    }
+
+    &.credit {
+        color: $red;
+    }
+
+    &.savings {
+        color: $blue;
+    }
+}

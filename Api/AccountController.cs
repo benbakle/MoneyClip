@@ -26,13 +26,24 @@ namespace MoneyClip.Api
 
         [HttpGet("balance/{type}")]
         [EnableQuery]
-        public decimal AccountTotal(AccountType type)
+        public decimal GetBalance(AccountType type)
         {
             var _account = _context.Query<Account>()
                 .Where(account => account.Type == type);
 
             return _account.Sum(account => account.Balance) - _account.Sum(account => account.Offset);
         }
+
+        [HttpGet("offset/{type}")]
+        [EnableQuery]
+        public decimal GetBalanceOffset(AccountType type)
+        {
+            var _account = _context.Query<Account>()
+                .Where(account => account.Type == type);
+
+            return _account.Sum(account => account.Offset);
+        }
+
 
         [HttpPost]
         public async Task Create([FromBody]Account account)

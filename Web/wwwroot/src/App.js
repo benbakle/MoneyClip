@@ -5,13 +5,19 @@ import Dashboard from './components/Dashboard';
 import AccountListing from './components/account/Listing';
 import IncomeListing from './components/income/Listing';
 import TransactionListing from './components/transaction/Listing';
-import Balance from './components/Balance';
+import AccountBalance from './components/AccountBalance';
+import Balance from './services/Balance';
 
 export default class App extends Component {
     displayName = App.name
     constructor(props) {
         super(props);
         this.state = { dark: true }
+    }
+
+    static getDerivedStateFromProps() {
+        Balance.init();
+        return null;
     }
 
     toggleDarkMode = () => {
@@ -43,7 +49,12 @@ export default class App extends Component {
                                 <Route exact path='/' component={TransactionListing} />
                             </div>
                             <div className="col-30">
-                                <Balance />
+                                <div className="balances">
+                                    <AccountBalance type="available" title="available cash" icon="plus" active={true} />
+                                    <AccountBalance type="checking" title="checking" icon="plus" />
+                                    <AccountBalance type="credit" title="credit debt" icon="minus" />
+                                    <AccountBalance type="savings" title="savings" icon="plus" />
+                                </div>
                             </div>
                         </div>
                     </div>
