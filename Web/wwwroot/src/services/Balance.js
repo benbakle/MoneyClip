@@ -5,26 +5,35 @@ class Balance {
     credit = {};
     savings = {};
     available = {};
+    net = {};
 
     transactions = {
-        pending: null,
+        balance: null,
         items: []
     }
 
     callbacks = [];
 
     init() {
-        this.fetch("checking");
-        this.fetch("savings");
-        this.fetch("credit");
+        this.fetchBalance("checking");
+        this.fetchOffset("checking");
+        this.fetchBalance("savings");
+        this.fetchBalance("credit");
         this.fetchTransactions();
     }
 
-    fetch = (type) => {
+    fetchBalance = (type) => {
         Api.fetch(`api/accounts/balance/${type}`)
             .then((balance) => this.loadBalance(type, balance))
             .catch(console.log(`error fetching ${type} balance`));
     }
+
+    fetchOffset = (type) => {
+        Api.fetch(`api/accounts/offset/${type}`)
+            .then((offset) => this.loadOffset(type, offset))
+            .catch(console.log(`error fetching ${type} offset`));
+    }
+    
 
     fetchTransactions = () => {
         Api.fetch("/api/transactions")
@@ -38,13 +47,18 @@ class Balance {
         this.updateSubscribers();
     }
 
+    loadOffset = (type, offset) => {
+        this[type].offset = offset;
+        this.updateSubscribers();
+    }
+
     loadTransactions = (items) => {
         if (items.length === 0)
             return;
 
         this.transactions.items = items;
-        this.transactions.pending = this.sum(items.filter(x => !x.cleared), "amount");
-        this.available.balance = this.checking.balance - this.transactions.pending;
+        this.transactions.balance = this.sum(items.filter(x => !x.cleared), "amount");
+        this.available.balance = this.checking.balance - this.transactions.balance;
         this.updateSubscribers();
     }
 
@@ -53,6 +67,7 @@ class Balance {
     }
 
     updateSubscribers() {
+        this.net.balance = this.checking.balance + this.savings.balance - this.credit.balance - this.transactions.balance; 
         this.callbacks.forEach(cb => cb());
     }
 

@@ -5,8 +5,9 @@ import Dashboard from './components/Dashboard';
 import AccountListing from './components/account/Listing';
 import IncomeListing from './components/income/Listing';
 import TransactionListing from './components/transaction/Listing';
-import AccountBalance from './components/AccountBalance';
+import AccountBalances from './components/AccountBalances';
 import Balance from './services/Balance';
+import Account from './services/Account';
 
 export default class App extends Component {
     displayName = App.name
@@ -17,6 +18,7 @@ export default class App extends Component {
 
     static getDerivedStateFromProps() {
         Balance.init();
+        Account.init();
         return null;
     }
 
@@ -42,12 +44,7 @@ export default class App extends Component {
                                 <button className="button" onClick={toggleDarkMode}>{dark ? "gimmee vanilla" : "gimmee chocolate"}</button>
                             </div>
                             <div className="col-30">
-                                <div className="balances">
-                                    <AccountBalance type="available" title="available cash" icon="plus" active={true} />
-                                    <AccountBalance type="checking" title="checking" icon="plus" />
-                                    <AccountBalance type="credit" title="credit debt" icon="minus" />
-                                    <AccountBalance type="savings" title="savings" icon="plus" />
-                                </div>
+                                <AccountBalances />
                             </div>
                             <div className="col-70">
                                 <Route exact path='/dashboard' component={Dashboard} />
