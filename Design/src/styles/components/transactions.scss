@@ -1,4 +1,30 @@
 .transactions {
+    .button-wrapper{
+        display:flex;
+        justify-content:flex-end;
+    }
+
+    button {
+        &.submit {
+            background-color: $green;
+
+            @include states {
+                background-color: darken( $green,10);
+            }
+        }
+
+        &.clear {
+            background-color: transparent;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+
+            @include states {
+                text-decoration: underline;
+                background-color: transparent;
+            }
+        }
+    }
+
     .transaction {
         transition-duration: .3s;
         /*&.pending {
@@ -66,6 +92,10 @@
 
             @include large-tablet {
                 width: 5%;
+            }
+
+            &.button-wrapper {
+                width: 15%;
             }
         }
 

@@ -3,9 +3,10 @@
     @include controls {
         font-family: "Muli", sans-serif;
         width: 100%;
-        font-size: $font-size-body;
+        font-size: 1.2rem;
+        font-weight: 700;
         border: none;
-        padding: 10px;
+        padding: 1rem;
         box-sizing: border-box;
         @include boxShadow;
     }

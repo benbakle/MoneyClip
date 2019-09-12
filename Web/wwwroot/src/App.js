@@ -33,16 +33,19 @@ export default class App extends Component {
         return (
             <div className={`mc-app ${dark ? "dark" : ""}`}>
                 <header>
-                    <div className="mc-container">
-                        <Header />
-                    </div>
+                    <button class="trigger">
+                        <i class="fas fa-chevron-circle-down"></i>
+                    </button>
+                    <Header />
                 </header>
                 <main>
                     <div className="grid">
                         <div className="flex-row">
-                            <div className="col-100">
-                                <button className="button" onClick={toggleDarkMode}>{dark ? "gimmee vanilla" : "gimmee chocolate"}</button>
-                            </div>
+                            {
+                                //<div className="col-100">
+                                //    <button className="button" onClick={toggleDarkMode}>{dark ? "gimmee vanilla" : "gimmee chocolate"}</button>
+                                //</div>
+                            }
                             <div className="col-30">
                                 <AccountBalances />
                             </div>

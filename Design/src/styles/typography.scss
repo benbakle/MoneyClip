@@ -17,10 +17,11 @@ body {
     background-color: $blue;
     color: $gunmetal;
     min-height: 100vh;
+    padding-top:6rem;
 
     &.dark {
         background-color: $gunmetal;
-        color: $blue;
+        color: $white;
     }
 }
 

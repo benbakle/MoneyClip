@@ -1,57 +1,50 @@
 header {
-    /*width: 32.5rem;
-    min-height: 100vh;
-    background-color:$color-primary;
-    h1 {
-        text-align: center;
-        .logo {
-            font-weight: 900;
-            display: inline-block;
-            padding: 1rem;
-            box-sizing: border-box;
-            border-left: .4rem solid;
-            border-right: .4rem solid;
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    z-index: 1000;
+
+    .trigger {
+        @include resetButton;
+        display: inline-block;
+        font-size: 5rem;
+        width: 5rem;
+        height: 5rem;
+        color: lighten($gunmetal,60);
+        cursor: pointer;
+        transform-origin: center;
+        padding: 0;
+        transition-duration: .5s;
+    }
+
+    @include states {
+        button.trigger {
+            color: $white;
+            transform: rotate(90deg);
+            font-size: 6rem;
         }
-        .name {
-            display: inline-block;
-            @include gutter;
-            font-weight: 200;
-            font-size: 2.4rem;
-            color: lighten($color-background, 10);
-            text-transform: uppercase;
+
+        .main-navigation {
+            right: 6rem;
         }
     }
-   
+
     .main-navigation {
-        margin-top: 3rem;
-        li {
-            border-top: .1rem solid darken($color-background, 20);
-            &:last-child {
-                border-bottom: .1rem solid darken($color-background, 20);
-            }
-        }
+        position: absolute;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+        text-align: right;
+        right: -35rem;
+        top: 0;
+        height: 6rem;
+        width: 32rem;
+        transition-duration: .5s;
+
         .link {
-            display: block;
-            @include gutter;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-            font-size: 2rem;
+            font-size: 2.4rem;
+            font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: .2rem;
-            color: $color-body;
-            @include states {
-                text-decoration: none;
-                background-color: lighten($color-primary,20);
-            }
-            &.active{
-                color: $color-link;
-                text-decoration: none;
-                background-color: lighten($color-primary,25);
-            }
-            i {
-                display: inline-block;
-                padding-right: 1rem;
-            }
+            line-height: 2em;
         }
-    }*/
+    }
 }

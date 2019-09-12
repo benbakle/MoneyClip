@@ -1,8 +1,19 @@
 $crud-width: ($font-size-body * 2.5);
-$transition-duration:.5s;
+$transition-duration: .5s;
 
 .crud-layout {
     position: relative;
+    width: calc(100% - 3rem);
+
+
+    .input-wrapper {
+    }
+
+    .button-wrapper {
+        button {
+            margin: 0 0.5rem;
+        }
+    }
 
     button.create {
         position: absolute;
@@ -36,7 +47,7 @@ $transition-duration:.5s;
         position: relative;
         width: 100%;
         align-items: center;
-        transition-duration:$transition-duration;
+        transition-duration: $transition-duration;
 
         @include large-tablet {
             display: flex;
@@ -44,11 +55,17 @@ $transition-duration:.5s;
     }
 
     .crud-header {
-        display: none;
+        /*display: none;*/
     }
 
     .crud-item {
         opacity: .7;
+        height: 5rem;
+
+        &.create {
+            opacity: 1;
+            box-shadow: .2rem 0.2rem 3rem rgba(0,0,0,1)
+        }
 
         @include states {
             opacity: 1;
@@ -56,13 +73,11 @@ $transition-duration:.5s;
     }
 
 
-    .crud-item:nth-child(even) {
+    .crud-item:nth-child(odd) {
         background-color: $gunmetal;
-        color: $blue;
 
         @include theme(".dark") {
             background-color: $blue;
-            color: $gunmetal;
         }
     }
 }

@@ -3,6 +3,7 @@ import Api from '../../services/Api';
 import Loading from '../Loading';
 import CrudToggle from '../CrudToggle';
 import Notification from '../../services/Notification';
+import Account from '../../services/Account';
 
 export default class Crud extends React.Component {
     constructor(props) {
@@ -99,19 +100,18 @@ export default class Crud extends React.Component {
                 }
                 {
                     !this.state.fetching &&
-                    <React.Fragment>
-                        <div className="title">{this.props.type}</div>
-                        <button className="link create" onClick={this.toggleCreateMode}>{this.state.inCreateMode ? <i className="fa fa-times-circle"></i> : <i className="fa fa-plus-circle"></i>}</button>
-                        {
-                            this.state.inCreateMode &&
-                            React.cloneElement(this.state.create, { callback: this.callback })
-                        }
-                    </React.Fragment>
+                    <div className="title">{this.props.type}</div>
                 }
                 {
                     !this.state.fetching && this.state.items &&
                     <div className={`${this.props.type.slice(0, -1)} crud-header`}>
                         {React.cloneElement(this.props.header)}
+                    </div>
+                }
+                {
+                    !this.state.fetching && this.state.items &&
+                    <div className={`${this.props.type.slice(0, -1)} crud-item create`}>
+                        {React.cloneElement(this.state.create, { callback: this.callback })}
                     </div>
                 }
                 {
@@ -131,7 +131,7 @@ export default class Crud extends React.Component {
                             <div className="crud cell">
                                 <CrudToggle
                                     saveAction={this.saveAction}
-                                    deleteAction={()=> this.deleteAction(item.id)}
+                                    deleteAction={() => this.deleteAction(item.id)}
                                     editAction={() => this.editAction(key)}
                                     resetToggle={key !== this.state.itemInEditMode} />
                             </div>

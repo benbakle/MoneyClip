@@ -26,13 +26,11 @@ export default class Create extends React.Component {
 
     render() {
         return (
-            <div className="create">
-                <label>Account Name: </label>
-                <div className="input-wrapper">
+            <>
+                <div className="input-wrapper cell name">
                     <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                 </div>
-                <label>Type: </label>
-                <div className="cell type select-wrapper">
+                <div className="cell type select-wrapper cell type">
                     <select type="text" name="type" onChange={this.handleChange} value={this.state.type} >
                         <option value="Credit">credit</option>
                         <option value="Checking">checking</option>
@@ -40,16 +38,16 @@ export default class Create extends React.Component {
                     </select>
                 </div>
 
-                <label>Amount: </label>
-                <div className="input-wrapper">
+                <div className="input-wrapper cell balance">
                     <input type="text" name="balance" onChange={this.handleChange} value={this.state.balance} />
                 </div>
-                <label>Offset: </label>
-                <div className="input-wrapper">
+                <div className="input-wrapper cell offset">
                     <input type="text" name="offset" onChange={this.handleChange} value={this.state.offset} />
                 </div>
-                <button className="button submit" onClick={this.submit}>Add </button>
-            </div>
+                <div className="button-wrapper">
+                    <button className="button submit" onClick={this.submit}>Add </button>
+                </div>
+            </>
         );
     }
 }
