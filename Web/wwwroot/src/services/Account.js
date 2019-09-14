@@ -20,7 +20,7 @@ class Account {
     }
 
     fetchTransactions = () => {
-        Api.fetch("/api/transactions")
+        Api.fetch("/api/transactions?$orderby=description")
             .then(this.loadTransactions)
             .catch(console.log(`error fetching transactions balance`));
     }
@@ -51,7 +51,6 @@ class Account {
         this.setAvailable();
         this.setNet();
         this.updateSubscribers();
-
     }
 
     setNet = () => {
@@ -67,6 +66,10 @@ class Account {
 
     byType = (type) => {
         return this.accounts.filter(a => a.type === type);
+    }
+
+    transactions = () => {
+        return this.byType("transactions")[0];
     }
 
     balanceByType = (type) => {

@@ -1,21 +1,15 @@
 ﻿import React from 'react';
 import Api from '../../services/Api';
-//import Calendar from 'react-calendar';
-//import Moment from 'react-moment';
 import Notification from '../../services/Notification';
 import StatusToggle from './StatusToggle';
+import Account from '../../services/Account';
 
 export default class Update extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            id: null,
-            date: null,
-            description: null,
-            amount: null,
-            number: null,
-            cleared: false
+            descriptionList: null,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,15 +18,30 @@ export default class Update extends React.Component {
     }
 
     componentDidMount() {
+        this.mounted = true;
+        if (Account.transactions())
+            this.loadList();
+        Account.subscribe(this.loadList);
         this.props.item &&
-            this.setState({
-                id: this.props.item.id,
-                date: this.props.item.date,
-                description: this.props.item.description,
-                amount: this.props.item.amount,
-                number: this.props.item.number,
-                cleared: this.props.item.cleared
-            });
+            this.setState({ ...this.props.item });
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
+    setMountedState = (state, callback) => {
+        if (this.mounted)
+            this.setState(state, callback && callback());
+    }
+
+    loadList = () => {
+        let items = this.objectPropertyArray(Account.transactions().items, "description");
+        this.setMountedState({ descriptionList: items })
+    }
+
+    objectPropertyArray = (array, propertyName) => {
+        return [...new Set(array.map(i => i[propertyName]))];
     }
 
     componentWillReceiveProps(props) {
@@ -68,10 +77,18 @@ export default class Update extends React.Component {
                 <div className="cell date input-wrapper">
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                 </div>
-                {
-                }
-                <div className="cell description input-wrapper">
-                    <input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                <div className="input-wrapper cell description">
+                    {
+                        this.state.descriptionList &&
+                        <select value={this.state.description} name="description" onChange={this.handleChange}>
+                            {
+                                this.state.descriptionList.map((item, key) =>
+                                    <option value={item.trim()} key={key}>{item}</option>
+                                )
+                            }
+
+                        </select>
+                    }
                 </div>
                 <div className="cell number input-wrapper">
                     <input type="text" name="number" onChange={this.handleChange} value={this.state.number} />

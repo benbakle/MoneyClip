@@ -6,7 +6,6 @@ import AccountListing from './components/account/Listing';
 import IncomeListing from './components/income/Listing';
 import TransactionListing from './components/transaction/Listing';
 import AccountBalances from './components/AccountBalances';
-import Balance from './services/Balance';
 import Account from './services/Account';
 
 export default class App extends Component {
@@ -16,10 +15,8 @@ export default class App extends Component {
         this.state = { dark: true }
     }
 
-    static getDerivedStateFromProps() {
-        Balance.init();
+    componentDidMount() {
         Account.init();
-        return null;
     }
 
     toggleDarkMode = () => {
@@ -28,13 +25,13 @@ export default class App extends Component {
 
     render() {
         const { dark } = this.state;
-        const { toggleDarkMode } = this;
+        //const { toggleDarkMode } = this;
 
         return (
             <div className={`mc-app ${dark ? "dark" : ""}`}>
                 <header>
-                    <button class="trigger">
-                        <i class="fas fa-chevron-circle-down"></i>
+                    <button className="trigger">
+                        <i className="fas fa-chevron-circle-down"></i>
                     </button>
                     <Header />
                 </header>

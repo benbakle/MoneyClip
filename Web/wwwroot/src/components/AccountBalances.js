@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import Account from '../services/Account';
 import AccountBalance from './AccountBalance';
 
 export default class AccountBalances extends React.Component {

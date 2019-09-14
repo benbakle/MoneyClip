@@ -3,7 +3,6 @@ import Api from '../../services/Api';
 import Loading from '../Loading';
 import CrudToggle from '../CrudToggle';
 import Notification from '../../services/Notification';
-import Account from '../../services/Account';
 
 export default class Crud extends React.Component {
     constructor(props) {

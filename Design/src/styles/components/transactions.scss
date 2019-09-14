@@ -1,7 +1,7 @@
 .transactions {
-    .button-wrapper{
-        display:flex;
-        justify-content:flex-end;
+    .button-wrapper {
+        display: flex;
+        justify-content: flex-end;
     }
 
     button {
@@ -27,17 +27,20 @@
 
     .transaction {
         transition-duration: .3s;
-        /*&.pending {
-            font-style: italic;
-            color: $color-light;
+        font-size: 1.2rem;
+        text-transform: uppercase;
 
-            @include states {
-                color: $color-body;
-            }
-        }*/
+        &.pending {
+            font-style: italic;
+            color: $yellow;
+        }
+
+        &.pending:nth-child(even) {
+        }
+
         .date {
             text-align: left;
-            font-weight: 200;
+            font-weight: 700;
             font-size: ($font-size-body * .778);
 
             @include large-tablet {
@@ -51,10 +54,13 @@
 
         .description {
             text-align: left;
-            font-weight: 400;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            select {
+                text-transform: uppercase;
+            }
 
             @include large-tablet {
                 width: 35%;

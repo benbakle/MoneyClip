@@ -54,7 +54,6 @@ export default class Listing extends React.Component {
             this.updateFilter(`$filter=` + filters.join(" and  ") + `&$orderBy=${this.state.orderBy}`)
         else
             this.updateFilter(`$orderBy=${this.state.orderBy}`)
-
     }
 
     updateFilter(filter) {
