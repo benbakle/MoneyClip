@@ -5,7 +5,9 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <Navigation />
+                <div className="nav-trigger ">
+                    <Navigation />
+                </div>
             </div>
         );
     }

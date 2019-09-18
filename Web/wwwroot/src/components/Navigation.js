@@ -16,6 +16,11 @@ export default class Navigation extends React.Component {
                             Transactions
                            </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/transactions-wip" className="link" activeClassName="active">
+                            Transactions-WIP
+                           </NavLink>
+                    </li>
                 </ul>
             </div>
         );

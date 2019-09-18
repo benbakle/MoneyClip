@@ -59,7 +59,7 @@ $transition-duration: .5s;
     }
 
     .crud-item {
-        opacity: .7;
+        opacity: .8;
         height: 5rem;
 
         &.create {
@@ -74,17 +74,13 @@ $transition-duration: .5s;
 
 
     .crud-item:nth-child(odd) {
-        background-color: $gunmetal;
-
-        @include theme(".dark") {
-            background-color: $blue;
-        }
+        background-color: $blue;
     }
 }
 
 .cell {
     box-sizing: border-box;
-    padding: 8px 20px;
+    padding: .8rem 2rem;
 
     &.input-wrapper {
         padding: 3px 10px;

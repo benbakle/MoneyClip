@@ -96,6 +96,14 @@ export default class Create extends React.Component {
 
                         </select>
                         //<input type="text" name="description" onChange={this.handleChange} value={this.state.description} />
+                        //this.state.descriptionList &&
+                        //<ul>
+                        //    {
+                        //        this.state.descriptionList.map((item, key) =>
+                        //            <li key={key} onClick={() => this.setState({description: item })} name="description">{item}</li>
+                        //        )
+                        //    }
+                        //</ul>
                     }
                 </div>
                 <div className="input-wrapper cell number">

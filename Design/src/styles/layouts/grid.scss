@@ -1,7 +1,8 @@
 .grid {
     @include gutter;
+
     .flex-row {
-        display:flex;
+        display: flex;
         flex-wrap: wrap;
         margin: 0 -1.5rem;
 
@@ -10,17 +11,33 @@
         }
     }
 
+    .col-10,
+    .col-20,
     .col-30,
     .col-40,
     .col-50,
     .col-60,
     .col-70,
+    .col-90,
+    .col-90,
     .col-100 {
         @include gutter;
         width: 100%;
         order: 2;
         margin: 1.5rem auto;
         position: relative;
+    }
+
+    .col-10 {
+        @include desktop {
+            width: 10%;
+        }
+    }
+
+    .col-20 {
+        @include desktop {
+            width: 20%;
+        }
     }
 
     .col-30 {
@@ -52,6 +69,20 @@
             width: 70%;
         }
     }
+
+    .col-80 {
+        @include desktop {
+            width: 80%;
+        }
+    }
+
+    .col-90 {
+        @include desktop {
+            width: 90%;
+        }
+    }
+
+
 
     .first-on-mobile {
         order: 1;

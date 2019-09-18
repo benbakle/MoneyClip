@@ -16,7 +16,6 @@
         &.clear {
             background-color: transparent;
             text-transform: uppercase;
-            font-size: 1.2rem;
 
             @include states {
                 text-decoration: underline;
@@ -26,16 +25,29 @@
     }
 
     .transaction {
-        transition-duration: .3s;
         font-size: 1.2rem;
         text-transform: uppercase;
+        transition-duration: .3s;
 
         &.pending {
-            font-style: italic;
-            color: $yellow;
+            font-weight:700;
+            color: $white;
         }
 
-        &.pending:nth-child(even) {
+        &.cleared {
+            color: $blue;
+
+            &:nth-child(odd) {
+                color: $gunmetal;
+
+                /*.link {
+                    color: $gunmetal;
+                }*/
+            }
+
+            /*.link {
+                color: $blue;
+            }*/
         }
 
         .date {

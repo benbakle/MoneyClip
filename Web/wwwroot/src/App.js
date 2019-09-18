@@ -5,8 +5,11 @@ import Dashboard from './components/Dashboard';
 import AccountListing from './components/account/Listing';
 import IncomeListing from './components/income/Listing';
 import TransactionListing from './components/transaction/Listing';
+import TransactionListingWip from './components/transaction/Listing_wip';
 import AccountBalances from './components/AccountBalances';
 import Account from './services/Account';
+import Transactions from './services/Transactions';
+
 
 export default class App extends Component {
     displayName = App.name
@@ -17,6 +20,7 @@ export default class App extends Component {
 
     componentDidMount() {
         Account.init();
+        Transactions.init();
     }
 
     toggleDarkMode = () => {
@@ -30,9 +34,11 @@ export default class App extends Component {
         return (
             <div className={`mc-app ${dark ? "dark" : ""}`}>
                 <header>
-                    <button className="trigger">
-                        <i className="fas fa-chevron-circle-down"></i>
-                    </button>
+                    {
+                        //<button className="trigger">
+                        //    <i className="fas fa-chevron-circle-down"></i>
+                        //</button>
+                    }
                     <Header />
                 </header>
                 <main>
@@ -51,6 +57,7 @@ export default class App extends Component {
                                 <Route exact path='/accounts' component={AccountListing} />
                                 <Route exact path='/incomes' component={IncomeListing} />
                                 <Route exact path='/transactions' component={TransactionListing} />
+                                <Route exact path='/transactions-wip' component={TransactionListingWip} />
                                 <Route exact path='/' component={TransactionListing} />
                             </div>
                         </div>

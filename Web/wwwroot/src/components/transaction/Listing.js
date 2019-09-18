@@ -17,7 +17,7 @@ export default class Listing extends React.Component {
             payee: "",
             fetching: true,
             filter: "",
-            orderBy: 'date desc'
+            orderBy: 'cleared'
         }
 
         this.handleFilters = this.handleFilters.bind(this);

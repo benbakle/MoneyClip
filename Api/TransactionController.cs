@@ -21,7 +21,7 @@ namespace MoneyClip.Api
         [EnableQuery]
         public IQueryable<Transaction> GetTransactions()
         {
-            return _context.Query<Transaction>();
+            return _context.Query<Transaction>().OrderByDescending(o => o.Date);
         }
 
         [HttpGet("total")]

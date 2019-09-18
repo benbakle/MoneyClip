@@ -1,42 +1,35 @@
 header {
-    position: fixed;
-    right: 6rem;
-    top: 3rem;
-    z-index: 1000;
+    .nav-trigger {
+        position: relative;
+        height: 75px;
+        box-sizing: border-box;
 
-    .trigger {
-        @include resetButton;
-        display: inline-block;
-        font-size: 5rem;
-        width: 5rem;
-        height: 5rem;
-        color: lighten($gunmetal,60);
-        cursor: pointer;
-        transform-origin: center;
-        padding: 0;
-        transition-duration: .5s;
-    }
-
-    @include states {
-        button.trigger {
-            color: $white;
-            transform: rotate(90deg);
-            font-size: 6rem;
-        }
-
-        .main-navigation {
-            right: 0;
+        &:hover {
+            .main-navigation {
+                top: 0;
+            }
         }
     }
-
+   
     .main-navigation {
         position: absolute;
-        padding: 0 7.5rem 0 1.5rem;
-        box-sizing: border-box;
-        text-align: right;
-        right: -35rem;
-        top: 0;
+        top: -75px;
+        width: 100%;
+        max-width: 768px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 auto;
+        height: 100%;
         transition-duration: .5s;
+        padding: 10px;
+        box-sizing: border-box;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+        }
 
         .link {
             font-size: 2.4rem;
