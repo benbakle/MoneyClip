@@ -9,6 +9,7 @@ export default class Create extends React.Component {
             name: "",
             balance: 0,
             offset: 0,
+            type: 0,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -20,7 +21,8 @@ export default class Create extends React.Component {
     }
 
     submit() {
-        let account = { Name: this.state.name, Balance: this.state.balance };
+        const { name, balance, offset, type } = this.state;
+        let account = { Name: name, Balance: balance, Offset: offset, Type: type };
         Api.create("accounts", account).then(this.props.callback);
     }
 
@@ -32,9 +34,9 @@ export default class Create extends React.Component {
                 </div>
                 <div className="cell type select-wrapper cell type">
                     <select type="text" name="type" onChange={this.handleChange} value={this.state.type} >
-                        <option value="Credit">credit</option>
-                        <option value="Checking">checking</option>
-                        <option value="Savings">savings</option>
+                        <option value="credit">credit</option>
+                        <option value="checking">checking</option>
+                        <option value="savings">savings</option>
                     </select>
                 </div>
 
