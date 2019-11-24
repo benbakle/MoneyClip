@@ -125,6 +125,10 @@ $transition-duration: .5s;
 
     &.available {
         color: $white;
+
+        &.minus {
+            color: $red;
+        }
     }
 }
 

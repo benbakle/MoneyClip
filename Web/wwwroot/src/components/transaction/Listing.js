@@ -6,18 +6,20 @@ import Crud from '../layouts/Crud';
 import ListingHeader from './ListingHeader';
 import Api from '../../services/Api';
 import moment from 'moment';
+import Money from '../Money';
+import Transactions from '../../services/Transactions';
 
 export default class Listing extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            //cleared: false,
             payees: [],
             payee: "",
             fetching: true,
             filter: "",
-            orderBy: 'cleared'
+            orderBy: 'cleared',
+            fundsNeeded: 0,
         }
 
         this.handleFilters = this.handleFilters.bind(this);
@@ -26,8 +28,10 @@ export default class Listing extends React.Component {
     }
 
     componentDidMount() {
+        Transactions.subscribe(this.loadfundsNeeded);
         this.handleFilters();
         this.fetchPayees();
+
     }
 
     handleChange(e) {
@@ -40,6 +44,10 @@ export default class Listing extends React.Component {
 
     load(data) {
         this.setState({ payees: data, fetching: false });
+    }
+
+    loadfundsNeeded = () => {
+        this.setState({ fundsNeeded: Transactions.fundsNeeded });
     }
 
     handleFilters() {
@@ -62,14 +70,16 @@ export default class Listing extends React.Component {
 
     render() {
         return (
-            <Crud
-                view={<View />}
-                create={<Create />}
-                update={<Update />}
-                header={<ListingHeader />}
-                type="transactions"
-                filter={this.state.filter}
-            />
+            <>
+                <Crud
+                    view={<View />}
+                    create={<Create />}
+                    update={<Update />}
+                    header={<ListingHeader />}
+                    type="transactions"
+                    filter={this.state.filter}
+                />
+            </>
         )
     }
 }

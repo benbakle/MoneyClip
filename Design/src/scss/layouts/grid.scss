@@ -6,9 +6,9 @@
         flex-wrap: wrap;
         margin: 0 -1.5rem;
 
-        @include tablet {
+        /*@include tablet {
             margin: 0 -3rem;
-        }
+        }*/
     }
 
     .col-10,
@@ -24,7 +24,7 @@
         @include gutter;
         width: 100%;
         order: 2;
-        margin: 1.5rem auto;
+        margin: 0.5rem auto;
         position: relative;
     }
 

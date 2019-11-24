@@ -1,244 +1,202 @@
-/// <binding ProjectOpened='default' />
-const gulp = require('gulp'),
-    pug = require('gulp-pug'), //https://www.npmjs.com/package/gulp-pug
-    sourcemaps = require('gulp-sourcemaps'),
-    concat = require('gulp-concat'),
-    sass = require('gulp-sass'),
-    fs = require("fs"),
-    colors = require('colors'),
-    browserify = require('browserify'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    uglify = require('gulp-uglify'),
-    express = require('express'),
-    browserSync = require('browser-sync').create(),
-    reload = browserSync.reload,
-    exec = require("child_process").exec,
-    cleanCSS = require('gulp-clean-css');
+const gulp = require('gulp');
+const del = require('del');
+const cleanCSS = require('gulp-clean-css');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const browserSync = require('browser-sync').create();
+const pug = require('gulp-pug');
+const router = require('express').Router();
+const colors = require('colors');
+const dateformat = require('dateformat');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify-es').default;
 
-const config = {
-    vendors: [],
-    browser_sync: {
-        port: 8000,
-        ui: 8080
-    },
+//root paths
+const src = './src';
+const dist = './dist';
+const web_assets = '../Web/wwwroot/public/assets';
+
+//source paths
+const markup_src = `${src}/markup/**/*.pug`;
+const scss_src = `${src}/scss/bundle.scss`;
+const js_src = `${src}/js/**/*.js`;
+
+//distribution paths
+const html_dist = `${dist}`;
+
+const css_dist = `${dist}/css`;
+const css_web_assets = `${web_assets}/css`;
+
+const js_dist = `${dist}/js`;
+const js_web_assets = `${web_assets}/js`;
+
+const all_dist = [web_assets, html_dist, css_dist, 'bin', 'obj'];
+
+//watched paths
+const watched_scss = `${src}/scss/**/*.scss`;
+const watched_markup = `${src}/markup/**/*.pug`;
+const watched_js = `${src}/js/**/*.js`;
+
+//series definitions
+const clean_series = ['clean'];
+const markup_series = ['markup'];
+const css_series = ['css'];
+const js_series = ['js'];
+const watch_series = ['watch'];
+const default_series = [...clean_series, ...markup_series, ...css_series, ...js_series, ...watch_series];
+
+clean = () => {
+    return del(all_dist, { force: true })
+        .then(() => { log(`Success: Deleted transpiled files from '${dist}'`, 'success') });
 }
 
-const log = (o, level = 0) => {
-    if (level > 2)
-        return;
-    for (var p in o) {
-        console.log(`${colors.red('prop:')}${p}: ${o[p]}`);
-        if (o[p] != null && typeof o[p] == 'object') {
-            try {
-                console.log("DETAILS")
-                log(o[p], level + 1);
-            } catch (err) {
-                console.log('CANT GET INFO')
-            }
-        }
-    }
+markup = () => {
+    return gulp.src(markup_src)
+        .pipe(pug({ pretty: true })
+            .on('error', () => { log('failed to get .pug files', 'error') })
+            .on('end', () => { log('pug files found ...') }))
+
+        .pipe(gulp.dest(html_dist)
+            .on('error', () => { log(`Failed: HTML failed to write to '${html_dist}'`, 'error') })
+            .on('end', () => { log(`Success: HTML transpiled and written to '${html_dist}'`, 'success') }))
+
+        .pipe(browserSync.stream())
 }
 
-let router = express.Router();
-let jsonServer = require("json-server");
-let server = null;
+css = () => {
+    return gulp.src([scss_src])
+        .pipe(sourcemaps.init())
 
-const templateDistributionLocation = "./dist";
-const webDistributionLocation = "../Web/wwwroot/src/assets/";
+        .pipe(sass()
+            .on('error', () => { log(`failed to get .scss files`, 'error') })
+            .on('end', () => { log(`scss files found...`) }))
 
-const html = (callback) => {
-    console.log(colors.cyan('[HTML] Transpiling PUG'));
+        .pipe(concat(`bundle.min.css`)
+            .on('error', () => { log(`failed to concat to bundle.min.css`, 'error') })
+            .on('end', () => { log(`scss bundled...`) }))
 
-    return gulp.src(['./src/markup/**/*.pug', '!src/markup/content/**/*.pug', '!src/markup/grids/**/*.pug', '!src/markup/mixins/**/*.pug'])
-        .pipe(
-            pug({
-                pretty: true,
-                debug: false,
-                compileDebug: false,
-            }).on('error', function (err) {
-                console.log('[HTML] ' + colors.bgWhite.red(err.toString()));
-                console.log('[HTML] ' + colors.red(err.message));
-                callback();
-            })
-        )
-        .pipe(gulp.dest(templateDistributionLocation + '/'))
-        .on('end', function () {
-            console.log(colors.green('[HTML] Transpilation complete'));
-            callback();
-        });
-};
-const img = (callback) => {
-    console.log(colors.cyan('[IMAGE] Copying Images'));
-    return gulp.src('./src/img/**/*.*')
-        .pipe(gulp.dest(templateDistributionLocation + '/img'))
-        .on('error', function (err) {
-            console.log('[IMAGE] ' + colors.red(err.toString()));
-            callback();
-        }).on('end', function () {
-            callback();
-        });
-};
-const font = () => {
-    console.log('[FONT] ' + colors.cyan('Copying Fonts'));
-    return gulp.src('./src/fonts/**/*.*')
-        .pipe(gulp.dest(templateDistributionLocation + '/fonts'))
-        .pipe(gulp.dest(webDistributionLocation + '/fonts'));
-};
-const js = (callback) => {
-    console.log(colors.cyan('[JS] Bundling and Babeling JS'));
-    var b = browserify({
-        entries: './src/js/app.js',
-        debug: true
-    })
-        .external(config.vendors)
-        .transform('babelify', {
-            presets: ['@babel/preset-env']
-        });
+        .pipe(postcss([autoprefixer()])
+            .on('error', () => { log(`failed to add browser prefixes`, 'error') })
+            .on('end', () => { log(`browser prefixes added...`) }))
 
-    return b
-        .bundle((err) => {
-            if (err)
-                console.log('[JS] ' + colors.red(err.toString()));
+        .pipe(cleanCSS({ compatibility: 'ie8' })
+            .on('error', () => { log(`failed to minify css`, 'error') })
+            .on('end', () => { log(`minified css - compatibility : 'ie8'...`) }))
 
-            if (callback)
-                callback();
+        .pipe(sourcemaps.write()
+            .on('error', () => { log(`failed mapping minified css`, 'error') })
+            .on('end', () => { log(`sourcemaps added...`) }))
+
+        .pipe(gulp.dest(`${css_dist}`)
+            .on('error', () => { log(`Failed: CSS failed to write to '${css_dist}'`, 'error') })
+            .on('end', () => { log(`Success: CSS transpiled and written to '${css_dist}'`, 'success') }))
+
+        .pipe(gulp.dest(`${css_web_assets}`)
+            .on('error', () => { log(`Failed: CSS failed to write to '${css_web_assets}'`, 'error') })
+            .on('end', () => { log(`Success: CSS transpiled and written to '${css_web_assets}'`, 'success') }))
+
+        .pipe(browserSync.stream());
+}
+
+js = () => {
+    return gulp.src(js_src)
+        .pipe(sourcemaps.init())
+
+        .pipe(babel({
+            "presets": ["@babel/preset-env"],
+            "plugins": ["@babel/plugin-proposal-class-properties"]
         })
-        .pipe(source('app.min.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
-        .pipe(uglify())
-        .on('error', function (err) {
-            console.log('[JS] ' + colors.red(err.toString()));
-            callback();
-        })
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(templateDistributionLocation + '/js'))
-        .on('end', function () {
-            callback();
-        });
-};
-const jsv = (callback) => {
-    console.log(colors.cyan('[JS V] Bundling and Babeling Vendor JS'));
-    var b = browserify({
-        debug: true
-    }).transform('babelify', {
-        presets: ['@babel/preset-env']
+            .on('error', () => { log(`failed to get .js files`, 'error') })
+            .on('end', () => { log(`javascript files found...`) }))
+
+        .pipe(concat('bundle.min.js')
+            .on('error', () => { log(`failed to concat to all.min.js`, 'error') })
+            .on('end', () => { log(`javascript bundled...`) }))
+
+        .pipe(uglify()
+            .on('error', () => { log(`failed to minify javascript`, 'error') })
+            .on('end', () => { log(`minified javascript...`) }))
+
+        .pipe(sourcemaps.write('.')
+            .on('error', () => { log(`failed mapping minified javascript`, 'error') })
+            .on('end', () => { log(`sourcemaps added...`) }))
+
+        .pipe(gulp.dest(js_dist)
+            .on('error', () => { log(`Failed: Javascript failed to write to '${js_dist}'`, 'error') })
+            .on('end', () => { log(`Success: Javascript transpiled and written to '${js_dist}'`, 'success') }))
+
+        .pipe(gulp.dest(js_web_assets)
+            .on('error', () => { log(`Failed: Javascript failed to write to '${js_web_assets}'`, 'error') })
+            .on('end', () => { log(`Success: Javascript transpiled and written to '${js_web_assets}'`, 'success') }))
+
+        .pipe(browserSync.stream())
+}
+
+watch = () => {
+    watchSeries(watched_scss, css_series);
+    watchSeries(watched_markup, markup_series);
+    watchSeries(watched_js, js_series);
+    log("watching for file changes...");
+}
+
+watchSeries = (path, series) => {
+    gulp.watch(path, (done) => {
+        gulp.series(series)(done);
     });
+}
 
-    config.vendors.forEach(lib => {
-        b.require(lib);
-    });
-
-    return b
-        .bundle((err) => {
-            if (err)
-                console.log('[JS V] ' + colors.red(err.toString()));
-
-            if (callback)
-                callback();
-        })
-        .pipe(source('vendors.min.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
-        .pipe(uglify())
-        .on('error', function (err) {
-            console.log('[JS V] ' + colors.red(err.toString()));
-            callback();
-        })
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(templateDistributionLocation + '/js'))
-};
-const scss = (callback) => {
-    console.log(colors.cyan('[SCSS] Transpiling Sass to Css'));
-    var postcss = require('gulp-postcss');
-    var autoprefixer = require('autoprefixer');
-
-    return bundle([
-        './src/styles/global.scss'
-    ], 'bundle.min.css');
-
-    function bundle(source, dest) {
-        return gulp.src(source)
-            .pipe(sourcemaps.init())
-            .pipe(sass().on('error', sass.logError))
-            .pipe(concat(dest))
-            .pipe(postcss([autoprefixer()]))
-            .pipe(cleanCSS({
-                compatibility: 'ie8'
-            }))
-            .pipe(sourcemaps.write('.'))
-            .on('error', function (err) {
-                console.log(colors.red('[SCSS] ' + err.toString()));
-                callback();
-            })
-            .pipe(gulp.dest(templateDistributionLocation + '/css'))
-            .pipe(gulp.dest(webDistributionLocation + '/css'))
-            .pipe(browserSync.stream())
-            .on('end', function () {
-                callback();
-            });
-
-    }
-};
-const serve = (callback) => {
-    console.log(colors.cyan('[SERVE] Says: standing up your server'));
-    build_routes();
+sync = () => {
     browserSync.init({
+        server: {
+            baseDir: html_dist,
+            index: "index.html",
+        },
         open: true,
         notify: true,
-        logPrefix: 'Server Says:',
-        server: {
-            baseDir: "./dist/",
-            index: "index.html"
-        },
         browser: ["chrome"],
         middleware: [function (req, res, next) {
             router(req, res, next)
         }]
-    }, function (err, bs) {
-        console.log(colors.cyan('[SERVE] Says: hello'));
-        callback();
     });
-};
-const build_routes = (cb) => {
-    if (cb) cb();
-};
-const watch = (callback) => {
-    console.log(colors.cyan('[WATCH] Watching...'));
-    gulp.watch(['./src/markup/**/*.pug']).on('all', function (event, path, stats) {
-        console.log(colors.yellow('File ' + path + ' ' + event));
-        html(reload);
-    });
+    log("browser syncing is active...");
+}
 
-    gulp.watch(['./src/styles/**/*.scss']).on('all', function (event, path, stats) {
-        console.log(colors.yellow('File ' + path + ' ' + event));
-        scss(() => {
-            console.log(browserSync);
-        });
-    });
 
-    gulp.watch(['./src/js/**/*.js']).on('all', function (event, path, stats) {
-        console.log(colors.yellow('File ' + path + ' ' + event));
-        js(reload);
-    });
+log = (message, type) => {
+    let timestamp = `${colors.white('[')}${colors.grey(dateformat(new Date(), 'hh:MM:ss'))}${colors.white(']')}`;
 
-    gulp.watch(['./src/data/generate.js']).on('change', function (event, path, stats) {
-        console.log(colors.yellow('File ' + path + ' ' + event));
-        json(build_routes(createModels(reload)));
-    });
+    if (type === 'error')
+        return console.log(`${timestamp} ${colors.red(message)}`);
 
-    gulp.watch(['./src/img/**/*']).on('add', function (event, path, stats) {
-        console.log(colors.yellow('File ' + path + ' ' + event));
-        img(reload);
-    });
+    if (type === 'success')
+        return console.log(`${timestamp} ${colors.green(message)}`);
 
-    callback();
-};
+    return console.log(colors.blue(`${timestamp} ${colors.grey("-")}${message}`));
+}
 
-gulp.task('serve', gulp.series(gulp.parallel(html, scss, js, img, font), gulp.parallel(serve, watch)));
-gulp.task('default', gulp.series(gulp.parallel(html, scss, js, img, font)));
+// > gulp clean
+gulp.task('clean', () => { return clean() });
+
+// > gulp markup
+gulp.task('markup', () => { return markup() });
+
+// > gulp css
+gulp.task('css', () => { return css() });
+
+// > gulp js
+gulp.task('js', () => { return js() });
+
+// > gulp watch
+gulp.task('watch', () => { return watch() });
+
+// > gulp sync
+gulp.task('sync', () => { return sync() });
+
+// > gulp
+gulp.task('default', gulp.series(default_series));
+
+// > gulp start
+gulp.task('start', gulp.series(gulp.parallel(markup, css, js), gulp.parallel(watch, sync)));

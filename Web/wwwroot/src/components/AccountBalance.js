@@ -10,6 +10,7 @@ export default class AccountBalance extends React.Component {
         this.state = {
             balance: null,
             fetching: true,
+            breakdown: null,
         }
     }
 
@@ -17,6 +18,7 @@ export default class AccountBalance extends React.Component {
         this.setActiveState();
         this.mounted = true;
         Account.subscribe(this.load);
+        console.log()
     }
 
     componentDidUnount() {
@@ -29,8 +31,15 @@ export default class AccountBalance extends React.Component {
     }
 
     load = () => {
+
         if (Account.balanceByType(this.props.type))
-            this.setMountedState({ balance: Account.balanceByType(this.props.type), fetching:false});
+            return this.setMountedState({ balance: Account.balanceByType(this.props.type), fetching: false });
+        this.setMountedState({ balance: this.props.balance, fetching: false });
+    }
+
+    loadBreakdown = () => {
+        if (this.props.type === "available")
+            this.setState({ breakdown: Account.accounts.filter(a => a.type === this.props.type)[0].breakdown });
     }
 
     setMountedState = (state, callback) => {
@@ -40,6 +49,11 @@ export default class AccountBalance extends React.Component {
 
     toggleActive = () => {
         this.setState({ active: !this.state.active });
+    }
+
+    toggleBreakdownView = () => {
+        this.loadBreakdown();
+        console.log(this.state.breakdown);
     }
 
     icon = () => {
@@ -52,9 +66,9 @@ export default class AccountBalance extends React.Component {
     }
 
     render() {
-        const { balance, active, fetching } = this.state;
+        const { balance, active, fetching, breakdown } = this.state;
         const { title, type } = this.props;
-        const { toggleActive, icon } = this;
+        const { toggleActive, icon, toggleBreakdownView } = this;
 
         return (
             <>
@@ -81,9 +95,19 @@ export default class AccountBalance extends React.Component {
                         </div>
                         <div className="value">
                             <div className="amount"><Money value={Math.abs(balance)} /></div>
-                        <button className="type" onClick={() => alert()} title={`view ${title} breakdown`}>
+                            <button className="type" onClick={() => toggleBreakdownView()} title={`view ${title} breakdown`}>
                                 {title} <i className={`fas fa-info-circle`}></i>
                             </button>
+                        </div>
+                        <div>
+                            {
+                                breakdown && breakdown.map((i, k) =>
+                                    <div key={k}>
+                                        {i.desc}{i.balance}
+                                    </div>
+                                )
+
+                            }
                         </div>
                     </div>
                 }

@@ -37,8 +37,9 @@ class Account {
             {
                 type: "available",
                 balance: this.balanceByType("checking") - this.offsetByType("checking") - this.balanceByType("transactions"),
+                breakdown: [{ desc: "Checking", balance: this.balanceByType("checking") }, { desc: "Transactions", balance: -this.balanceByType("transactions") }]   
             })
-
+        console.log(this.byType("available"));
     }
 
     setTransactions = (items) => {
